@@ -19,7 +19,6 @@ private:
 	virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 private:
 	void resetSlider();
-	bool handleTouch(cocos2d::CCPoint pt);
 private:
 	cocos2d::CCNode *m_slider;
 	cocos2d::CCNode *m_bg;
