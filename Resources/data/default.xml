@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+               
+<plist version="1.0">
+    <dict>
+        <key>key1</key>
+        <string>100</string>
+        <key>key2</key>
+        <string>120</string>
+        <key>key3</key>         
+    </dict>
+</plist>

@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "MainScene.h"
+#include "TestScene.h"
 
 USING_NS_CC;
 
@@ -31,7 +32,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = MainScene::create();
+	CCScene *pScene = NULL;
+#define GMAE_TEST
+#ifdef GMAE_TEST
+	pScene = TestScene::create();
+#else
+    pScene = MainScene::create();
+#endif 
 
     // run
     pDirector->runWithScene(pScene);

@@ -19,6 +19,9 @@
     <Filter Include="Controller">
       <UniqueIdentifier>{787a6ae0-e34f-4b76-aa66-667c4a14ed83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\rapdixml">
+      <UniqueIdentifier>{3a17f90b-5764-4486-a56e-d0d47104e205}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,6 +45,12 @@
     <ClCompile Include="..\Classes\UiLayer.cpp">
       <Filter>ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TestScene.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameConfig.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -64,6 +73,24 @@
     </ClInclude>
     <ClInclude Include="..\Classes\UiLayer.h">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestScene.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp">
+      <Filter>util\rapdixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_iterators.hpp">
+      <Filter>util\rapdixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_print.hpp">
+      <Filter>util\rapdixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_utils.hpp">
+      <Filter>util\rapdixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameConfig.h">
+      <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

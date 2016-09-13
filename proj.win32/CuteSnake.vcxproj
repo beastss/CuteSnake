@@ -133,18 +133,26 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\CommonUtil.cpp" />
+    <ClCompile Include="..\Classes\GameConfig.cpp" />
     <ClCompile Include="..\Classes\GameLayer.cpp" />
     <ClCompile Include="..\Classes\MainScene.cpp" />
     <ClCompile Include="..\Classes\JoyStick.cpp" />
+    <ClCompile Include="..\Classes\TestScene.cpp" />
     <ClCompile Include="..\Classes\UiLayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\CommonUtil.h" />
+    <ClInclude Include="..\Classes\GameConfig.h" />
     <ClInclude Include="..\Classes\GameLayer.h" />
     <ClInclude Include="..\Classes\MainScene.h" />
     <ClInclude Include="..\Classes\JoyStick.h" />
+    <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="..\Classes\TestScene.h" />
     <ClInclude Include="..\Classes\UiLayer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

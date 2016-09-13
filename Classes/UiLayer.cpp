@@ -19,6 +19,9 @@ bool UiLayer::init()
 	joyStick->setHandle(bind(&UiLayer::onJoyStickChanged, this, placeholders::_1));
 	addChild(joyStick);
 
+	auto label = CCLabelTTF::create("ÊÇÀÁµÃ¼Ó¸£Â»ÊÙ", "Arial", 20);
+	label->setPosition(ccp(100, 100));
+	addChild(label);
     return true;
 }
 
