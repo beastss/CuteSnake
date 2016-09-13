@@ -1,0 +1,29 @@
+#ifndef __JOY_SKICK_H__
+#define __JOY_SKICK_H__
+#include "cocos2d.h"
+#include <functional>
+
+class JoyStick
+	: public cocos2d::CCNode
+	, public cocos2d::CCTouchDelegate
+{
+public:
+	CREATE_FUNC(JoyStick);
+	void setHandle(std::function<void(cocos2d::CCPoint)> handle){ m_handle = handle; }
+private:
+	virtual void onEnter();
+	virtual void onExit();
+	virtual bool init();
+	virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+	virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+	virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+private:
+	void resetSlider();
+	bool handleTouch(cocos2d::CCPoint pt);
+private:
+	cocos2d::CCNode *m_slider;
+	cocos2d::CCNode *m_bg;
+	std::function<void(cocos2d::CCPoint)> m_handle;
+};
+
+#endif
