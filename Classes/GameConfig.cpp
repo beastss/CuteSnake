@@ -8,9 +8,35 @@ GameConfig *GameConfig::theModel()
 	return &model;
 }
 
-std::string GameConfig::getValue(std::string key)
+const CCString* GameConfig::getValue(std::string tableName, std::string key)
 {
-	string value;
-
+	string tbPath = "data/" + tableName + ".xml";
+	CCDictionary* pDict = CCDictionary::createWithContentsOfFile(tbPath.c_str());
+	auto value = pDict->valueForKey(key);
 	return value;
 }
+
+int GameConfig::getIntValue(std::string tableName, std::string key)
+{
+	auto value = getValue(tableName, key)->intValue();
+	return value;
+}
+
+float GameConfig::getFloatValue(std::string tableName, std::string key)
+{
+	auto value = getValue(tableName, key)->floatValue();
+	return value;
+}
+
+bool GameConfig::getBoolValue(std::string tableName, std::string key)
+{
+	auto value = getValue(tableName, key)->boolValue();
+	return value;
+}
+
+std::string GameConfig::getStrValue(std::string tableName, std::string key)
+{
+	auto value = getValue(tableName, key)->getCString();
+	return value;
+}
+

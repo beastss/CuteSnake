@@ -1,4 +1,5 @@
 #include "TestScene.h"
+#include "GameConfig.h"
 using namespace std;
 USING_NS_CC;
 
@@ -11,8 +12,8 @@ bool TestScene::init()
 
 	auto bk = CCLayerColor::create(ccc4(120, 120, 120, 255));
 	addChild(bk);
-	CCDictionary* pDict = CCDictionary::createWithContentsOfFile("data/plist.xml");
-	const CCString* name = pDict->valueForKey("sjdf1");
+	int value = GameConfigSelf->getIntValue("plist", "sjdf2");
+
     return true;
 }
 
