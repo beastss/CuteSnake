@@ -8,7 +8,7 @@ using namespace std;
 Snake::Snake()
 : m_length(5)
 , m_color(LIGHT_PINK)
-, m_speed(100)
+, m_speed(200)
 , m_angle(0)
 , m_destAngle(0)
 {
@@ -53,20 +53,20 @@ void Snake::update(float dt)
 {
 	const float kNodeDistance = 16;
 	
-	int angleOffset = m_angle - m_destAngle;
+	int angleOffset = m_destAngle - m_angle;
 	if (abs(angleOffset) < 10)
 	{
 		m_angle = m_destAngle;
 	}
 	else if (sin(angleOffset) > 0)
 	{
-		m_angle -= 500 * dt;//ÄæÊ±Õë
+		m_angle -= 2000 * dt;//ÄæÊ±Õë
 	}
 	else
 	{
-		m_angle += 500 * dt;//Ë³Ê±Õë
+		m_angle += 2000 * dt;//Ë³Ê±Õë
 	}
-	m_angle = (m_angle + 360)% 360;
+	m_angle = (m_angle + 360) % 360;
 	/*
 	else if ((0 < (angleOffset) && (angleOffset < 180)) || (angleOffset < -180))
 	{
@@ -79,6 +79,7 @@ void Snake::update(float dt)
 	*/
 
 	m_head->setRotation(90 - m_angle);
+	CCLOG("m_angle: %d", m_angle);
 	
 	CCPoint offset;
 	offset.x = cos(m_angle * M_PI / 180) *dt * m_speed;
