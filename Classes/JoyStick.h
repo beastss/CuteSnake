@@ -9,7 +9,7 @@ class JoyStick
 {
 public:
 	CREATE_FUNC(JoyStick);
-	void setHandle(std::function<void(cocos2d::CCPoint)> handle){ m_handle = handle; }
+	void setHandle(std::function<void(int)> handle){ m_handle = handle; }
 private:
 	virtual void onEnter();
 	virtual void onExit();
@@ -22,7 +22,7 @@ private:
 private:
 	cocos2d::CCNode *m_slider;
 	cocos2d::CCNode *m_bg;
-	std::function<void(cocos2d::CCPoint)> m_handle;
+	std::function<void(int)> m_handle;
 };
 
 #endif

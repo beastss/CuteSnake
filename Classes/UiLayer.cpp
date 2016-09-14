@@ -1,6 +1,7 @@
 #include "UiLayer.h"
 #include "CommonUtil.h"
 #include "JoyStick.h"
+#include "SnakeController.h"
 using namespace std;
 USING_NS_CC;
 
@@ -19,9 +20,6 @@ bool UiLayer::init()
 	joyStick->setHandle(bind(&UiLayer::onJoyStickChanged, this, placeholders::_1));
 	addChild(joyStick);
 
-	auto label = CCLabelTTF::create("ÊÇÀÁµÃ¼Ó¸£Â»ÊÙ", "Arial", 20);
-	label->setPosition(ccp(100, 100));
-	addChild(label);
     return true;
 }
 
@@ -30,7 +28,8 @@ void UiLayer::menuCloseCallback(CCObject* pSender)
 	CCMessageBox("test", "test");
 }
 
-void UiLayer::onJoyStickChanged(CCPoint angel)
+void UiLayer::onJoyStickChanged(int angle)
 {
 	//CCLOG("x = %f, y = %f", angel.x, angel.y);
+	SnakeController::controller()->changeAngle(angle);
 }

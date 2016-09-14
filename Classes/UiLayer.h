@@ -10,7 +10,7 @@ public:
 private:
     virtual bool init();  
     void menuCloseCallback(cocos2d::CCObject* pSender);
-	void onJoyStickChanged(cocos2d::CCPoint angel);
+	void onJoyStickChanged(int angle);
 };
 
 #endif 

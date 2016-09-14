@@ -19,10 +19,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     pDirector->setOpenGLView(pEGLView);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
-	pEGLView->setFrameSize(800, 480);
+	//pEGLView->setFrameSize(800, 480);
+	pEGLView->setFrameSize(1000, 800);
 #endif
 
-	CCSize designSize = CCSizeMake(800, 480);
+	//CCSize designSize = CCSizeMake(800, 480);
+	CCSize designSize = CCSizeMake(1000, 800);
 	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
 	
     // turn on display FPS
@@ -33,7 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
 	CCScene *pScene = NULL;
-#define GMAE_TEST
+//#define GMAE_TEST
 #ifdef GMAE_TEST
 	pScene = TestScene::create();
 #else

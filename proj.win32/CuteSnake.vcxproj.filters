@@ -19,8 +19,11 @@
     <Filter Include="Controller">
       <UniqueIdentifier>{787a6ae0-e34f-4b76-aa66-667c4a14ed83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="util\rapdixml">
-      <UniqueIdentifier>{3a17f90b-5764-4486-a56e-d0d47104e205}</UniqueIdentifier>
+    <Filter Include="snake">
+      <UniqueIdentifier>{996dd8c8-2eaa-4567-b317-100222332b3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\rapaidxml">
+      <UniqueIdentifier>{176cf16d-cfa6-40f5-8792-340e7a309979}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +54,24 @@
     <ClCompile Include="..\Classes\GameConfig.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Snake.cpp">
+      <Filter>snake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EnemySnake.cpp">
+      <Filter>snake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UiLayout.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EmptyBox.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerSnake.cpp">
+      <Filter>snake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SnakeController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -77,20 +98,41 @@
     <ClInclude Include="..\Classes\TestScene.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp">
-      <Filter>util\rapdixml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\rapidxml\rapidxml_iterators.hpp">
-      <Filter>util\rapdixml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\rapidxml\rapidxml_print.hpp">
-      <Filter>util\rapdixml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\rapidxml\rapidxml_utils.hpp">
-      <Filter>util\rapdixml</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameConfig.h">
       <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Snake.h">
+      <Filter>snake</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemySnake.h">
+      <Filter>snake</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CommonMacro.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UiLayout.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp">
+      <Filter>util\rapaidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_iterators.hpp">
+      <Filter>util\rapaidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_print.hpp">
+      <Filter>util\rapaidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\rapidxml\rapidxml_utils.hpp">
+      <Filter>util\rapaidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EmptyBox.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerSnake.h">
+      <Filter>snake</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SnakeController.h">
+      <Filter>Controller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

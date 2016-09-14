@@ -1,5 +1,6 @@
 #include "JoyStick.h"
 #include <cmath>
+#include "chipmunk_types.h"
 USING_NS_CC;
 using namespace std;
 
@@ -65,8 +66,15 @@ void JoyStick::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 	m_slider->setPosition(targetPos);
 	if (m_handle)
 	{
-		CCPoint delta = ccp(dx, dy);
-		m_handle(delta.normalize());
+		//º∆À„Ω«∂»
+		CCPoint delta = ccp(dx, dy).normalize();
+		int angle = atan(dy / dx) * 180 / M_PI;
+		if (dx < 0)
+		{
+			angle += 180;
+		}
+		angle = (angle + 360) % 360;
+		m_handle(angle);
 	}
 }
 
@@ -74,5 +82,3 @@ void JoyStick::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
 	resetSlider();
 }
-
-void setHandle(std::function<void()>);
