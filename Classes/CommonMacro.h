@@ -34,4 +34,5 @@ for (size_t index = 0; index < m_views.size(); ++index) \
 	m_views[index]->_FUNC_(__VA_ARGS__);				\
 }
 
+#define NORMAL_SPEED 100
 #endif

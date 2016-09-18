@@ -19,6 +19,11 @@ void SnakeController::speedUp()
 	NOTIFY_VIEWS(onSpeedUp);
 }
 
+void SnakeController::speedUpOver()
+{
+	NOTIFY_VIEWS(onSpeedUpOver);
+}
+
 void SnakeController::addView(IControlSnake *view)
 {
 	auto iter = find(m_views.begin(), m_views.end(), view);

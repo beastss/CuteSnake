@@ -25,6 +25,9 @@
     <Filter Include="util\rapaidxml">
       <UniqueIdentifier>{176cf16d-cfa6-40f5-8792-340e7a309979}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\action">
+      <UniqueIdentifier>{98fac2b1-5283-4e3b-886d-95ac247bcda0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,6 +74,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SnakeController.cpp">
       <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CCFunctionAction.cpp">
+      <Filter>util\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Action.cpp">
+      <Filter>util\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ActionRunner.cpp">
+      <Filter>util\action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +145,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SnakeController.h">
       <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ActionRunner.h">
+      <Filter>util\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CCFunctionAction.h">
+      <Filter>util\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Action.h">
+      <Filter>util\action</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

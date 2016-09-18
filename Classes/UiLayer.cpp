@@ -5,14 +5,26 @@
 using namespace std;
 USING_NS_CC;
 
+void UiLayer::onEnter()
+{
+	CCNode::onEnter();
+	SnakeController::controller()->addView(this);
+}
+
+void UiLayer::onExit()
+{
+	CCNode::onExit();
+	SnakeController::controller()->removeView(this);
+}
+
 bool UiLayer::init()
 {
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	//°´Å¥
-	CCMenuItem *btn = CommonUtil::getScaleMenuItemSpr("ui/speed_up.png");
-	btn->setTarget(this, menu_selector(UiLayer::menuCloseCallback));
-	btn->setPosition(ccp(winSize.width * 0.4f, winSize.height * -0.3f));
-	CCMenu* pMenu = CCMenu::create(btn, NULL);
+	m_speedUpBtn = CommonUtil::getScaleMenuItemSpr("ui/speed_up.png");
+	m_speedUpBtn->setTarget(this, menu_selector(UiLayer::menuCloseCallback));
+	m_speedUpBtn->setPosition(ccp(winSize.width * 0.4f, winSize.height * -0.3f));
+	CCMenu* pMenu = CCMenu::create(m_speedUpBtn, NULL);
 	this->addChild(pMenu, 1);
 
 	//ĞéÄâÒ¡¸Ë
@@ -25,7 +37,8 @@ bool UiLayer::init()
 
 void UiLayer::menuCloseCallback(CCObject* pSender)
 {
-	CCMessageBox("test", "test");
+	SnakeController::controller()->speedUp();
+	m_speedUpBtn->setEnabled(false);
 }
 
 void UiLayer::onJoyStickChanged(int angle)
@@ -33,3 +46,9 @@ void UiLayer::onJoyStickChanged(int angle)
 	//CCLOG("x = %f, y = %f", angel.x, angel.y);
 	SnakeController::controller()->changeAngle(angle);
 }
+
+void UiLayer::onSpeedUpOver()
+{
+	m_speedUpBtn->setEnabled(true);
+}
+

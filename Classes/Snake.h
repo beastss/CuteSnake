@@ -17,6 +17,8 @@ class UiLayout;
 
 class Snake: public cocos2d::CCNode
 {
+public:
+	virtual ~Snake(){}
 protected:
 	Snake();
 protected:
