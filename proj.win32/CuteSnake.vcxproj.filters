@@ -102,6 +102,18 @@
     <ClCompile Include="..\Classes\GameOverDialog.cpp">
       <Filter>ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PackageDialog.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RankingPanel.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataLoader.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SnakeColor.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -187,6 +199,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameOverDialog.h">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PackageDialog.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RankingPanel.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SnakeColor.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataLoader.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

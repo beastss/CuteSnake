@@ -7,6 +7,8 @@ struct IControlSnake
 	virtual void onAngleChanged(int angle){}
 	virtual void onSpeedUp(){}
 	virtual void onSpeedUpOver(){}
+	virtual void onGrow(){}
+	virtual void onGodLike(){}
 };
 
 class SnakeController
@@ -16,6 +18,8 @@ public:
 	void changeAngle(int angle);
 	void speedUp();
 	void speedUpOver();
+	void growBody();
+	void godLike();
 
 	void addView(IControlSnake *view);
 	void removeView(IControlSnake *view);

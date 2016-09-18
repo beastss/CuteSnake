@@ -1,4 +1,5 @@
 #include "EnemySnake.h"
+#include "CommonMacro.h"
 USING_NS_CC;
 using namespace std;
 
@@ -19,4 +20,21 @@ EnemySnake *EnemySnake::create(GamePanel *gamePanel)
 bool EnemySnake::init()
 {
 	return true;
+}
+
+void EnemySnake::onMove(cocos2d::CCPoint pos)
+{
+	const float detectSize = 50;
+
+	if ((pos.x < detectSize && (90 < m_destAngle && m_destAngle < 270))
+		|| (pos.x > GAME_LAYER_WIDTH - detectSize && (90 > m_destAngle || m_destAngle > 270)))
+	{
+		m_destAngle = 180 - m_destAngle;
+	}
+	else if (pos.y < detectSize && (m_destAngle > 180)
+		|| (pos.y > GAME_LAYER_HEIGHT - detectSize && (m_destAngle < 180)))
+	{
+		m_destAngle = -m_destAngle;
+	}
+	m_destAngle = (m_destAngle + 360) % 360;
 }

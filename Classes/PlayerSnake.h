@@ -21,6 +21,8 @@ private:
 private:
 	virtual void onAngleChanged(int angle);
 	virtual void onSpeedUp();
+	virtual void onGrow();
+	virtual void onGodLike();
 private:
 	ActionRunner *m_runner;
 	bool m_isSpeedUp;

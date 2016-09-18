@@ -4,6 +4,7 @@
 #define WIDTH 1600
 #define HEIGHT 800
 
+/*
 #define WHITE ccc3(255, 255, 255)
 #define BLACK ccc3(0, 0, 0)
 #define LIGHT_PINK ccc3(255, 182, 193)
@@ -19,14 +20,10 @@
 #define CORNISLK ccc3(255, 248, 220)
 #define ORANGE ccc3(255, 165, 0)
 #define CORAL ccc3(255, 127, 80)
-
 #define SKY_BLUE ccc3(135, 206, 235, 255)
 #define GOLD ccc3(255, 215, 0, 255)
 #define MAROON ccc3(128, 0, 0, 255)
-
-#define ALL_COLOR (LIGHT_PINK, STEEL_BLUE, CRIMSON, VIOLET, SLATEBLUE, CYAN, \
-AUQAMARIN, LIME, YELLOW, OLIVE, CORNISLK, ORANGE, CORAL)
-
+*/
 
 #define NOTIFY_VIEWS(_FUNC_ ,...)						\
 for (size_t index = 0; index < m_views.size(); ++index) \

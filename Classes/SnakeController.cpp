@@ -24,6 +24,16 @@ void SnakeController::speedUpOver()
 	NOTIFY_VIEWS(onSpeedUpOver);
 }
 
+void SnakeController::growBody()
+{
+	NOTIFY_VIEWS(onGrow);
+}
+
+void SnakeController::godLike()
+{
+	NOTIFY_VIEWS(onGodLike);
+}
+
 void SnakeController::addView(IControlSnake *view)
 {
 	auto iter = find(m_views.begin(), m_views.end(), view);

@@ -2,6 +2,7 @@
 #include "CommonMacro.h"
 #include "UiLayout.h"
 #include "MainScene.h"
+#include "PackageDialog.h"
 using namespace std;
 USING_NS_CC;
 
@@ -14,6 +15,7 @@ bool MenuPanel::init()
 	m_layout = UiLayout::create("layout/menu_panel.xml");
 	m_layout->setAnchorPoint(ccp(0.5f, 0.5f));
 	m_layout->setPosition(ccpMult(winSize, 0.5f));
+	m_layout->setMenuTouchPriority(kTouchPriorityPanel);
 	addChild(m_layout);
 
 	CCMenuItem *newGameBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(1));
@@ -34,7 +36,8 @@ void MenuPanel::onNewGameBtnClicked(cocos2d::CCObject* pSender)
 
 void MenuPanel::onRuleBtnClicked(cocos2d::CCObject* pSender)
 {
-	CCMessageBox("rule", "tips");
+	MainScene::theScene()->showDialog(PackageDialog::create());
+	//CCMessageBox("rule", "tips");
 }
 
 void MenuPanel::onSkinBtnClicked(cocos2d::CCObject* pSender)

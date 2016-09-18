@@ -2,17 +2,21 @@
 #include "UiLayout.h"
 #include "CommonMacro.h"
 #include <cmath>
+#include "SnakeColor.h"
+#include "..\CoolSatrs\Classes\CommonUtil.h"
 USING_NS_CC;
 using namespace std;
 
 Snake::Snake(GamePanel *gamePanel)
 : m_gamePanel(gamePanel)
 , m_length(5)
-, m_color(LIGHT_PINK)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
 , m_destAngle(0)
 {
+	m_color = RANDOM_COLOR;
+	m_destAngle = CommonUtil::getRandomValue(0, 359);
+	m_angle = m_destAngle;
 	initSnake();
 }
 
@@ -20,14 +24,14 @@ void Snake::initSnake()
 {
 	m_head = UiLayout::create("layout/snake_head.xml");
 	addChild(m_head);
-	m_head->setAnchorPoint(ccp(0.5f, 0));
+	m_head->setAnchorPoint(ccp(0.5f, -0.2f));
 	auto face = dynamic_cast<CCSprite*>(m_head->getChildById(1));
 	//face->initWithFile("snake/dsf.png");
 	face->setColor(m_color);
 	auto leftEyeBall = dynamic_cast<CCSprite*>(m_head->getChildById(3));
-	leftEyeBall->setColor(BLACK);
+	leftEyeBall->setColor(ccc3(0, 0, 0));
 	auto RightEyeBall = dynamic_cast<CCSprite*>(m_head->getChildById(5));
-	RightEyeBall->setColor(BLACK);
+	RightEyeBall->setColor(ccc3(0, 0, 0));
 	m_body.push_back(m_head);
 
 	auto size = CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT);
@@ -77,7 +81,7 @@ void Snake::update(float dt)
 	m_path.push_back(pos);
 	onMove(pos);
 
-	const int kOffset = 15;//相邻两个body的距离
+	const int kOffset = 10;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
 		if (m_path.size() > i * kOffset)

@@ -70,6 +70,16 @@ void PlayerSnake::onSpeedUp()
 	}));
 }
 
+void PlayerSnake::onGrow()
+{
+	addBody();
+}
+
+void PlayerSnake::onGodLike()
+{
+
+}
+
 void PlayerSnake::onMove(cocos2d::CCPoint pos)
 {
 	m_gamePanel->setFocus(pos);

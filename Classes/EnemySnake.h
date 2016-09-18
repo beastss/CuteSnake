@@ -12,5 +12,6 @@ private:
 	EnemySnake(GamePanel *gamePanel);
 	virtual bool init();
 
+	virtual void onMove(cocos2d::CCPoint pos);
 };
 #endif

@@ -2,6 +2,7 @@
 #include "PlayerSnake.h"
 #include "CommonMacro.h"
 #include "UiLayer.h"
+#include "EnemySnake.h"
 using namespace std;
 USING_NS_CC;
 
@@ -41,4 +42,8 @@ void GamePanel::initSnakes()
 	m_snakeField->removeAllChildren();
 	auto playerSnake = PlayerSnake::create(this);
 	m_snakeField->addChild(playerSnake);
+	
+	m_snakeField->addChild(EnemySnake::create(this));
+	m_snakeField->addChild(EnemySnake::create(this));
+	m_snakeField->addChild(EnemySnake::create(this));
 }

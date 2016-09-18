@@ -1,0 +1,21 @@
+<layout width="200.000000" height="40.000000">
+	<label>
+		<id>1</id>
+		<x>3.04</x>
+		<y>18.89</y>
+		<anchorPtX>0.00</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>名字</text>
+	</label>
+	<label>
+		<id>2</id>
+		<x>114.99</x>
+		<y>20.38</y>
+		<anchorPtX>0.00</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>1000</text>
+	</label>
+</layout>
+

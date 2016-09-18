@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "SnakeController.h"
 
+class UiLayout;
 class UiLayer
 	: public cocos2d::CCNode
 	, public IControlSnake
@@ -12,14 +13,16 @@ public:
 	CREATE_FUNC(UiLayer);
 private:
     virtual bool init();  
-    void menuCloseCallback(cocos2d::CCObject* pSender);
+	void onSpeedUpBtnClicked(cocos2d::CCObject* pSender);
+	void onGodLikeBtnClicked(cocos2d::CCObject* pSender);
+	void onGrowBtnClicked(cocos2d::CCObject* pSender);
 	void onJoyStickChanged(int angle);
 	virtual void onEnter();
 	virtual void onExit();
 private:
 	virtual void onSpeedUpOver();
 private:
-	cocos2d::CCMenuItem *m_speedUpBtn;
+	UiLayout *m_layout;
 };
 
 #endif 
