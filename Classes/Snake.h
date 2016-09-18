@@ -19,6 +19,7 @@ class Snake: public cocos2d::CCNode
 {
 public:
 	virtual ~Snake(){}
+	bool willCrash(cocos2d::CCPoint pt, int destAngle);
 protected:
 	Snake(GamePanel *gamePanel);
 	void addBody();

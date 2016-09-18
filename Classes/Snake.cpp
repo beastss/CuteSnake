@@ -3,7 +3,7 @@
 #include "CommonMacro.h"
 #include <cmath>
 #include "SnakeColor.h"
-#include "..\CoolSatrs\Classes\CommonUtil.h"
+#include "CommonUtil.h"
 USING_NS_CC;
 using namespace std;
 
@@ -47,6 +47,7 @@ void Snake::initSnake()
 void Snake::addBody()
 {
 	CCSprite *body = CCSprite::create("snake/circle.png");
+	body->setScale(1.5f);
 	addChild(body);
 	body->setColor(m_color);
 	body->setPosition(m_body.back()->getPosition());
@@ -81,7 +82,7 @@ void Snake::update(float dt)
 	m_path.push_back(pos);
 	onMove(pos);
 
-	const int kOffset = 10;//相邻两个body的距离
+	const int kOffset = 15;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
 		if (m_path.size() > i * kOffset)
@@ -123,4 +124,32 @@ void Snake::runDeadAction()
 {
 	onDead();
 	removeFromParent();
+}
+
+bool Snake::willCrash(cocos2d::CCPoint pt, int destAngle)
+{
+	for (size_t i = 0; i < m_body.size(); ++i)
+	{
+		int angle = 0;
+		float dy = m_body[i]->getPosition().y - pt.y;
+		float dx = m_body[i]->getPosition().x - pt.x;
+		if (abs(dx) > 200 || abs(dy) > 200) return false;
+		if (dx == 0)
+		{
+			if (dy > 0) angle = 90;
+			else angle = -90;
+		}
+		else
+		{
+			angle = atan(dy / dx) * 180 / M_PI;
+			if (dx < 0) angle += 180;
+		}
+
+		angle = (angle + 360) % 360;
+		if (abs(angle - destAngle) < 10)
+		{
+			return true;
+		}
+	}
+	return false;
 }

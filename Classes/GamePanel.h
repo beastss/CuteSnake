@@ -4,17 +4,21 @@
 #include "cocos2d.h"
 #include "BasePanel.h"
 class UiLayer;
+class Snake;
 class GamePanel : public BasePanel
 {
 public:
 	CREATE_FUNC(GamePanel);
 	void setFocus(cocos2d::CCPoint pos);
-	void initSnakes();
+	std::vector<Snake *> getSnakes(){ return m_snakes; }
 private:
     virtual bool init();  
+	void initSnakes();
+	void addSnake(Snake *snake);
 private:
 	UiLayer *m_uiLayer;
 	cocos2d::CCNode *m_snakeField;
+	std::vector<Snake *> m_snakes;
 };
 
 #endif 

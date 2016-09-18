@@ -4,7 +4,7 @@
 #include "SnakeController.h"
 #include "CommonMacro.h"
 #include "UiLayout.h"
-#include "..\CoolSatrs\Classes\EmptyBox.h"
+#include "EmptyBox.h"
 #include "RankingPanel.h"
 using namespace std;
 USING_NS_CC;

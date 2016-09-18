@@ -1,5 +1,8 @@
 #include "EnemySnake.h"
 #include "CommonMacro.h"
+#include "Snake.h"
+#include "CommonUtil.h"
+#include "GamePanel.h"
 USING_NS_CC;
 using namespace std;
 
@@ -36,5 +39,20 @@ void EnemySnake::onMove(cocos2d::CCPoint pos)
 	{
 		m_destAngle = -m_destAngle;
 	}
+
 	m_destAngle = (m_destAngle + 360) % 360;
+	detectCollision();
+}
+
+void EnemySnake::detectCollision()
+{
+	auto snakes = m_gamePanel->getSnakes();
+	for (auto snake : snakes)
+	{
+		if (snake != this && snake->willCrash(m_body[0]->getPosition(), m_destAngle))
+		{
+			m_destAngle += CommonUtil::getRandomValue(90, 270);
+			return;
+		}
+	}
 }

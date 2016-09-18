@@ -40,10 +40,18 @@ void GamePanel::setFocus(cocos2d::CCPoint pos)
 void GamePanel::initSnakes()
 {
 	m_snakeField->removeAllChildren();
-	auto playerSnake = PlayerSnake::create(this);
-	m_snakeField->addChild(playerSnake);
-	
-	m_snakeField->addChild(EnemySnake::create(this));
-	m_snakeField->addChild(EnemySnake::create(this));
-	m_snakeField->addChild(EnemySnake::create(this));
+
+	//addSnake(PlayerSnake::create(this));
+	addSnake(EnemySnake::create(this));
+	addSnake(EnemySnake::create(this));
+	addSnake(EnemySnake::create(this));
+	addSnake(EnemySnake::create(this));
+	addSnake(EnemySnake::create(this));
+	addSnake(EnemySnake::create(this));
+}
+
+void GamePanel::addSnake(Snake *snake)
+{
+	m_snakeField->addChild(snake);
+	m_snakes.push_back(snake);
 }

@@ -13,5 +13,6 @@ private:
 	virtual bool init();
 
 	virtual void onMove(cocos2d::CCPoint pos);
+	void detectCollision();
 };
 #endif
