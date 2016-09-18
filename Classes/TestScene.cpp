@@ -15,9 +15,9 @@ bool TestScene::init()
 	addChild(bk);
 	//int value = GameConfigSelf->getIntValue("plist", "sjdf2");
 
-	auto snake = PlayerSnake::create();
+	//auto snake = PlayerSnake::create();
 	//addChild(snake);
-	snake->setPosition(ccp(100, 100));
+	//snake->setPosition(ccp(100, 100));
 
 	auto spr = CCSprite::create("ui/speed_up.png");
 	addChild(spr);

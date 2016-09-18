@@ -2,6 +2,7 @@
 #include "CommonUtil.h"
 #include "JoyStick.h"
 #include "SnakeController.h"
+#include "CommonMacro.h"
 using namespace std;
 USING_NS_CC;
 
@@ -25,6 +26,7 @@ bool UiLayer::init()
 	m_speedUpBtn->setTarget(this, menu_selector(UiLayer::menuCloseCallback));
 	m_speedUpBtn->setPosition(ccp(winSize.width * 0.4f, winSize.height * -0.3f));
 	CCMenu* pMenu = CCMenu::create(m_speedUpBtn, NULL);
+	pMenu->setTouchPriority(kTouchPriorityPanel);
 	this->addChild(pMenu, 1);
 
 	//ĞéÄâÒ¡¸Ë

@@ -16,9 +16,6 @@
     <Filter Include="ui">
       <UniqueIdentifier>{3571ff4b-a04f-4ab2-8731-dec565585e15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Controller">
-      <UniqueIdentifier>{787a6ae0-e34f-4b76-aa66-667c4a14ed83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="snake">
       <UniqueIdentifier>{996dd8c8-2eaa-4567-b317-100222332b3a}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,12 @@
     </Filter>
     <Filter Include="util\action">
       <UniqueIdentifier>{98fac2b1-5283-4e3b-886d-95ac247bcda0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controller">
+      <UniqueIdentifier>{787a6ae0-e34f-4b76-aa66-667c4a14ed83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\ui">
+      <UniqueIdentifier>{332c5609-3169-4d10-8f45-9b8f84cacfd3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,13 +43,10 @@
       <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\JoyStick.cpp">
-      <Filter>Controller</Filter>
+      <Filter>controller</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainScene.cpp">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameLayer.cpp">
-      <Filter>ui</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\UiLayer.cpp">
       <Filter>ui</Filter>
@@ -63,17 +63,11 @@
     <ClCompile Include="..\Classes\EnemySnake.cpp">
       <Filter>snake</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\UiLayout.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\EmptyBox.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PlayerSnake.cpp">
       <Filter>snake</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SnakeController.cpp">
-      <Filter>Controller</Filter>
+      <Filter>controller</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CCFunctionAction.cpp">
       <Filter>util\action</Filter>
@@ -83,6 +77,30 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ActionRunner.cpp">
       <Filter>util\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\KeyPadWatcher.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EmptyBox.cpp">
+      <Filter>util\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScaleDialog.cpp">
+      <Filter>util\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UiLayout.cpp">
+      <Filter>util\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BasePanel.cpp">
+      <Filter>util\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePanel.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MenuPanel.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameOverDialog.cpp">
+      <Filter>ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,13 +114,10 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\JoyStick.h">
-      <Filter>Controller</Filter>
+      <Filter>controller</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainScene.h">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameLayer.h">
-      <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\UiLayer.h">
       <Filter>ui</Filter>
@@ -122,9 +137,6 @@
     <ClInclude Include="..\Classes\CommonMacro.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\UiLayout.h">
-      <Filter>util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp">
       <Filter>util\rapaidxml</Filter>
     </ClInclude>
@@ -137,14 +149,11 @@
     <ClInclude Include="..\Classes\rapidxml\rapidxml_utils.hpp">
       <Filter>util\rapaidxml</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\EmptyBox.h">
-      <Filter>util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PlayerSnake.h">
       <Filter>snake</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SnakeController.h">
-      <Filter>Controller</Filter>
+      <Filter>controller</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ActionRunner.h">
       <Filter>util\action</Filter>
@@ -154,6 +163,30 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Action.h">
       <Filter>util\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KeyPadWatcher.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UiLayout.h">
+      <Filter>util\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EmptyBox.h">
+      <Filter>util\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScaleDialog.h">
+      <Filter>util\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BasePanel.h">
+      <Filter>util\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePanel.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MenuPanel.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameOverDialog.h">
+      <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

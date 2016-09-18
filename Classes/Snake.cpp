@@ -5,18 +5,15 @@
 USING_NS_CC;
 using namespace std;
 
-Snake::Snake()
-: m_length(5)
+Snake::Snake(GamePanel *gamePanel)
+: m_gamePanel(gamePanel)
+, m_length(5)
 , m_color(LIGHT_PINK)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
 , m_destAngle(0)
 {
 	initSnake();
-	for (int i = 0; i < m_length; ++i)
-	{
-		addBody();
-	}
 }
 
 void Snake::initSnake()
@@ -32,6 +29,9 @@ void Snake::initSnake()
 	auto RightEyeBall = dynamic_cast<CCSprite*>(m_head->getChildById(5));
 	RightEyeBall->setColor(BLACK);
 	m_body.push_back(m_head);
+
+	auto size = CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT);
+	m_head->setPosition(ccpMult(size, 0.5f));
 
 	for (int i = 0; i < m_length; ++i)
 	{
@@ -75,6 +75,7 @@ void Snake::update(float dt)
 	auto pos = ccpAdd(m_body[0]->getPosition(), offset);
 	m_body[0]->setPosition(pos);
 	m_path.push_back(pos);
+	onMove(pos);
 
 	const int kOffset = 15;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
@@ -96,5 +97,26 @@ void Snake::update(float dt)
 		m_path.assign(temp.begin() + extra, temp.end());
 
 	}
-	CCLOG("m_path.size(): %d", m_path.size());
+	//CCLOG("m_path.size(): %d", m_path.size());
+	
+	if (checkCrash())
+	{
+		runDeadAction();
+	}
+}
+
+bool Snake::checkCrash()
+{
+	auto pos = m_body[0]->getPosition();
+	if (pos.x < 0 || pos.x > GAME_LAYER_WIDTH || pos.y < 0 || pos.y > GAME_LAYER_HEIGHT)
+	{
+		return true;
+	}
+	return false;
+}
+
+void Snake::runDeadAction()
+{
+	onDead();
+	removeFromParent();
 }

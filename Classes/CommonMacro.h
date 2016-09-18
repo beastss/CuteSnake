@@ -35,4 +35,12 @@ for (size_t index = 0; index < m_views.size(); ++index) \
 }
 
 #define NORMAL_SPEED 100
+#define GAME_LAYER_WIDTH 700
+#define GAME_LAYER_HEIGHT 700
+
+enum TouchPriority
+{
+	kTouchPriorityPanel = -10,
+	kTouchPriorityDialog = -20,
+};
 #endif

@@ -1,0 +1,47 @@
+<layout width="864.000000" height="480.000000">
+	<button>
+		<id>1</id>
+		<x>429.48</x>
+		<y>196.70</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>main_menu/new_game.png</normal>
+		<selected>main_menu/new_game.png</selected>
+		<disabled>main_menu/new_game.png</disabled>
+	</button>
+	<button>
+		<id>2</id>
+		<x>188.88</x>
+		<y>65.64</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>main_menu/rule.png</normal>
+		<selected>main_menu/rule.png</selected>
+		<disabled>main_menu/rule.png</disabled>
+	</button>
+	<button>
+		<id>3</id>
+		<x>435.18</x>
+		<y>64.79</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>main_menu/skin.png</normal>
+		<selected>main_menu/skin.png</selected>
+		<disabled>main_menu/skin.png</disabled>
+	</button>
+	<button>
+		<id>4</id>
+		<x>680.84</x>
+		<y>62.68</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>main_menu/setting.png</normal>
+		<selected>main_menu/setting.png</selected>
+		<disabled>main_menu/setting.png</disabled>
+	</button>
+</layout>
+

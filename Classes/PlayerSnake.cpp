@@ -1,12 +1,16 @@
 #include "PlayerSnake.h"
 #include "ActionRunner.h"
 #include "CommonMacro.h"
+#include "MainScene.h"
+#include "GamePanel.h"
+#include "GameOverDialog.h"
 
 USING_NS_CC;
 using namespace std;
 
-PlayerSnake::PlayerSnake()
-: m_isSpeedUp(false)
+PlayerSnake::PlayerSnake(GamePanel *gamePanel)
+: Snake(gamePanel)
+, m_isSpeedUp(false)
 {
 	m_runner = ActionRunner::create();
 	m_runner->retain();
@@ -16,6 +20,14 @@ PlayerSnake::~PlayerSnake()
 {
 	m_runner->clear();
 	m_runner->release();
+}
+
+PlayerSnake *PlayerSnake::create(GamePanel *gamePanel)
+{
+	PlayerSnake *snake = new PlayerSnake(gamePanel);
+	snake->init();
+	snake->autorelease();
+	return snake;
 }
 
 void PlayerSnake::onEnter()
@@ -56,4 +68,15 @@ void PlayerSnake::onSpeedUp()
 		m_isSpeedUp = false;
 		SnakeController::controller()->speedUpOver();
 	}));
+}
+
+void PlayerSnake::onMove(cocos2d::CCPoint pos)
+{
+	m_gamePanel->setFocus(pos);
+}
+
+void PlayerSnake::onDead()
+{
+	auto dialog = GameOverDialog::create();
+	MainScene::theScene()->showDialog(dialog);
 }

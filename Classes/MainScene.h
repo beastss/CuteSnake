@@ -3,18 +3,29 @@
 
 #include "cocos2d.h"
 
-class GameLayer;
-class UiLayer;
+class ScaleDialog;
+class BasePanel;
+
+enum PanelId
+{
+	kPanelIdDefault,
+	kPanelIdMenuPanel,
+	kPanelIdGamePanel,
+};
 class MainScene : public cocos2d::CCScene
 {
 public:
-	CREATE_FUNC(MainScene);
+	static MainScene *theScene();
+	~MainScene();
+	void showPanel(int panelId);
+	void showDialog(ScaleDialog *dialog);
 private:
+	MainScene();
     virtual bool init();  
 private:
-	GameLayer *m_gameLayer;
-	UiLayer *m_uiLayer;
-
+	cocos2d::CCNode *m_panelLayer;
+	cocos2d::CCNode *m_dialogLayer;
+	static MainScene *m_scene;
 };
 
 #endif 

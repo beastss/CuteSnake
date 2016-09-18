@@ -21,6 +21,5 @@ private:
 	std::unordered_map<int, cocos2d::CCMenuItem *> m_menuItems;
 	cocos2d::CCMenu *m_menu;
 	int m_menuTouchPriority;
-	
 };
 #endif

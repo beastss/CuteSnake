@@ -14,18 +14,21 @@ private:
 };
 */
 class UiLayout;
-
+class GamePanel;
 class Snake: public cocos2d::CCNode
 {
 public:
 	virtual ~Snake(){}
 protected:
-	Snake();
-protected:
-	void initSnake();
+	Snake(GamePanel *gamePanel);
 	void addBody();
+	virtual void onMove(cocos2d::CCPoint pos){}
+	virtual void onDead(){}
 private:
+	void initSnake();
 	void update(float dt);
+	bool checkCrash();
+	void runDeadAction();
 protected:
 	cocos2d::ccColor3B m_color;
 	int m_length;
@@ -34,6 +37,7 @@ protected:
 	UiLayout *m_head;
 	std::vector<cocos2d::CCNode *>m_body;
 	std::vector<cocos2d::CCPoint>m_path;
+	GamePanel *m_gamePanel;
 private:
 	int m_angle;
 };

@@ -39,7 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #ifdef GMAE_TEST
 	pScene = TestScene::create();
 #else
-    pScene = MainScene::create();
+    pScene = MainScene::theScene();
 #endif 
 
     // run
