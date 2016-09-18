@@ -41,7 +41,7 @@ void GamePanel::initSnakes()
 {
 	m_snakeField->removeAllChildren();
 
-	//addSnake(PlayerSnake::create(this));
+	addSnake(PlayerSnake::create(this));
 	addSnake(EnemySnake::create(this));
 	addSnake(EnemySnake::create(this));
 	addSnake(EnemySnake::create(this));
@@ -54,4 +54,15 @@ void GamePanel::addSnake(Snake *snake)
 {
 	m_snakeField->addChild(snake);
 	m_snakes.push_back(snake);
+}
+
+void GamePanel::removeSnake(Snake *snake)
+{
+	m_snakeField->removeChild(snake);
+	auto iter = find(m_snakes.begin(), m_snakes.end(), snake);
+	if (iter != m_snakes.end())
+	{
+		//注意：这里删除snake 会不会导致上层的遍历出错？
+		m_snakes.erase(iter);
+	}
 }

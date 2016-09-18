@@ -12,10 +12,11 @@ public:
 	static PlayerSnake *create(GamePanel *gamePanel);
 	~PlayerSnake();
 private:
+	PlayerSnake(GamePanel *gamePanel);
 	virtual void onEnter();
 	virtual void onExit();
 	virtual bool init();
-	PlayerSnake(GamePanel *gamePanel);
+private:
 	virtual void onDead();
 	virtual void onMove(cocos2d::CCPoint pos);
 private:

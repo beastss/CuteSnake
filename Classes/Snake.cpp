@@ -4,6 +4,7 @@
 #include <cmath>
 #include "SnakeColor.h"
 #include "CommonUtil.h"
+#include "GamePanel.h"
 USING_NS_CC;
 using namespace std;
 
@@ -22,20 +23,17 @@ Snake::Snake(GamePanel *gamePanel)
 
 void Snake::initSnake()
 {
-	m_head = UiLayout::create("layout/snake_head.xml");
-	addChild(m_head);
-	m_head->setAnchorPoint(ccp(0.5f, -0.2f));
-	auto face = dynamic_cast<CCSprite*>(m_head->getChildById(1));
+	auto layout = UiLayout::create("layout/snake_head.xml");
+	addChild(layout);
+	layout->setAnchorPoint(ccp(0.5f, -0.2f));
+	auto face = dynamic_cast<CCSprite*>(layout->getChildById(1));
 	//face->initWithFile("snake/dsf.png");
 	face->setColor(m_color);
-	auto leftEyeBall = dynamic_cast<CCSprite*>(m_head->getChildById(3));
+	auto leftEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(3));
 	leftEyeBall->setColor(ccc3(0, 0, 0));
-	auto RightEyeBall = dynamic_cast<CCSprite*>(m_head->getChildById(5));
+	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
-	m_body.push_back(m_head);
-
-	auto size = CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT);
-	m_head->setPosition(ccpMult(size, 0.5f));
+	m_body.push_back(layout);
 
 	for (int i = 0; i < m_length; ++i)
 	{
@@ -71,14 +69,14 @@ void Snake::update(float dt)
 	}
 
 	m_angle = (m_angle + 360) % 360;
-	m_head->setRotation(90 - m_angle);//头部选中
+	getHead()->setRotation(90 - m_angle);//头部选中
 	//CCLOG("m_angle: %d", m_angle);
 	
 	CCPoint offset;
 	offset.x = cos(m_angle * M_PI / 180) *dt * m_speed;
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
-	auto pos = ccpAdd(m_body[0]->getPosition(), offset);
-	m_body[0]->setPosition(pos);
+	auto pos = ccpAdd(getHead()->getPosition(), offset);
+	getHead()->setPosition(pos);
 	m_path.push_back(pos);
 	onMove(pos);
 
@@ -106,24 +104,34 @@ void Snake::update(float dt)
 	
 	if (checkCrash())
 	{
-		runDeadAction();
+		crash();
 	}
 }
 
 bool Snake::checkCrash()
 {
-	auto pos = m_body[0]->getPosition();
+	auto pos = getHead()->getPosition();
 	if (pos.x < 0 || pos.x > GAME_LAYER_WIDTH || pos.y < 0 || pos.y > GAME_LAYER_HEIGHT)
 	{
 		return true;
 	}
+	
+	auto snakes = m_gamePanel->getSnakes();
+	for (auto snake : snakes)
+	{
+		if (snake != this && snake->isCrash(getHead()->getPosition()))
+		{
+			return true;
+		}
+	}
 	return false;
 }
 
-void Snake::runDeadAction()
+void Snake::crash()
 {
 	onDead();
-	removeFromParent();
+	m_gamePanel->removeSnake(this);
+	CCLOG("Snake::crash!!!!");
 }
 
 bool Snake::willCrash(cocos2d::CCPoint pt, int destAngle)
@@ -147,6 +155,20 @@ bool Snake::willCrash(cocos2d::CCPoint pt, int destAngle)
 
 		angle = (angle + 360) % 360;
 		if (abs(angle - destAngle) < 10)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Snake::isCrash(cocos2d::CCPoint pt)
+{
+	for (auto body : m_body)
+	{
+		auto pos = body->getPosition();
+		auto dis = ccpDistance(pos, pt);
+		if (dis < 40)
 		{
 			return true;
 		}

@@ -11,6 +11,7 @@ public:
 	CREATE_FUNC(GamePanel);
 	void setFocus(cocos2d::CCPoint pos);
 	std::vector<Snake *> getSnakes(){ return m_snakes; }
+	void removeSnake(Snake *snake);
 private:
     virtual bool init();  
 	void initSnakes();

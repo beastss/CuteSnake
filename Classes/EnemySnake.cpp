@@ -22,6 +22,10 @@ EnemySnake *EnemySnake::create(GamePanel *gamePanel)
 
 bool EnemySnake::init()
 {
+	CCPoint pos;
+	pos.x = CommonUtil::getRandomValue(0, GAME_LAYER_WIDTH);
+	pos.y = CommonUtil::getRandomValue(0, GAME_LAYER_HEIGHT);
+	getHead()->setPosition(pos);
 	return true;
 }
 
@@ -49,7 +53,7 @@ void EnemySnake::detectCollision()
 	auto snakes = m_gamePanel->getSnakes();
 	for (auto snake : snakes)
 	{
-		if (snake != this && snake->willCrash(m_body[0]->getPosition(), m_destAngle))
+		if (snake != this && snake->willCrash(getHead()->getPosition(), m_destAngle))
 		{
 			m_destAngle += CommonUtil::getRandomValue(90, 270);
 			return;
