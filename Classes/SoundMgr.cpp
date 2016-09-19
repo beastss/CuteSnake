@@ -26,17 +26,14 @@ void SoundMgr::init()
 		SimpleAudioEngine::sharedEngine()->preloadEffect(iter->second.c_str());
 	}
 	
+	playBackground();
 	setBackgroundMusic(SAVING->isBackgroundMusicOn());
 	setEffectMusic(SAVING->isEffectMusicOn());
-	playBackground();
 }
 
 void SoundMgr::playBackground()
 {
-	if (m_backgroundMusicOn)
-	{
-		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(m_backgroundMusic[kBackGroundMusicMain].c_str(), true);
-	}
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(m_backgroundMusic[kBackGroundMusicMain].c_str(), true);
 }
 
 void SoundMgr::playEffect(int effectType)
