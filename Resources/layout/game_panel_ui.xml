@@ -6,9 +6,9 @@
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
-		<normal>ui/speed_up.png</normal>
-		<selected>ui/speed_up.png</selected>
-		<disabled>ui/speed_up.png</disabled>
+		<normal>game_scene/speed_up.png</normal>
+		<selected>game_scene/speed_up.png</selected>
+		<disabled>game_scene/speed_up.png</disabled>
 	</button>
 	<button>
 		<id>2</id>

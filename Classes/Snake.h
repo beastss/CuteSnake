@@ -46,5 +46,6 @@ protected:
 	GamePanel *m_gamePanel;
 private:
 	int m_angle;
+	int m_growEnergy;
 };
 #endif

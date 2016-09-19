@@ -15,6 +15,7 @@ Snake::Snake(GamePanel *gamePanel)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
 , m_destAngle(0)
+, m_growEnergy(0)
 {
 	m_color = RANDOM_COLOR;
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
@@ -201,5 +202,15 @@ bool Snake::canEatFood(CCPoint pt)
 
 void Snake::eatFood()
 {
-	addBody();
+	int const kEnergyToGrow = 4;
+	m_growEnergy++;
+	if (m_growEnergy >= kEnergyToGrow)
+	{
+		int num = m_growEnergy / kEnergyToGrow;
+		m_growEnergy = m_growEnergy % kEnergyToGrow;
+		for (int i = 0; i < num; ++i)
+		{
+			addBody();
+		}
+	}
 }

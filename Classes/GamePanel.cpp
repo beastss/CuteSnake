@@ -26,9 +26,10 @@ bool GamePanel::init()
 	auto bk = CCLayerColor::create(ccc4(120, 0, 0, 200));
 	addChild(bk);
 	//ÉßÇøÓò
-	m_snakeField = CCLayerColor::create(ccc4(120, 120, 120, 255));
+	m_snakeField = CCNode::create();
+	initGameBk();
 	m_snakeField->setContentSize(CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT));
-	m_snakeField->ignoreAnchorPointForPosition(false);
+	m_snakeField->setAnchorPoint(ccp(0.5f, 0.5f));
 	m_snakeField->setPosition(ccpMult(winSize, 0.5f));
 	addChild(m_snakeField);
 	//ui²ã
@@ -41,13 +42,33 @@ bool GamePanel::init()
     return true;
 }
 
+void GamePanel::initGameBk()
+{
+	const float gridSize = 40;
+	int xGrids = GAME_LAYER_WIDTH / gridSize;
+	int yGrids = GAME_LAYER_HEIGHT / gridSize;
+	for (int i = 0; i < yGrids; ++i)
+	{
+		for (int j = 0; j < xGrids; ++j)
+		{
+			CCSprite *spr = CCSprite::create("game_scene/map_01.png");
+			spr->setAnchorPoint(ccp(0, 0));
+			CCPoint pos;
+			pos.x = gridSize * j;
+			pos.y = gridSize * i;
+			spr->setPosition(pos);
+			m_snakeField->addChild(spr);
+		}
+	}
+}
+
 void GamePanel::update(float dt)
 {
 	for (size_t i = 0; i < m_snakes.size(); ++i)
 	{
 		m_snakes[i]->update(dt);
 	}
-	//m_foodMgr->update(dt);
+	m_foodMgr->update(dt);
 }
 
 void GamePanel::setFocus(cocos2d::CCPoint pos)
@@ -62,12 +83,10 @@ void GamePanel::setFocus(cocos2d::CCPoint pos)
 
 void GamePanel::initSnakes()
 {
-	m_snakeField->removeAllChildren();
-
 	addSnake(PlayerSnake::create(this));
 	for (int i = 0; i < 5; ++i)
 	{
-		//addSnake(EnemySnake::create(this));
+		addSnake(EnemySnake::create(this));
 	}
 }
 

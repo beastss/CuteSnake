@@ -20,6 +20,7 @@ public:
 private:
 	GamePanel();
     virtual bool init();  
+	void initGameBk();
 	void initSnakes();
 	void addSnake(Snake *snake);
 	void update(float dt);
