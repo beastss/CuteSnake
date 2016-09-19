@@ -38,6 +38,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pScene = MainScene::theScene();
 #endif 
     pDirector->runWithScene(pScene);
+
+	pDirector->setDisplayStats(true);
     return true;
 }
 

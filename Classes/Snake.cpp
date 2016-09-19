@@ -81,7 +81,7 @@ void Snake::update(float dt)
 	m_path.push_front(pos);
 	onMove(pos);
 
-	const int kOffset = 15;//相邻两个body的距离
+	const int kOffset = 10;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
 		if (m_path.size() > i * kOffset)

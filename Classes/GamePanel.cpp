@@ -45,6 +45,8 @@ bool GamePanel::init()
 
 void GamePanel::initGameBk()
 {
+	CCSpriteBatchNode* batchNode = CCSpriteBatchNode::create("game_scene/map_01.png");
+	m_snakeField->addChild(batchNode);
 	const float gridSize = 40;
 	int xGrids = GAME_LAYER_WIDTH / gridSize;
 	int yGrids = GAME_LAYER_HEIGHT / gridSize;
@@ -52,13 +54,13 @@ void GamePanel::initGameBk()
 	{
 		for (int j = 0; j < xGrids; ++j)
 		{
-			CCSprite *spr = CCSprite::create("game_scene/map_01.png");
+			CCSprite *spr = CCSprite::createWithTexture(batchNode->getTexture());
 			spr->setAnchorPoint(ccp(0, 0));
 			CCPoint pos;
 			pos.x = gridSize * j;
 			pos.y = gridSize * i;
 			spr->setPosition(pos);
-			m_snakeField->addChild(spr);
+			batchNode->addChild(spr);
 		}
 	}
 }
