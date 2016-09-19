@@ -13,6 +13,8 @@ public:
 	CREATE_FUNC(UiLayer);
 private:
     virtual bool init();  
+	void initLeftUi();
+	void initRightUi();
 	void onSpeedUpBtnClicked(cocos2d::CCObject* pSender);
 	void onGodLikeBtnClicked(cocos2d::CCObject* pSender);
 	void onGrowBtnClicked(cocos2d::CCObject* pSender);
@@ -22,7 +24,8 @@ private:
 private:
 	virtual void onSpeedUpOver();
 private:
-	UiLayout *m_layout;
+	UiLayout *m_leftLayout;
+	UiLayout *m_rightLayout;
 };
 
 #endif 
