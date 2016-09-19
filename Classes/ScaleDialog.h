@@ -14,6 +14,7 @@ public:
 protected:
 	ScaleDialog();
 	void runScale();
+	virtual void onTouch(cocos2d::CCPoint pt){}
 private:
 	virtual void onEnter();
 	virtual void onExit();

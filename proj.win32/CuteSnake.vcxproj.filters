@@ -120,6 +120,18 @@
     <ClCompile Include="..\Classes\FoodMgr.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\HelpPanel.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SettingDialog.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SoundMgr.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SavingHelper.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -223,6 +235,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FoodMgr.h">
       <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelpPanel.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SettingDialog.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SoundMgr.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SavingHelper.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

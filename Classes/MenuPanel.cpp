@@ -3,6 +3,7 @@
 #include "UiLayout.h"
 #include "MainScene.h"
 #include "PackageDialog.h"
+#include "SettingDialog.h"
 using namespace std;
 USING_NS_CC;
 
@@ -26,6 +27,8 @@ bool MenuPanel::init()
 	skinBtn->setTarget(this, menu_selector(MenuPanel::onSkinBtnClicked));
 	CCMenuItem *settingBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(4));
 	settingBtn->setTarget(this, menu_selector(MenuPanel::onSettingBtnClicked));
+
+	skinBtn->setVisible(false);
     return true;
 }
 
@@ -36,8 +39,8 @@ void MenuPanel::onNewGameBtnClicked(cocos2d::CCObject* pSender)
 
 void MenuPanel::onRuleBtnClicked(cocos2d::CCObject* pSender)
 {
-	MainScene::theScene()->showDialog(PackageDialog::create());
-	//CCMessageBox("rule", "tips");
+	//MainScene::theScene()->showDialog(PackageDialog::create());
+	MainScene::theScene()->showPanel(kPanelIdHelpPanel);
 }
 
 void MenuPanel::onSkinBtnClicked(cocos2d::CCObject* pSender)
@@ -47,5 +50,5 @@ void MenuPanel::onSkinBtnClicked(cocos2d::CCObject* pSender)
 
 void MenuPanel::onSettingBtnClicked(cocos2d::CCObject* pSender)
 {
-	CCMessageBox("setting", "tips");
+	MainScene::theScene()->showDialog(SettingDialog::create());
 }

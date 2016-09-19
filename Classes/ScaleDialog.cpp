@@ -49,5 +49,6 @@ void ScaleDialog::onExit()
 
 bool ScaleDialog::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+	onTouch(pTouch->getLocation());
 	return true;
 }

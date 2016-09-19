@@ -11,6 +11,7 @@ enum PanelId
 	kPanelIdDefault,
 	kPanelIdMenuPanel,
 	kPanelIdGamePanel,
+	kPanelIdHelpPanel,
 };
 class MainScene : public cocos2d::CCScene
 {

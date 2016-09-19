@@ -3,6 +3,7 @@
 #include "BasePanel.h"
 #include "GamePanel.h"
 #include "MenuPanel.h"
+#include "HelpPanel.h"
 using namespace std;
 USING_NS_CC;
 
@@ -55,6 +56,8 @@ void MainScene::showPanel(int panelId)
 	case kPanelIdGamePanel:
 		panel = GamePanel::create();
 		break;
+	case kPanelIdHelpPanel:
+		panel = HelpPanel::create();
 	default:
 		break;
 	}
@@ -72,6 +75,7 @@ void MainScene::showPanel(int panelId)
 
 void MainScene::showDialog(ScaleDialog *dialog)
 {
+	m_dialogLayer->removeAllChildren();
 	m_dialogLayer->addChild(dialog);
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	dialog->setAnchorPoint(ccp(0.5f, 0.5f));
