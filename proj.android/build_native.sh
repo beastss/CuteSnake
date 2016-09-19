@@ -1,4 +1,4 @@
-APPNAME="CuteSnake"
+APPNAME="CoolStars"
 
 # options
 
@@ -64,6 +64,8 @@ if [ -f "$file" ]; then
     cp "$file" "$APP_ANDROID_ROOT"/assets
 fi
 done
+
+chmod 777 "$APP_ANDROID_ROOT"/assets -R
 
 # run ndk-build
 if [[ "$buildexternalsfromsource" ]]; then

@@ -5,6 +5,7 @@
 #include "EnemySnake.h"
 #include "FoodMgr.h"
 #include "Food.h"
+#include <algorithm>
 using namespace std;
 USING_NS_CC;
 

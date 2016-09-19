@@ -1,5 +1,6 @@
 #include "SnakeController.h"
 #include "CommonMacro.h"
+#include <algorithm>
 USING_NS_CC;
 using namespace std;
 
