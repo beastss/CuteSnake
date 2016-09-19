@@ -140,6 +140,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\DataLoader.cpp" />
     <ClCompile Include="..\Classes\EmptyBox.cpp" />
     <ClCompile Include="..\Classes\EnemySnake.cpp" />
+    <ClCompile Include="..\Classes\Food.cpp" />
+    <ClCompile Include="..\Classes\FoodMgr.cpp" />
     <ClCompile Include="..\Classes\GameConfig.cpp" />
     <ClCompile Include="..\Classes\GamePanel.cpp" />
     <ClCompile Include="..\Classes\GameOverDialog.cpp" />
@@ -170,6 +172,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\DataLoader.h" />
     <ClInclude Include="..\Classes\EmptyBox.h" />
     <ClInclude Include="..\Classes\EnemySnake.h" />
+    <ClInclude Include="..\Classes\Food.h" />
+    <ClInclude Include="..\Classes\FoodMgr.h" />
     <ClInclude Include="..\Classes\GameConfig.h" />
     <ClInclude Include="..\Classes\GamePanel.h" />
     <ClInclude Include="..\Classes\GameOverDialog.h" />

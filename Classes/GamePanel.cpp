@@ -3,8 +3,20 @@
 #include "CommonMacro.h"
 #include "UiLayer.h"
 #include "EnemySnake.h"
+#include "FoodMgr.h"
+#include "Food.h"
 using namespace std;
 USING_NS_CC;
+
+GamePanel::GamePanel()
+{
+	m_foodMgr = new FoodMgr(this);
+}
+
+GamePanel::~GamePanel()
+{
+	delete m_foodMgr;
+}
 
 bool GamePanel::init()
 {
@@ -24,7 +36,18 @@ bool GamePanel::init()
 	addChild(m_uiLayer);
 	initSnakes();
 	setContentSize(winSize);
+
+	scheduleUpdate();
     return true;
+}
+
+void GamePanel::update(float dt)
+{
+	for (size_t i = 0; i < m_snakes.size(); ++i)
+	{
+		m_snakes[i]->update(dt);
+	}
+	m_foodMgr->update(dt);
 }
 
 void GamePanel::setFocus(cocos2d::CCPoint pos)
@@ -41,18 +64,16 @@ void GamePanel::initSnakes()
 {
 	m_snakeField->removeAllChildren();
 
-	addSnake(PlayerSnake::create(this));
-	addSnake(EnemySnake::create(this));
-	addSnake(EnemySnake::create(this));
-	addSnake(EnemySnake::create(this));
-	addSnake(EnemySnake::create(this));
-	addSnake(EnemySnake::create(this));
-	addSnake(EnemySnake::create(this));
+	//addSnake(PlayerSnake::create(this));
+	for (int i = 0; i < 5; ++i)
+	{
+		addSnake(EnemySnake::create(this));
+	}
 }
 
 void GamePanel::addSnake(Snake *snake)
 {
-	m_snakeField->addChild(snake);
+	m_snakeField->addChild(snake, 1);
 	m_snakes.push_back(snake);
 }
 
@@ -65,4 +86,10 @@ void GamePanel::removeSnake(Snake *snake)
 		//注意：这里删除snake 会不会导致上层的遍历出错？
 		m_snakes.erase(iter);
 	}
+}
+
+void GamePanel::addFood(Food *food)
+{
+	m_snakeField->addChild(food, 0);
+	m_foodMgr->addFood(food);
 }

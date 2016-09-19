@@ -20,6 +20,8 @@ namespace CommonUtil
 	
 	cocos2d::CCAnimate *getFrameAnimation(std::string pathFormat, int num, float duration);
 	cocos2d::CCMenuItemSprite *getScaleMenuItemSpr(std::string path);
+
+	cocos2d::ccColor3B getRandomColor();
 }
 
 #endif

@@ -164,3 +164,12 @@ CCMenuItemSprite *CommonUtil::getScaleMenuItemSpr(string path)
 	selectedSpr->setAnchorPoint(ccp((scale - 1.0f) / 2, (scale - 1.0f) / 2));
 	return imageItem;
 }
+
+cocos2d::ccColor3B CommonUtil::getRandomColor()
+{
+	ccColor3B color;
+	color.r = getRandomValue(0, 255);
+	color.g = getRandomValue(0, 255);
+	color.b = getRandomValue(0, 255);
+	return color;
+}

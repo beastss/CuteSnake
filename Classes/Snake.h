@@ -21,16 +21,18 @@ public:
 	virtual ~Snake(){}
 	bool willCrash(cocos2d::CCPoint pt, int destAngle);
 	bool isCrash(cocos2d::CCPoint pt);
+	void update(float dt);
+	bool canEatFood(cocos2d::CCPoint pt);
+	void eatFood();
+	CCNode *getHead(){ return m_body[0]; }
 protected:
 	Snake(GamePanel *gamePanel);
 	void addBody();
-	CCNode *getHead(){ return m_body[0]; }
 protected:
 	virtual void onMove(cocos2d::CCPoint pos){}
 	virtual void onDead(){}
 private:
 	void initSnake();
-	void update(float dt);
 	bool checkCrash();
 	void crash();
 protected:

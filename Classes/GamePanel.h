@@ -5,6 +5,9 @@
 #include "BasePanel.h"
 class UiLayer;
 class Snake;
+class Food;
+class FoodMgr;
+
 class GamePanel : public BasePanel
 {
 public:
@@ -12,13 +15,18 @@ public:
 	void setFocus(cocos2d::CCPoint pos);
 	std::vector<Snake *> getSnakes(){ return m_snakes; }
 	void removeSnake(Snake *snake);
+	void addFood(Food *food);
+	~GamePanel();
 private:
+	GamePanel();
     virtual bool init();  
 	void initSnakes();
 	void addSnake(Snake *snake);
+	void update(float dt);
 private:
 	UiLayer *m_uiLayer;
 	cocos2d::CCNode *m_snakeField;
+	FoodMgr *m_foodMgr;
 	std::vector<Snake *> m_snakes;
 };
 

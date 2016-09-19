@@ -5,6 +5,7 @@
 #include "SnakeColor.h"
 #include "CommonUtil.h"
 #include "GamePanel.h"
+#include "Food.h"
 USING_NS_CC;
 using namespace std;
 
@@ -39,7 +40,7 @@ void Snake::initSnake()
 	{
 		addBody();
 	}
-	scheduleUpdate();
+	//scheduleUpdate();
 }
 
 void Snake::addBody()
@@ -127,9 +128,26 @@ bool Snake::checkCrash()
 	return false;
 }
 
+static CCPoint getRandomPt()
+{
+	CCPoint pt;
+	pt.x = CommonUtil::getRandomValue(0, 5);
+	pt.y = CommonUtil::getRandomValue(0, 5);
+	return pt;
+}
+
 void Snake::crash()
 {
 	onDead();
+	for (auto body : m_body)
+	{
+		auto pos = body->getPosition();
+		auto food = Food::create(ccpAdd(pos, getRandomPt()), m_color);
+		m_gamePanel->addFood(food);
+		food = Food::create(ccpSub(pos, getRandomPt()), m_color);
+		m_gamePanel->addFood(food);
+	}
+
 	m_gamePanel->removeSnake(this);
 	CCLOG("Snake::crash!!!!");
 }
@@ -174,4 +192,15 @@ bool Snake::isCrash(cocos2d::CCPoint pt)
 		}
 	}
 	return false;
+}
+
+bool Snake::canEatFood(CCPoint pt)
+{
+	auto pos = getHead()->getPosition();
+	return abs(pos.x - pt.x) < 32 && abs(pos.y - pt.y) < 32;
+}
+
+void Snake::eatFood()
+{
+	addBody();
 }
