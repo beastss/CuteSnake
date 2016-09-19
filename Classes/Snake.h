@@ -1,6 +1,7 @@
 #ifndef __SNAKE_H__
 #define __SNAKE_H__
 #include "cocos2d.h"
+#include <deque>
 /*
 class SnakeNode
 {
@@ -41,7 +42,7 @@ protected:
 	int m_destAngle;
 	float m_speed;
 	std::vector<cocos2d::CCNode *>m_body;
-	std::vector<cocos2d::CCPoint>m_path;
+	std::deque<cocos2d::CCPoint>m_path;
 	GamePanel *m_gamePanel;
 private:
 	int m_angle;

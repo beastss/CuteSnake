@@ -26,7 +26,7 @@ void Snake::initSnake()
 {
 	auto layout = UiLayout::create("layout/snake_head.xml");
 	addChild(layout);
-	layout->setAnchorPoint(ccp(0.5f, -0.2f));
+	layout->setAnchorPoint(ccp(0.5f, 0.4f));
 	auto face = dynamic_cast<CCSprite*>(layout->getChildById(1));
 	//face->initWithFile("snake/dsf.png");
 	face->setColor(m_color);
@@ -40,7 +40,6 @@ void Snake::initSnake()
 	{
 		addBody();
 	}
-	//scheduleUpdate();
 }
 
 void Snake::addBody()
@@ -49,7 +48,7 @@ void Snake::addBody()
 	body->setScale(1.5f);
 	addChild(body);
 	body->setColor(m_color);
-	body->setPosition(m_body.back()->getPosition());
+	body->setPosition(m_body[m_body.size() - 1]->getPosition());
 	m_body.push_back(body);
 }
 
@@ -78,7 +77,7 @@ void Snake::update(float dt)
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
 	auto pos = ccpAdd(getHead()->getPosition(), offset);
 	getHead()->setPosition(pos);
-	m_path.push_back(pos);
+	m_path.push_front(pos);
 	onMove(pos);
 
 	const int kOffset = 15;//相邻两个body的距离
@@ -96,9 +95,9 @@ void Snake::update(float dt)
 	int extra = m_path.size() - (m_body.size() - 1 )* kOffset;
 	if (extra > 0)
 	{
-		vector<CCPoint> temp;
+		deque<CCPoint> temp;
 		temp.swap(m_path);
-		m_path.assign(temp.begin() + extra, temp.end());
+		m_path.assign(temp.begin(), temp.end() - extra);
 
 	}
 	//CCLOG("m_path.size(): %d", m_path.size());

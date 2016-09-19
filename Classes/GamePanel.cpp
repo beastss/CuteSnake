@@ -47,7 +47,7 @@ void GamePanel::update(float dt)
 	{
 		m_snakes[i]->update(dt);
 	}
-	m_foodMgr->update(dt);
+	//m_foodMgr->update(dt);
 }
 
 void GamePanel::setFocus(cocos2d::CCPoint pos)
@@ -64,10 +64,10 @@ void GamePanel::initSnakes()
 {
 	m_snakeField->removeAllChildren();
 
-	//addSnake(PlayerSnake::create(this));
+	addSnake(PlayerSnake::create(this));
 	for (int i = 0; i < 5; ++i)
 	{
-		addSnake(EnemySnake::create(this));
+		//addSnake(EnemySnake::create(this));
 	}
 }
 
