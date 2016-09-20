@@ -16,6 +16,7 @@ Snake::Snake(GamePanel *gamePanel)
 , m_angle(0)
 , m_destAngle(0)
 , m_growEnergy(0)
+, m_isGodlike(false)
 {
 	m_color = RANDOM_COLOR;
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
@@ -81,7 +82,7 @@ void Snake::update(float dt)
 	m_path.push_front(pos);
 	onMove(pos);
 
-	const int kOffset = 10;//相邻两个body的距离
+	const int kOffset = 5;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
 		if (m_path.size() > i * kOffset)
@@ -102,10 +103,35 @@ void Snake::update(float dt)
 
 	}
 	//CCLOG("m_path.size(): %d", m_path.size());
-	
+	onUpdate(dt);
 	if (checkCrash())
 	{
 		crash();
+	}
+
+}
+
+void Snake::setGodLikeState(bool open)
+{
+	m_isGodlike = open;
+	for (auto body : m_body)
+	{
+		auto self = dynamic_cast<CCSprite *>(body);
+		if (self)
+		{
+			self->setOpacity(open ? 128 : 255);
+		}
+
+		auto children = body->getChildren();
+		CCObject* pObj;
+		CCARRAY_FOREACH(children, pObj)
+		{
+			CCSprite* pNode = dynamic_cast<CCSprite*>(pObj);
+			if (pNode)
+			{
+				pNode->setOpacity(open ? 128 : 255);
+			}
+		}
 	}
 }
 
@@ -116,7 +142,11 @@ bool Snake::checkCrash()
 	{
 		return true;
 	}
-	
+	if (m_isGodlike)//如果无敌，不检测与其他蛇碰撞
+	{
+		return false;
+	}
+
 	auto snakes = m_gamePanel->getSnakes();
 	for (auto snake : snakes)
 	{

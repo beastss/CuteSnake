@@ -15,9 +15,9 @@ void SnakeController::changeAngle(int angle)
 	NOTIFY_VIEWS(onAngleChanged, angle);
 }
 
-void SnakeController::speedUp()
+void SnakeController::speedUp(bool enable)
 {
-	NOTIFY_VIEWS(onSpeedUp);
+	NOTIFY_VIEWS(onSpeedUp, enable);
 }
 
 void SnakeController::speedUpOver()

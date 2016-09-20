@@ -5,7 +5,7 @@
 struct IControlSnake
 {
 	virtual void onAngleChanged(int angle){}
-	virtual void onSpeedUp(){}
+	virtual void onSpeedUp(bool enable){}
 	virtual void onSpeedUpOver(){}
 	virtual void onGrow(){}
 	virtual void onGodLike(){}
@@ -16,7 +16,7 @@ class SnakeController
 public:
 	static SnakeController *controller();
 	void changeAngle(int angle);
-	void speedUp();
+	void speedUp(bool enable);
 	void speedUpOver();
 	void growBody();
 	void godLike();

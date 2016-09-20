@@ -29,9 +29,11 @@ public:
 protected:
 	Snake(GamePanel *gamePanel);
 	void addBody();
+	void setGodLikeState(bool open);
 protected:
 	virtual void onMove(cocos2d::CCPoint pos){}
 	virtual void onDead(){}
+	virtual void onUpdate(float dt){}
 private:
 	void initSnake();
 	bool checkCrash();
@@ -44,6 +46,7 @@ protected:
 	std::vector<cocos2d::CCNode *>m_body;
 	std::deque<cocos2d::CCPoint>m_path;
 	GamePanel *m_gamePanel;
+	bool m_isGodlike;
 private:
 	int m_angle;
 	int m_growEnergy;

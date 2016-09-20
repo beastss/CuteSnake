@@ -6,6 +6,9 @@
 #include "UiLayout.h"
 #include "EmptyBox.h"
 #include "RankingPanel.h"
+#include "PropsMgr.h"
+#include "MainScene.h"
+#include "PackageDialog.h"
 using namespace std;
 USING_NS_CC;
 
@@ -13,6 +16,7 @@ void UiLayer::onEnter()
 {
 	CCNode::onEnter();
 	SnakeController::controller()->addView(this);
+	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, kTouchPriorityPanel, true);
 }
 
 void UiLayer::onExit()
@@ -42,7 +46,11 @@ void UiLayer::initLeftUi()
 
 	CCMenuItem *growBtn = dynamic_cast<CCMenuItem *>(m_leftLayout->getChildById(2));
 	growBtn->setTarget(this, menu_selector(UiLayer::onGrowBtnClicked));
+	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(8));
+	growNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGrow)));
 	CCMenuItem *godLikeBtn = dynamic_cast<CCMenuItem *>(m_leftLayout->getChildById(3));
+	CCLabelAtlas *godLikeNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
+	godLikeNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGodlike)));;
 	godLikeBtn->setTarget(this, menu_selector(UiLayer::onGodLikeBtnClicked));
 	CCLabelTTF *lengthLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(5));
 	CCLabelTTF *scoreLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(7));
@@ -62,31 +70,48 @@ void UiLayer::initRightUi()
 	m_rightLayout->setPosition(ccp(winSize.width, 0));
 	addChild(m_rightLayout);
 
-	CCMenuItem *speedUpBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(1));
-	speedUpBtn->setTarget(this, menu_selector(UiLayer::onSpeedUpBtnClicked));
-	//EmptyBox *box = dynamic_cast<EmptyBox *>(m_rightLayout->getChildById(8));
-	//box->setNode();
 	auto rankingPanel = RankingPanel::create();
 	rankingPanel->setAnchorPoint(ccp(1, 1));
 	rankingPanel->setPosition(ccpSub(winSize, ccp(5, 5)));
 	addChild(rankingPanel);
 }
 
-
 void UiLayer::onSpeedUpBtnClicked(CCObject* pSender)
 {
+	/*
 	SnakeController::controller()->speedUp();
 	CCMenuItem *speedUpBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(1));
 	speedUpBtn->setEnabled(false);
+	*/
 }
 
 void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
 {
+	int num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
+	if (num <= 0)
+	{
+		//MainScene::theScene()->showDialog(PackageDialog::create());
+		return;
+	}
+	PropsMgr::theMgr()->saveNum(kPropsTypeGodlike, num - 1);
+	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
+	growNum->setString(CommonUtil::intToStr(num - 1));
+
 	SnakeController::controller()->godLike();
 }
 
 void UiLayer::onGrowBtnClicked(CCObject* pSender)
 {
+	int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
+	if (num <= 0)
+	{
+		//MainScene::theScene()->showDialog(PackageDialog::create());
+		return;
+	}
+	PropsMgr::theMgr()->saveNum(kPropsTypeGrow, num - 1);
+	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(8));
+	growNum->setString(CommonUtil::intToStr(num - 1));
+
 	SnakeController::controller()->growBody();
 }
 
@@ -102,3 +127,21 @@ void UiLayer::onSpeedUpOver()
 	speedUpBtn->setEnabled(true);
 }
 
+bool UiLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+{
+	auto pos = m_rightLayout->convertToNodeSpace(pTouch->getLocation());
+	auto speedUpImg = m_rightLayout->getChildById(1);
+	if (speedUpImg->boundingBox().containsPoint(pos))
+	{
+		speedUpImg->setScale(1.3f);
+		SnakeController::controller()->speedUp(true);
+		return true;
+	}
+	return false;
+}
+
+void UiLayer::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+{
+	m_rightLayout->getChildById(1)->setScale(1);
+	SnakeController::controller()->speedUp(false);
+}

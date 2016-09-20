@@ -10,7 +10,7 @@ using namespace std;
 
 PlayerSnake::PlayerSnake(GamePanel *gamePanel)
 : Snake(gamePanel)
-, m_isSpeedUp(false)
+, m_godLikeTime(0)
 {
 	m_runner = ActionRunner::create();
 	m_runner->retain();
@@ -55,22 +55,16 @@ void PlayerSnake::onAngleChanged(int angle)
 	m_destAngle = angle;
 }
 
-void PlayerSnake::onSpeedUp()
+void PlayerSnake::onSpeedUp(bool enable)
 {
-	if (m_isSpeedUp) return;
-
-	m_runner->queueAction(CallFuncAction::withFunctor([=]()
+	if (enable)
 	{
 		m_speed = NORMAL_SPEED * 2.0f;
-		m_isSpeedUp = true;
-	}));
-	m_runner->queueAction(DelayAction::withDelay(2.0f));
-	m_runner->queueAction(CallFuncAction::withFunctor([=]()
+	}
+	else
 	{
 		m_speed = NORMAL_SPEED;
-		m_isSpeedUp = false;
-		SnakeController::controller()->speedUpOver();
-	}));
+	}
 }
 
 void PlayerSnake::onGrow()
@@ -80,7 +74,22 @@ void PlayerSnake::onGrow()
 
 void PlayerSnake::onGodLike()
 {
+	const int kTime = 3.0f;
+	m_godLikeTime += kTime;
+	setGodLikeState(true);
+}
 
+void PlayerSnake::onUpdate(float dt)
+{
+	if (m_godLikeTime > 0)
+	{
+		m_godLikeTime -= dt;
+		if (m_godLikeTime <= 0)
+		{
+			m_godLikeTime = 0;
+			setGodLikeState(false);
+		}
+	}
 }
 
 void PlayerSnake::onMove(cocos2d::CCPoint pos)

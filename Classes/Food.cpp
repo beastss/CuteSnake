@@ -29,7 +29,7 @@ bool Food::init()
 
 void Food::onEaten(CCPoint pt)
 {
-	auto move = CCMoveTo::create(0.6f, pt);
+	auto move = CCMoveTo::create(0.3f, pt);
 	auto func = CCFunctionAction::create([=]()
 	{
 		removeFromParent();

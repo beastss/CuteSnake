@@ -19,13 +19,14 @@ private:
 private:
 	virtual void onDead();
 	virtual void onMove(cocos2d::CCPoint pos);
+	virtual void onUpdate(float dt);
 private:
 	virtual void onAngleChanged(int angle);
-	virtual void onSpeedUp();
+	virtual void onSpeedUp(bool enable);
 	virtual void onGrow();
 	virtual void onGodLike();
 private:
 	ActionRunner *m_runner;
-	bool m_isSpeedUp;
+	float m_godLikeTime;
 };
 #endif

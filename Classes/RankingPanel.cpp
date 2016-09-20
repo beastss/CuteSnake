@@ -9,8 +9,6 @@ using namespace std;
 bool RankingPanel::init()
 {
 	initData();
-	//auto bk = CCLayerColor::create(ccc4(0, 255, 0, 120));
-	//addChild(bk);
 	CCScale9Sprite * scale9 = CCScale9Sprite::create("game_scene/ranking_bk.png");
 	scale9->setAnchorPoint(ccp(0, 0));
 	addChild(scale9);
