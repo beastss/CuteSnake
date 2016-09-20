@@ -25,13 +25,14 @@ package com.dongxin.CuteSnake;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
-
+import org.cocos2dx.lib.PayAndroidApi;
 import android.os.Bundle;
 
 public class CuteSnake extends Cocos2dxActivity{
 	
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
+		new PayAndroidApi(this);
 	}
 
     public Cocos2dxGLSurfaceView onCreateView() {

@@ -27,7 +27,7 @@ enum ToastText
 enum BillingIndex
 {
 	kBillingPackage,
-	kBillingSkini,
+	kBillingSkin,
 	kBillingReborn,
 };
 

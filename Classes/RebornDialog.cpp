@@ -35,7 +35,7 @@ bool RebornDialog::init()
 
 void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
-	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
+	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
 	{
 		//复活后回复上次长度
 		int length = PlayerData::theData()->getLength();

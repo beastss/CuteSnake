@@ -2,7 +2,7 @@
 #include "rapidxml/rapidxml_utils.hpp"
 #include "rapidxml/rapidxml_print.hpp"
 #if  (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
-//#include "org_cocos2dx_lib_DianXinSdk.h"
+#include "org_cocos2dx_lib_GameBilling.h"
 #endif
 #include "ActionRunner.h"
 using namespace cocos2d;

@@ -15,7 +15,7 @@ bool RankingPanel::init()
 
 	float width = 0;
 	float height = 0;
-	for (auto iter = m_ranking.rbegin(); iter != m_ranking.rend(); ++iter)
+	for (auto iter = m_ranking.begin(); iter != m_ranking.end(); ++iter)
 	{
 		auto node = UiLayout::create("layout/ranking_node.xml");
 		auto name = dynamic_cast<CCLabelTTF *>(node->getChildById(1));
