@@ -16,7 +16,6 @@ private:
     virtual bool init();  
 	void initLeftUi();
 	void initRightUi();
-	void onSpeedUpBtnClicked(cocos2d::CCObject* pSender);
 	void onGodLikeBtnClicked(cocos2d::CCObject* pSender);
 	void onGrowBtnClicked(cocos2d::CCObject* pSender);
 	void onJoyStickChanged(int angle);
@@ -25,7 +24,7 @@ private:
 private:
 	virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
-	virtual void onSpeedUpOver();
+	virtual void onSnakeDataChanged();
 private:
 	UiLayout *m_leftLayout;
 	UiLayout *m_rightLayout;

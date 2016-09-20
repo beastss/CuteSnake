@@ -24,7 +24,7 @@ public:
 	bool isCrash(cocos2d::CCPoint pt);
 	void update(float dt);
 	bool canEatFood(cocos2d::CCPoint pt);
-	void eatFood();
+	void eatFood(int enery);
 	CCNode *getHead(){ return m_body[0]; }
 protected:
 	Snake(GamePanel *gamePanel);
@@ -34,19 +34,20 @@ protected:
 	virtual void onMove(cocos2d::CCPoint pos){}
 	virtual void onDead(){}
 	virtual void onUpdate(float dt){}
+	virtual void onEatFood(){}
 private:
 	void initSnake();
 	bool checkCrash();
 	void crash();
 protected:
 	cocos2d::ccColor3B m_color;
-	int m_length;
 	int m_destAngle;
 	float m_speed;
 	std::vector<cocos2d::CCNode *>m_body;
 	std::deque<cocos2d::CCPoint>m_path;
 	GamePanel *m_gamePanel;
 	bool m_isGodlike;
+	int m_score;
 private:
 	int m_angle;
 	int m_growEnergy;

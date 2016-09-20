@@ -135,6 +135,9 @@
     <ClCompile Include="..\Classes\PropsMgr.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PlayerData.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -252,6 +255,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PropsMgr.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerData.h">
       <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>

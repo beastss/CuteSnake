@@ -6,6 +6,7 @@
 #include "FoodMgr.h"
 #include "Food.h"
 #include <algorithm>
+#include "PlayerData.h"
 using namespace std;
 USING_NS_CC;
 
@@ -21,6 +22,7 @@ GamePanel::~GamePanel()
 
 bool GamePanel::init()
 {
+	PlayerData::theData()->reset();
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	
 	//±³¾°²ã

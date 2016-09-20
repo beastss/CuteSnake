@@ -7,6 +7,7 @@ for (size_t index = 0; index < m_views.size(); ++index) \
 	m_views[index]->_FUNC_(__VA_ARGS__);				\
 }
 
+#define INIT_SNAKE_LENGTH 6
 #define NORMAL_SPEED 200
 #define GAME_LAYER_WIDTH 4000
 #define GAME_LAYER_HEIGHT 4000

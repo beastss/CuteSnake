@@ -4,6 +4,7 @@
 #include "MainScene.h"
 #include "GamePanel.h"
 #include "GameOverDialog.h"
+#include "PlayerData.h"
 
 USING_NS_CC;
 using namespace std;
@@ -76,7 +77,6 @@ void PlayerSnake::onGodLike()
 {
 	const int kTime = 3.0f;
 	m_godLikeTime += kTime;
-	setGodLikeState(true);
 }
 
 void PlayerSnake::onUpdate(float dt)
@@ -89,7 +89,18 @@ void PlayerSnake::onUpdate(float dt)
 			m_godLikeTime = 0;
 			setGodLikeState(false);
 		}
+		else
+		{
+			setGodLikeState(true);
+		}
 	}
+}
+
+void PlayerSnake::onEatFood()
+{
+	PlayerData::theData()->setLength(m_body.size());
+	PlayerData::theData()->setScore(m_score);
+	SnakeController::controller()->snakeDataChanged();
 }
 
 void PlayerSnake::onMove(cocos2d::CCPoint pos)

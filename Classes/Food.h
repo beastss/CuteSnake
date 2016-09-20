@@ -6,14 +6,16 @@ class Food :
 	public cocos2d::CCNode
 {
 public:
-	static Food *create(cocos2d::CCPoint pos, cocos2d::ccColor3B color);
+	static Food *create(cocos2d::ccColor3B color, bool isSnakeBody = false);
+	int getEnergy(){ return m_enery; }
 	void onEaten(cocos2d::CCPoint pt);
 private:
-	Food(cocos2d::CCPoint pos, cocos2d::ccColor3B color): m_pos(pos), m_color(color){}
+	Food(cocos2d::ccColor3B color, bool isSnakeBody) : m_color(color), m_isSnakeBody(isSnakeBody){}
 private:
 	virtual bool init();
 private:
-	cocos2d::CCPoint m_pos;
+	bool m_isSnakeBody;
 	cocos2d::ccColor3B m_color;
+	int m_enery;
 };
 #endif

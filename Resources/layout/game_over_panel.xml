@@ -82,12 +82,12 @@
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
-		<text>击杀</text>
+		<text>分数</text>
 	</label>
 	<label>
 		<id>10</id>
-		<x>240.60</x>
-		<y>161.03</y>
+		<x>244.61</x>
+		<y>162.93</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>

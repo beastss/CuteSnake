@@ -1,6 +1,8 @@
 #include "GameOverDialog.h"
 #include "UILayout.h"
 #include "MainScene.h"
+#include "CommonUtil.h"
+#include "PlayerData.h"
 USING_NS_CC;
 using namespace std;
 
@@ -20,12 +22,16 @@ bool GameOverDialog::init()
 	CCLabelTTF *label = NULL;
 	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
 	label->setColor(ccc3(255, 0, 0));
-	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(8));
-	label->setColor(ccc3(0, 0, 0));
 	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(9));
 	label->setColor(ccc3(255, 0, 0));
-	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(10));
-	label->setColor(ccc3(0, 0, 0));
+
+	CCLabelTTF *length = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(8));
+	length->setString(CommonUtil::intToStr(PlayerData::theData()->getLength()));
+	length->setColor(ccc3(0, 0, 0));
+	CCLabelTTF *score = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(10));
+	score->setString(CommonUtil::intToStr(PlayerData::theData()->getScore()));
+	score->setColor(ccc3(0, 0, 0));
+	
 	return true;
 }
 

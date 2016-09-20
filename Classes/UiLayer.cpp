@@ -9,6 +9,7 @@
 #include "PropsMgr.h"
 #include "MainScene.h"
 #include "PackageDialog.h"
+#include "PlayerData.h"
 using namespace std;
 USING_NS_CC;
 
@@ -52,13 +53,12 @@ void UiLayer::initLeftUi()
 	CCLabelAtlas *godLikeNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
 	godLikeNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGodlike)));;
 	godLikeBtn->setTarget(this, menu_selector(UiLayer::onGodLikeBtnClicked));
-	CCLabelTTF *lengthLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(5));
-	CCLabelTTF *scoreLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(7));
 	for (int i = 0; i < 4; ++i)
 	{
 		CCLabelTTF *label = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(4 + i));
 		label->setColor(ccc3(70, 130, 180));
 	}
+	onSnakeDataChanged();
 }
 
 void UiLayer::initRightUi()
@@ -74,15 +74,6 @@ void UiLayer::initRightUi()
 	rankingPanel->setAnchorPoint(ccp(1, 1));
 	rankingPanel->setPosition(ccpSub(winSize, ccp(5, 5)));
 	addChild(rankingPanel);
-}
-
-void UiLayer::onSpeedUpBtnClicked(CCObject* pSender)
-{
-	/*
-	SnakeController::controller()->speedUp();
-	CCMenuItem *speedUpBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(1));
-	speedUpBtn->setEnabled(false);
-	*/
 }
 
 void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
@@ -121,10 +112,14 @@ void UiLayer::onJoyStickChanged(int angle)
 	SnakeController::controller()->changeAngle(angle);
 }
 
-void UiLayer::onSpeedUpOver()
+void UiLayer::onSnakeDataChanged()
 {
-	CCMenuItem *speedUpBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(1));
-	speedUpBtn->setEnabled(true);
+	int length = PlayerData::theData()->getLength();
+	int score = PlayerData::theData()->getScore();
+	CCLabelTTF *lengthLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(5));
+	lengthLabel->setString(CommonUtil::intToStr(length));
+	CCLabelTTF *scoreLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(7));
+	scoreLabel->setString(CommonUtil::intToStr(score));
 }
 
 bool UiLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)

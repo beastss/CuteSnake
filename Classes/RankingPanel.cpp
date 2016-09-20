@@ -15,7 +15,7 @@ bool RankingPanel::init()
 
 	float width = 0;
 	float height = 0;
-	for (auto iter = m_ranking.begin(); iter != m_ranking.end(); ++iter)
+	for (auto iter = m_ranking.rbegin(); iter != m_ranking.rend(); ++iter)
 	{
 		auto node = UiLayout::create("layout/ranking_node.xml");
 		auto name = dynamic_cast<CCLabelTTF *>(node->getChildById(1));
@@ -35,12 +35,12 @@ bool RankingPanel::init()
 
 void RankingPanel::initData()
 {
-	m_ranking["a_kiejge"] = 3555;
-	m_ranking["b_sdkf"] = 3522;
-	m_ranking["funny66"] = 3202;
-	m_ranking["april"] = 3022;
+	m_ranking["a_kiejge"] = 3550;
+	m_ranking["b_sdkf"] = 3520;
+	m_ranking["funny66"] = 3200;
+	m_ranking["april"] = 3020;
 	m_ranking["15james"] = 2800;
-	m_ranking["jasony"] = 2756;
-	m_ranking["tonny"] = 2654;
-	m_ranking["_goodns"] = 2555;
+	m_ranking["jasony"] = 2750;
+	m_ranking["tonny"] = 2650;
+	m_ranking["_goodns"] = 2550;
 }

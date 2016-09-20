@@ -20,6 +20,7 @@ private:
 	virtual void onDead();
 	virtual void onMove(cocos2d::CCPoint pos);
 	virtual void onUpdate(float dt);
+	virtual void onEatFood();
 private:
 	virtual void onAngleChanged(int angle);
 	virtual void onSpeedUp(bool enable);

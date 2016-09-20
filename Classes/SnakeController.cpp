@@ -20,11 +20,6 @@ void SnakeController::speedUp(bool enable)
 	NOTIFY_VIEWS(onSpeedUp, enable);
 }
 
-void SnakeController::speedUpOver()
-{
-	NOTIFY_VIEWS(onSpeedUpOver);
-}
-
 void SnakeController::growBody()
 {
 	NOTIFY_VIEWS(onGrow);
@@ -33,6 +28,11 @@ void SnakeController::growBody()
 void SnakeController::godLike()
 {
 	NOTIFY_VIEWS(onGodLike);
+}
+
+void SnakeController::snakeDataChanged()
+{
+	NOTIFY_VIEWS(onSnakeDataChanged);
 }
 
 void SnakeController::addView(IControlSnake *view)

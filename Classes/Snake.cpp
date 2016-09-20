@@ -11,12 +11,12 @@ using namespace std;
 
 Snake::Snake(GamePanel *gamePanel)
 : m_gamePanel(gamePanel)
-, m_length(5)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
 , m_destAngle(0)
 , m_growEnergy(0)
 , m_isGodlike(false)
+, m_score(0)
 {
 	m_color = RANDOM_COLOR;
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
@@ -38,7 +38,7 @@ void Snake::initSnake()
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	m_body.push_back(layout);
 
-	for (int i = 0; i < m_length; ++i)
+	for (int i = 1; i < INIT_SNAKE_LENGTH; ++i)
 	{
 		addBody();
 	}
@@ -172,9 +172,11 @@ void Snake::crash()
 	for (auto body : m_body)
 	{
 		auto pos = body->getPosition();
-		auto food = Food::create(ccpAdd(pos, getRandomPt()), m_color);
+		auto food = Food::create(m_color, true);
+		food->setPosition(ccpAdd(pos, getRandomPt()));
 		m_gamePanel->addFood(food);
-		food = Food::create(ccpSub(pos, getRandomPt()), m_color);
+		food = Food::create(m_color, true);
+		food->setPosition(ccpAdd(pos, getRandomPt()));
 		m_gamePanel->addFood(food);
 	}
 
@@ -230,10 +232,11 @@ bool Snake::canEatFood(CCPoint pt)
 	return abs(pos.x - pt.x) < 32 && abs(pos.y - pt.y) < 32;
 }
 
-void Snake::eatFood()
+void Snake::eatFood(int energy)
 {
-	int const kEnergyToGrow = 4;
-	m_growEnergy++;
+	m_score += energy * 10;
+	int const kEnergyToGrow = 5;
+	m_growEnergy += energy;
 	if (m_growEnergy >= kEnergyToGrow)
 	{
 		int num = m_growEnergy / kEnergyToGrow;
@@ -243,4 +246,5 @@ void Snake::eatFood()
 			addBody();
 		}
 	}
+	onEatFood();
 }
