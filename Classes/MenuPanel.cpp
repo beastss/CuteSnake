@@ -29,6 +29,8 @@ bool MenuPanel::init()
 	settingBtn->setTarget(this, menu_selector(MenuPanel::onSettingBtnClicked));
 
 	skinBtn->setVisible(false);
+	
+	MainScene::theScene()->showDialog(PackageDialog::create());
     return true;
 }
 

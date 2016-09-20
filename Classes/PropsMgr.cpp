@@ -1,4 +1,5 @@
 #include "PropsMgr.h"
+#include <algorithm>
 USING_NS_CC;
 using namespace std;
 
@@ -16,6 +17,7 @@ void PropsMgr::init()
 
 void PropsMgr::saveNum(int propsType, int num)
 {
+	num = min(0, num);
 	m_props[propsType] = num;
 	switch (propsType)
 	{

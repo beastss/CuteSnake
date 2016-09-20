@@ -31,6 +31,9 @@
     <Filter Include="util\ui">
       <UniqueIdentifier>{332c5609-3169-4d10-8f45-9b8f84cacfd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sdk_iter">
+      <UniqueIdentifier>{93f9b2e7-52bd-4322-b171-5c3d3098caaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\RebornDialog.cpp">
       <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MyPurchase.cpp">
+      <Filter>sdk_iter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RebornDialog.h">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MyPurchase.h">
+      <Filter>sdk_iter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

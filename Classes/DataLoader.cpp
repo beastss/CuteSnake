@@ -2,6 +2,7 @@
 #include "SnakeColor.h"
 #include "SoundMgr.h"
 #include "PropsMgr.h"
+#include "MyPurchase.h"
 using namespace std;
 
 void DataLoader::loadData()
@@ -9,4 +10,5 @@ void DataLoader::loadData()
 	SnakeColor::init();
 	SoundMgr::theMgr()->init();
 	PropsMgr::theMgr()->init();
+	MyPurchase::sharedPurchase()->initBillingData();
 }

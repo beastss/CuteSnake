@@ -5,6 +5,7 @@
 #include "PlayerSnake.h"
 #include "GameOverDialog.h"
 #include "PlayerData.h"
+#include "MyPurchase.h"
 USING_NS_CC;
 using namespace std;
 
@@ -34,11 +35,14 @@ bool RebornDialog::init()
 
 void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
-	//复活后回复上次长度
-	int length = PlayerData::theData()->getLength();
-	auto snake = PlayerSnake::create(m_gamePanel, length);
-	m_gamePanel->addSnake(snake);
-	removeFromParent();
+	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
+	{
+		//复活后回复上次长度
+		int length = PlayerData::theData()->getLength();
+		auto snake = PlayerSnake::create(m_gamePanel, length);
+		m_gamePanel->addSnake(snake);
+		removeFromParent();
+	});
 }
 
 void RebornDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
