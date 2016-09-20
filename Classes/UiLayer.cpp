@@ -64,8 +64,12 @@ void UiLayer::initRightUi()
 
 	CCMenuItem *speedUpBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(1));
 	speedUpBtn->setTarget(this, menu_selector(UiLayer::onSpeedUpBtnClicked));
-	EmptyBox *box = dynamic_cast<EmptyBox *>(m_rightLayout->getChildById(8));
-	box->setNode(RankingPanel::create());
+	//EmptyBox *box = dynamic_cast<EmptyBox *>(m_rightLayout->getChildById(8));
+	//box->setNode();
+	auto rankingPanel = RankingPanel::create();
+	rankingPanel->setAnchorPoint(ccp(1, 1));
+	rankingPanel->setPosition(ccpSub(winSize, ccp(5, 5)));
+	addChild(rankingPanel);
 }
 
 

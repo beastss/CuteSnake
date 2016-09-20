@@ -17,6 +17,15 @@ bool GameOverDialog::init()
 	CCMenuItem *replayBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(6));
 	replayBtn->setTarget(this, menu_selector(GameOverDialog::onReplayBtnClicked));
 
+	CCLabelTTF *label = NULL;
+	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
+	label->setColor(ccc3(255, 0, 0));
+	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(8));
+	label->setColor(ccc3(0, 0, 0));
+	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(9));
+	label->setColor(ccc3(255, 0, 0));
+	label = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(10));
+	label->setColor(ccc3(0, 0, 0));
 	return true;
 }
 

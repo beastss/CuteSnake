@@ -19,8 +19,8 @@
 	</label>
 	<label>
 		<id>3</id>
-		<x>58.90</x>
-		<y>33.73</y>
+		<x>61.85</x>
+		<y>32.67</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -28,8 +28,8 @@
 	</label>
 	<label>
 		<id>4</id>
-		<x>414.93</x>
-		<y>31.82</y>
+		<x>414.09</x>
+		<y>28.87</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -37,11 +37,11 @@
 	</label>
 	<button>
 		<id>5</id>
-		<x>61.01</x>
-		<y>81.01</y>
+		<x>62.91</x>
+		<y>83.96</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
-		<scale>1.00</scale>
+		<scale>0.60</scale>
 		<normal>game_over/back.png</normal>
 		<selected>game_over/back.png</selected>
 		<disabled>game_over/back.png</disabled>
@@ -52,10 +52,46 @@
 		<y>78.04</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
-		<scale>1.00</scale>
+		<scale>0.60</scale>
 		<normal>game_over/replay.png</normal>
 		<selected>game_over/replay.png</selected>
 		<disabled>game_over/replay.png</disabled>
 	</button>
+	<label>
+		<id>7</id>
+		<x>240.80</x>
+		<y>269.51</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>长度</text>
+	</label>
+	<label>
+		<id>8</id>
+		<x>241.65</x>
+		<y>233.63</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>100</text>
+	</label>
+	<label>
+		<id>9</id>
+		<x>242.70</x>
+		<y>198.60</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>击杀</text>
+	</label>
+	<label>
+		<id>10</id>
+		<x>240.60</x>
+		<y>161.03</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>100</text>
+	</label>
 </layout>
 
