@@ -1,0 +1,34 @@
+<layout width="480.000000" height="400.000000">
+	<image>
+		<id>1</id>
+		<x>243.34</x>
+		<y>209.55</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>package/frame_6.png</path>
+	</image>
+	<button>
+		<id>5</id>
+		<x>447.00</x>
+		<y>337.43</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>common/btn_2.png</normal>
+		<selected>common/btn_2.png</selected>
+		<disabled>common/btn_2.png</disabled>
+	</button>
+	<button>
+		<id>6</id>
+		<x>239.33</x>
+		<y>65.80</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>package/btn_1.png</normal>
+		<selected>package/btn_1.png</selected>
+		<disabled>package/btn_1.png</disabled>
+	</button>
+</layout>
+

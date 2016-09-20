@@ -7,7 +7,7 @@ USING_NS_CC;
 using namespace std;
 
 EnemySnake::EnemySnake(GamePanel *gamePanel)
-: Snake(gamePanel)
+: Snake(gamePanel, INIT_SNAKE_LENGTH)
 {
 
 }
@@ -46,6 +46,13 @@ void EnemySnake::onMove(cocos2d::CCPoint pos)
 
 	m_destAngle = (m_destAngle + 360) % 360;
 	detectCollision();
+}
+
+
+void EnemySnake::onDead()
+{
+	auto snake = EnemySnake::create(m_gamePanel);
+	m_gamePanel->addSnake(snake);
 }
 
 void EnemySnake::detectCollision()

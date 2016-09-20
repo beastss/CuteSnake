@@ -1,6 +1,5 @@
 #include "Snake.h"
 #include "UiLayout.h"
-#include "CommonMacro.h"
 #include <cmath>
 #include "SnakeColor.h"
 #include "CommonUtil.h"
@@ -9,7 +8,7 @@
 USING_NS_CC;
 using namespace std;
 
-Snake::Snake(GamePanel *gamePanel)
+Snake::Snake(GamePanel *gamePanel, int length)
 : m_gamePanel(gamePanel)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
@@ -21,10 +20,10 @@ Snake::Snake(GamePanel *gamePanel)
 	m_color = RANDOM_COLOR;
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
 	m_angle = m_destAngle;
-	initSnake();
+	initSnake(length);
 }
 
-void Snake::initSnake()
+void Snake::initSnake(int length)
 {
 	auto layout = UiLayout::create("layout/snake_head.xml");
 	addChild(layout);
@@ -38,7 +37,7 @@ void Snake::initSnake()
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	m_body.push_back(layout);
 
-	for (int i = 1; i < INIT_SNAKE_LENGTH; ++i)
+	for (int i = 1; i < length; ++i)
 	{
 		addBody();
 	}
@@ -235,7 +234,7 @@ bool Snake::canEatFood(CCPoint pt)
 void Snake::eatFood(int energy)
 {
 	m_score += energy * 10;
-	int const kEnergyToGrow = 5;
+	int const kEnergyToGrow = 10;
 	m_growEnergy += energy;
 	if (m_growEnergy >= kEnergyToGrow)
 	{

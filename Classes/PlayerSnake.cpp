@@ -5,12 +5,13 @@
 #include "GamePanel.h"
 #include "GameOverDialog.h"
 #include "PlayerData.h"
+#include "RebornDialog.h"
 
 USING_NS_CC;
 using namespace std;
 
-PlayerSnake::PlayerSnake(GamePanel *gamePanel)
-: Snake(gamePanel)
+PlayerSnake::PlayerSnake(GamePanel *gamePanel, int length)
+: Snake(gamePanel, length)
 , m_godLikeTime(0)
 {
 	m_runner = ActionRunner::create();
@@ -23,9 +24,9 @@ PlayerSnake::~PlayerSnake()
 	m_runner->release();
 }
 
-PlayerSnake *PlayerSnake::create(GamePanel *gamePanel)
+PlayerSnake *PlayerSnake::create(GamePanel *gamePanel, int length)
 {
-	PlayerSnake *snake = new PlayerSnake(gamePanel);
+	PlayerSnake *snake = new PlayerSnake(gamePanel, length);
 	snake->init();
 	snake->autorelease();
 	return snake;
@@ -110,6 +111,6 @@ void PlayerSnake::onMove(cocos2d::CCPoint pos)
 
 void PlayerSnake::onDead()
 {
-	auto dialog = GameOverDialog::create();
+	auto dialog = RebornDialog::create(m_gamePanel);
 	MainScene::theScene()->showDialog(dialog);
 }

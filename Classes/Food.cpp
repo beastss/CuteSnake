@@ -18,7 +18,7 @@ bool Food::init()
 	CCSprite *dot = CCSprite::create("snake/circle.png");
 	if (m_isSnakeBody)
 	{
-		m_enery = 3;
+		m_enery = 2;
 	}
 	else
 	{

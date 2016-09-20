@@ -138,6 +138,9 @@
     <ClCompile Include="..\Classes\PlayerData.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RebornDialog.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PlayerData.h">
       <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RebornDialog.h">
+      <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

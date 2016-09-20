@@ -2,6 +2,7 @@
 #define __SNAKE_H__
 #include "cocos2d.h"
 #include <deque>
+#include "CommonMacro.h"
 /*
 class SnakeNode
 {
@@ -27,7 +28,7 @@ public:
 	void eatFood(int enery);
 	CCNode *getHead(){ return m_body[0]; }
 protected:
-	Snake(GamePanel *gamePanel);
+	Snake(GamePanel *gamePanel, int length);
 	void addBody();
 	void setGodLikeState(bool open);
 protected:
@@ -36,7 +37,7 @@ protected:
 	virtual void onUpdate(float dt){}
 	virtual void onEatFood(){}
 private:
-	void initSnake();
+	void initSnake(int length);
 	bool checkCrash();
 	void crash();
 protected:
