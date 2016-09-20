@@ -17,7 +17,7 @@ void PropsMgr::init()
 
 void PropsMgr::saveNum(int propsType, int num)
 {
-	num = min(0, num);
+	num = max(0, num);
 	m_props[propsType] = num;
 	switch (propsType)
 	{

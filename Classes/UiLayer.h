@@ -18,6 +18,7 @@ private:
 	void initRightUi();
 	void onGodLikeBtnClicked(cocos2d::CCObject* pSender);
 	void onGrowBtnClicked(cocos2d::CCObject* pSender);
+	void onBackBtnClicked(cocos2d::CCObject* pSender);
 	void onJoyStickChanged(int angle);
 	virtual void onEnter();
 	virtual void onExit();

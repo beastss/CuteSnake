@@ -74,6 +74,9 @@ void UiLayer::initRightUi()
 	rankingPanel->setAnchorPoint(ccp(1, 1));
 	rankingPanel->setPosition(ccpSub(winSize, ccp(5, 5)));
 	addChild(rankingPanel);
+
+	CCMenuItem *backBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(10));
+	backBtn->setTarget(this, menu_selector(UiLayer::onBackBtnClicked));
 }
 
 void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
@@ -104,6 +107,11 @@ void UiLayer::onGrowBtnClicked(CCObject* pSender)
 	growNum->setString(CommonUtil::intToStr(num - 1));
 
 	SnakeController::controller()->growBody();
+}
+
+void UiLayer::onBackBtnClicked(CCObject* pSender)
+{
+	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 }
 
 void UiLayer::onJoyStickChanged(int angle)
