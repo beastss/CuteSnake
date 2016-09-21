@@ -73,6 +73,7 @@ void UiLayer::initRightUi()
 	auto rankingPanel = RankingPanel::create();
 	rankingPanel->setAnchorPoint(ccp(1, 1));
 	rankingPanel->setPosition(ccpSub(winSize, ccp(5, 5)));
+	rankingPanel->setScale(0.7f);
 	addChild(rankingPanel);
 
 	CCMenuItem *backBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(10));

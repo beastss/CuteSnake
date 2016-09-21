@@ -28,9 +28,22 @@ bool RankingPanel::init()
 		height += node->getContentSize().height;
 		width = max(width, node->getContentSize().width);
 	}
+	scale9->setContentSize(CCSize(width, height));
+
+	height += 10;
+	auto title = UiLayout::create("layout/ranking_title.xml");
+	CCScale9Sprite * titleBk = CCScale9Sprite::create("game_scene/ranking_bk.png");
+	titleBk->setAnchorPoint(ccp(0, 0));
+	addChild(titleBk);
+	titleBk->setContentSize(ccpAdd(title->getContentSize(), ccp(0, 5)));
+	titleBk->setPosition(ccp(0, height));
+
+	title->setPosition(0, height);
+	height += title->getContentSize().height;
+	width = max(width, title->getContentSize().width);
+	addChild(title);
 
 	setContentSize(CCSize(width, height));
-	scale9->setContentSize(getContentSize());
 	return true;
 }
 

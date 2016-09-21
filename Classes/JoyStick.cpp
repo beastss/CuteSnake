@@ -1,6 +1,5 @@
 #include "JoyStick.h"
 #include <cmath>
-#include "chipmunk_types.h"
 USING_NS_CC;
 using namespace std;
 

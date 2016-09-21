@@ -21,12 +21,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setOpenGLView(pEGLView);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
-	//pEGLView->setFrameSize(1920, 1080);
 	pEGLView->setFrameSize(800, 480);
-	//pEGLView->setFrameSize(1000, 800);
 #endif
 	CCSize designSize = CCSizeMake(800, 480);
-	//CCSize designSize = CCSizeMake(1000, 800);
 	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
     pDirector->setAnimationInterval(1.0 / 60);
 
@@ -41,7 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #endif 
     pDirector->runWithScene(pScene);
 
-	pDirector->setDisplayStats(true);
+	//pDirector->setDisplayStats(true);
     return true;
 }
 
