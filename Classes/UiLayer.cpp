@@ -130,8 +130,8 @@ void UiLayer::onJoyStickChanged(int angle)
 
 void UiLayer::onSnakeDataChanged()
 {
-	int length = PlayerData::theData()->getLength();
-	int score = PlayerData::theData()->getScore();
+	int length = PlayerData::theData()->getData().length;
+	int score = PlayerData::theData()->getData().score;
 	CCLabelTTF *lengthLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(5));
 	lengthLabel->setString(CommonUtil::intToStr(length));
 	CCLabelTTF *scoreLabel = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(7));

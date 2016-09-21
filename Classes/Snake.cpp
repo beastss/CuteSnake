@@ -8,36 +8,35 @@
 USING_NS_CC;
 using namespace std;
 
-Snake::Snake(GamePanel *gamePanel, int length)
+Snake::Snake(GamePanel *gamePanel, const SnakeData &data)
 : m_gamePanel(gamePanel)
 , m_speed(NORMAL_SPEED)
 , m_angle(0)
 , m_destAngle(0)
 , m_growEnergy(0)
 , m_isGodlike(false)
-, m_score(0)
+, m_data(data)
 {
-	m_color = RANDOM_COLOR;
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
 	m_angle = m_destAngle;
-	initSnake(length);
+	initSnake();
 }
 
-void Snake::initSnake(int length)
+void Snake::initSnake()
 {
 	auto layout = UiLayout::create("layout/snake_head.xml");
 	addChild(layout);
 	layout->setAnchorPoint(ccp(0.5f, 0.4f));
 	auto face = dynamic_cast<CCSprite*>(layout->getChildById(1));
 	//face->initWithFile("snake/dsf.png");
-	face->setColor(m_color);
+	face->setColor(m_data.color);
 	auto leftEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(3));
 	leftEyeBall->setColor(ccc3(0, 0, 0));
 	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	m_body.push_back(layout);
 
-	for (int i = 1; i < length; ++i)
+	for (int i = 1; i < m_data.length; ++i)
 	{
 		addBody();
 	}
@@ -48,7 +47,7 @@ void Snake::addBody()
 	CCSprite *body = CCSprite::create("snake/circle.png");
 	body->setScale(1.5f);
 	addChild(body);
-	body->setColor(m_color);
+	body->setColor(m_data.color);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.push_back(body);
 }
@@ -63,6 +62,9 @@ void Snake::initBodyPos(cocos2d::CCPoint pos)
 
 void Snake::update(float dt)
 {
+	//更新蛇长度
+	m_data.length = m_body.size();
+	//移动方向
 	int angleOffset = m_destAngle - m_angle;
 	if (abs(angleOffset) < 5)
 	{
@@ -179,8 +181,8 @@ void Snake::crash()
 	for (auto body : m_body)
 	{
 		auto pos = body->getPosition();
-		m_gamePanel->addFood(m_color, true, ccpAdd(pos, getRandomPt()));
-		m_gamePanel->addFood(m_color, true, ccpAdd(pos, getRandomPt()));
+		m_gamePanel->addFood(m_data.color, true, ccpAdd(pos, getRandomPt()));
+		m_gamePanel->addFood(m_data.color, true, ccpAdd(pos, getRandomPt()));
 	}
 
 	m_gamePanel->removeSnake(this);
@@ -237,7 +239,7 @@ bool Snake::canEatFood(CCPoint pt)
 
 void Snake::eatFood(int energy)
 {
-	m_score += energy * 10;
+	m_data.score += energy * 10;
 	int const kEnergyToGrow = 10;
 	m_growEnergy += energy;
 	if (m_growEnergy >= kEnergyToGrow)

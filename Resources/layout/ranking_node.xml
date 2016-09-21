@@ -1,7 +1,7 @@
-<layout width="170.000000" height="30.000000">
+<layout width="180.000000" height="30.000000">
 	<label>
 		<id>1</id>
-		<x>8.53</x>
+		<x>5.36</x>
 		<y>14.87</y>
 		<anchorPtX>0.00</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
@@ -10,7 +10,7 @@
 	</label>
 	<label>
 		<id>2</id>
-		<x>106.98</x>
+		<x>98.96</x>
 		<y>14.47</y>
 		<anchorPtX>0.00</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>

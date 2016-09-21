@@ -11,5 +11,5 @@ public:
 
 };
 
-#define RANDOM_COLOR SnakeColor::getRandomColor();
+#define RANDOM_COLOR SnakeColor::getRandomColor()
 #endif

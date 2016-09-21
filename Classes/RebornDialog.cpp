@@ -40,8 +40,7 @@ void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
 	{
 		//复活后回复上次长度
-		int length = PlayerData::theData()->getLength();
-		auto snake = PlayerSnake::create(m_gamePanel, length);
+		auto snake = PlayerSnake::create(m_gamePanel, PlayerData::theData()->getData());
 		m_gamePanel->addSnake(snake);
 		removeFromParent();
 	});

@@ -9,10 +9,10 @@ class PlayerSnake
 	, public IControlSnake
 {
 public:
-	static PlayerSnake *create(GamePanel *gamePanel, int length = INIT_SNAKE_LENGTH);
+	static PlayerSnake *create(GamePanel *gamePanel, const SnakeData &data = SnakeData());
 	~PlayerSnake();
 private:
-	PlayerSnake(GamePanel *gamePanel, int length);
+	PlayerSnake(GamePanel *gamePanel, const SnakeData &data);
 	virtual void onEnter();
 	virtual void onExit();
 	virtual bool init();

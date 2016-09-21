@@ -27,10 +27,10 @@ bool GameOverDialog::init()
 	label->setColor(ccc3(255, 0, 0));
 
 	CCLabelTTF *length = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(8));
-	length->setString(CommonUtil::intToStr(PlayerData::theData()->getLength()));
+	length->setString(CommonUtil::intToStr(PlayerData::theData()->getData().length));
 	length->setColor(ccc3(0, 0, 0));
 	CCLabelTTF *score = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(10));
-	score->setString(CommonUtil::intToStr(PlayerData::theData()->getScore()));
+	score->setString(CommonUtil::intToStr(PlayerData::theData()->getData().score));
 	score->setColor(ccc3(0, 0, 0));
 	
 	return true;

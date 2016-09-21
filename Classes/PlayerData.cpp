@@ -11,7 +11,6 @@ PlayerData *PlayerData::theData()
 
 void PlayerData::reset()
 {
-	m_score = 0;
-	m_length = INIT_SNAKE_LENGTH;
+	m_data = SnakeData();
 }
 

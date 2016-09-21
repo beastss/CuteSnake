@@ -10,8 +10,8 @@
 USING_NS_CC;
 using namespace std;
 
-PlayerSnake::PlayerSnake(GamePanel *gamePanel, int length)
-: Snake(gamePanel, length)
+PlayerSnake::PlayerSnake(GamePanel *gamePanel, const SnakeData &data)
+: Snake(gamePanel, data)
 , m_godLikeTime(0)
 {
 	m_runner = ActionRunner::create();
@@ -24,9 +24,9 @@ PlayerSnake::~PlayerSnake()
 	m_runner->release();
 }
 
-PlayerSnake *PlayerSnake::create(GamePanel *gamePanel, int length)
+PlayerSnake *PlayerSnake::create(GamePanel *gamePanel, const SnakeData &data)
 {
-	PlayerSnake *snake = new PlayerSnake(gamePanel, length);
+	PlayerSnake *snake = new PlayerSnake(gamePanel, data);
 	snake->init();
 	snake->autorelease();
 	return snake;
@@ -99,8 +99,7 @@ void PlayerSnake::onUpdate(float dt)
 
 void PlayerSnake::onEatFood()
 {
-	PlayerData::theData()->setLength(m_body.size());
-	PlayerData::theData()->setScore(m_score);
+	PlayerData::theData()->setData(m_data);
 	SnakeController::controller()->snakeDataChanged();
 }
 

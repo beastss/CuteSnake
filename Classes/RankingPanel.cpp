@@ -49,12 +49,12 @@ bool RankingPanel::init()
 
 void RankingPanel::initData()
 {
-	m_ranking.insert(make_pair(3550, "a_kiejge"));
-	m_ranking.insert(make_pair(3520, "b_sdkf"));
-	m_ranking.insert(make_pair(3200, "funny66"));
-	m_ranking.insert(make_pair(3020, "april"));
-	m_ranking.insert(make_pair(2800, "15james"));
-	m_ranking.insert(make_pair(2750, "jasony"));
-	m_ranking.insert(make_pair(2650, "tonny"));
-	m_ranking.insert(make_pair(2550, "_goodns"));
+	m_ranking.insert(make_pair(350050, "a_kejge"));
+	m_ranking.insert(make_pair(305020, "b_sdkf"));
+	m_ranking.insert(make_pair(302050, "funny6"));
+	m_ranking.insert(make_pair(300220, "april"));
+	m_ranking.insert(make_pair(282000, "15jaes"));
+	m_ranking.insert(make_pair(273050, "jasony"));
+	m_ranking.insert(make_pair(260250, "tonny"));
+	m_ranking.insert(make_pair(255400, "_godns"));
 }

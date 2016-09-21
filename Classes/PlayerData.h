@@ -1,6 +1,7 @@
 #ifndef __PLAYER_DATA_H__
 #define __PLAYER_DATA_H__
 #include "cocos2d.h"
+#include "Snake.h"
 
 class PlayerData
 {
@@ -8,13 +9,10 @@ public:
 	static PlayerData *theData();
 	void reset();
 
-	void setScore(int score){ m_score = score; }
-	int getScore(){ return m_score; }
-	void setLength(int length){ m_length = length; }
-	int getLength(){ return m_length; }
+	const SnakeData &getData(){ return m_data; }
+	void setData(const SnakeData data){ m_data = data; }
 private:
-	int m_length;
-	int m_score;
+	SnakeData m_data;
 };
 
 

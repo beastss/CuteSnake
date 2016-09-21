@@ -7,7 +7,7 @@ USING_NS_CC;
 using namespace std;
 
 EnemySnake::EnemySnake(GamePanel *gamePanel)
-: Snake(gamePanel, INIT_SNAKE_LENGTH)
+: Snake(gamePanel)
 {
 
 }
