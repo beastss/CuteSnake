@@ -10,8 +10,8 @@
 	</image>
 	<image>
 		<id>3</id>
-		<x>135.72</x>
-		<y>224.52</y>
+		<x>346.13</x>
+		<y>221.57</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -19,8 +19,8 @@
 	</image>
 	<image>
 		<id>4</id>
-		<x>354.36</x>
-		<y>224.52</y>
+		<x>134.66</x>
+		<y>221.35</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>

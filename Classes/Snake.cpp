@@ -36,6 +36,8 @@ void Snake::initSnake()
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	m_body.push_back(layout);
 
+	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
+	addChild(m_batchNode);
 	for (int i = 1; i < m_data.length; ++i)
 	{
 		addBody();
@@ -44,9 +46,9 @@ void Snake::initSnake()
 
 void Snake::addBody()
 {
-	CCSprite *body = CCSprite::create("snake/circle.png");
+	CCSprite *body = CCSprite::createWithTexture(m_batchNode->getTexture());
 	body->setScale(1.5f);
-	addChild(body);
+	m_batchNode->addChild(body);
 	body->setColor(m_data.color);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.push_back(body);

@@ -54,5 +54,6 @@ protected:
 private:
 	int m_angle;
 	int m_growEnergy;
+	cocos2d::CCSpriteBatchNode *m_batchNode;
 };
 #endif
