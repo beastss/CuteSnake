@@ -7,6 +7,7 @@
 #include "Food.h"
 #include <algorithm>
 #include "PlayerData.h"
+#include "MainScene.h"
 using namespace std;
 USING_NS_CC;
 
@@ -121,4 +122,9 @@ void GamePanel::addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCP
 	m_snakeBatchNode->addChild(food->getView(), 0);
 
 	m_foodMgr->addFood(food);
+}
+
+void GamePanel::onBackKeyTouched()
+{
+	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 }

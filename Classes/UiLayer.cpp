@@ -77,6 +77,9 @@ void UiLayer::initRightUi()
 
 	CCMenuItem *backBtn = dynamic_cast<CCMenuItem *>(m_rightLayout->getChildById(10));
 	backBtn->setTarget(this, menu_selector(UiLayer::onBackBtnClicked));
+#if(CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
+	backBtn->setVisible(false);
+#endif
 }
 
 void UiLayer::onGodLikeBtnClicked(CCObject* pSender)

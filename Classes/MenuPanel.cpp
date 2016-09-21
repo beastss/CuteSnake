@@ -54,3 +54,8 @@ void MenuPanel::onSettingBtnClicked(cocos2d::CCObject* pSender)
 {
 	MainScene::theScene()->showDialog(SettingDialog::create());
 }
+
+void MenuPanel::onBackKeyTouched()
+{
+	KeyPadWatcher::exitGame();
+}

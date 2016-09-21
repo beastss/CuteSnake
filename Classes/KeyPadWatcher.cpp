@@ -17,8 +17,7 @@ bool KeyPadWatcher::init()
 
 void KeyPadWatcher::keyBackClicked()
 {
-	
-
+	MainScene::theScene()->onKeyBackClicked();
 }
 
 void KeyPadWatcher::exitGame()

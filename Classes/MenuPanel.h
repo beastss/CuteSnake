@@ -14,6 +14,7 @@ private:
 	void onRuleBtnClicked(cocos2d::CCObject* pSender);
 	void onSkinBtnClicked(cocos2d::CCObject* pSender);
 	void onSettingBtnClicked(cocos2d::CCObject* pSender);
+	virtual void onBackKeyTouched();
 private:
 	UiLayout *m_layout;
 };

@@ -24,6 +24,7 @@ private:
 	void initGameBk();
 	void initSnakes();
 	void update(float dt);
+	virtual void onBackKeyTouched();
 private:
 	UiLayer *m_uiLayer;
 	cocos2d::CCNode *m_snakeField;

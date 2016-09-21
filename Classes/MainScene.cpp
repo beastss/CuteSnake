@@ -21,6 +21,7 @@ MainScene *MainScene::theScene()
 }
 
 MainScene::MainScene()
+: m_curPanel(NULL)
 {
 
 }
@@ -34,6 +35,9 @@ bool MainScene::init()
 {
 	if (!CCScene::init())return false;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	//¼àÌýÊÖ»ú¼ü
+	m_keyPadWatcher = KeyPadWatcher::create();
+	addChild(m_keyPadWatcher);
 	//Ãæ°å²ã
 	m_panelLayer = CCNode::create();
 	addChild(m_panelLayer);
@@ -69,6 +73,7 @@ void MainScene::showPanel(int panelId)
 		panel->setAnchorPoint(ccp(0.5f, 0.5f));
 		panel->setPosition(ccpMult(winSize, 0.5f));
 		m_panelLayer->addChild(panel);
+		m_curPanel = panel;
 	}
 
 }
@@ -80,4 +85,14 @@ void MainScene::showDialog(ScaleDialog *dialog)
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	dialog->setAnchorPoint(ccp(0.5f, 0.5f));
 	dialog->setPosition(ccpMult(winSize, 0.5f));
+}
+
+void MainScene::onKeyBackClicked()
+{
+	m_curPanel->onBackKeyTouched();
+}
+
+void MainScene::exitGame()
+{
+	m_keyPadWatcher->exitGame();
 }

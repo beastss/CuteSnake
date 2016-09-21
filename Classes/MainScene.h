@@ -5,7 +5,7 @@
 
 class ScaleDialog;
 class BasePanel;
-
+class KeyPadWatcher;
 enum PanelId
 {
 	kPanelIdDefault,
@@ -20,6 +20,9 @@ public:
 	~MainScene();
 	void showPanel(int panelId);
 	void showDialog(ScaleDialog *dialog);
+public:
+	void onKeyBackClicked();
+	void exitGame();
 private:
 	MainScene();
     virtual bool init();  
@@ -27,6 +30,8 @@ private:
 	cocos2d::CCNode *m_panelLayer;
 	cocos2d::CCNode *m_dialogLayer;
 	static MainScene *m_scene;
+	BasePanel *m_curPanel;
+	KeyPadWatcher *m_keyPadWatcher;
 };
 
 #endif 
