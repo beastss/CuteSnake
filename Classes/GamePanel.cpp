@@ -35,6 +35,8 @@ bool GamePanel::init()
 	m_snakeField->setAnchorPoint(ccp(0.5f, 0.5f));
 	m_snakeField->setPosition(ccpMult(winSize, 0.5f));
 	addChild(m_snakeField);
+	m_snakeBatchNode = CCSpriteBatchNode::create("snake/circle.png");
+	m_snakeField->addChild(m_snakeBatchNode);
 	//ui²ã
 	m_uiLayer = UiLayer::create();
 	addChild(m_uiLayer);
@@ -112,8 +114,11 @@ void GamePanel::removeSnake(Snake *snake)
 	}
 }
 
-void GamePanel::addFood(Food *food)
+void GamePanel::addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCPoint pos)
 {
-	m_snakeField->addChild(food, 0);
+	auto food = new Food(color, isSnakeBody);
+	food->getView()->setPosition(pos);
+	m_snakeBatchNode->addChild(food->getView(), 0);
+
 	m_foodMgr->addFood(food);
 }

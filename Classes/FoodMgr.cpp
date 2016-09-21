@@ -22,7 +22,7 @@ void FoodMgr::checkKill()
 		bool isDead = false;
 		for (auto snake : snakes)
 		{
-			if (snake->canEatFood(food->getPosition()))
+			if (snake->canEatFood(food->getView()->getPosition()))
 			{
 				snake->eatFood(food->getEnergy());
 				food->onEaten(snake->getHead()->getPosition());
@@ -43,8 +43,7 @@ void FoodMgr::checkKill()
 
 void FoodMgr::genNewFood()
 {
-	const int minFoodNum = 500;
-	int num = minFoodNum - m_foods.size();
+	int num = MIN_FOOD_NUM - m_foods.size();
 	if (num > 0)
 	{
 		for (int i = 0; i < num; ++i)
@@ -53,9 +52,7 @@ void FoodMgr::genNewFood()
 			CCPoint pos;
 			pos.x = CommonUtil::getRandomValue(0, GAME_LAYER_WIDTH);
 			pos.y = CommonUtil::getRandomValue(0, GAME_LAYER_HEIGHT);
-			Food *dot = Food::create(color);
-			dot->setPosition(pos);
-			m_gamePanel->addFood(dot);
+			m_gamePanel->addFood(color, false, pos);
 		}
 	}
 }

@@ -5,17 +5,21 @@
 USING_NS_CC;
 using namespace std;
 
-Food *Food::create(cocos2d::ccColor3B color, bool isSnakeBody)
+Food::Food(cocos2d::ccColor3B color, bool isSnakeBody)
+: m_color(color)
+, m_isSnakeBody(isSnakeBody)
 {
-	auto food = new Food(color, isSnakeBody);
-	food->init();
-	food->autorelease();
-	return food;
+	init();
 }
 
-bool Food::init()
+Food::~Food()
 {
-	CCSprite *dot = CCSprite::create("snake/circle.png");
+
+}
+
+void Food::init()
+{
+	m_view = CCSprite::create("snake/circle.png");
 	if (m_isSnakeBody)
 	{
 		m_enery = 2;
@@ -23,15 +27,10 @@ bool Food::init()
 	else
 	{
 		m_enery = 1;
-		dot->setScale(0.5f);
+		m_view->setScale(0.5f);
 	}
-	auto size = dot->boundingBox().size;
-	dot->setPosition(ccpMult(size, 0.5f));
-	dot->setColor(m_color);
-	addChild(dot);
-	setContentSize(size);
+	m_view->setColor(m_color);
 	
-	return true;
 }
 
 void Food::onEaten(CCPoint pt)
@@ -39,8 +38,9 @@ void Food::onEaten(CCPoint pt)
 	auto move = CCMoveTo::create(0.3f, pt);
 	auto func = CCFunctionAction::create([=]()
 	{
-		removeFromParent();
+		m_view->removeFromParent();
+		delete this;
 	});
 	auto seq = CCSequence::create(move, func, NULL);
-	runAction(seq);
+	m_view->runAction(seq);
 }

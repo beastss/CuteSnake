@@ -29,6 +29,7 @@ public:
 	CCNode *getHead(){ return m_body[0]; }
 protected:
 	Snake(GamePanel *gamePanel, int length);
+	void initBodyPos(cocos2d::CCPoint pos);
 	void addBody();
 	void setGodLikeState(bool open);
 protected:

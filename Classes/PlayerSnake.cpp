@@ -47,7 +47,7 @@ void PlayerSnake::onExit()
 bool PlayerSnake::init()
 {
 	auto size = CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT);
-	getHead()->setPosition(ccpMult(size, 0.5f));
+	initBodyPos(ccpMult(size, 0.5f));
 
 	return true;
 }

@@ -25,7 +25,7 @@ bool EnemySnake::init()
 	CCPoint pos;
 	pos.x = CommonUtil::getRandomValue(0, GAME_LAYER_WIDTH);
 	pos.y = CommonUtil::getRandomValue(0, GAME_LAYER_HEIGHT);
-	getHead()->setPosition(pos);
+	initBodyPos(pos);
 	return true;
 }
 

@@ -49,8 +49,16 @@ void Snake::addBody()
 	body->setScale(1.5f);
 	addChild(body);
 	body->setColor(m_color);
-	body->setPosition(m_body[m_body.size() - 1]->getPosition());
+	body->setPosition(m_body.back()->getPosition());
 	m_body.push_back(body);
+}
+
+void Snake::initBodyPos(cocos2d::CCPoint pos)
+{
+	for (auto body : m_body)
+	{
+		body->setPosition(pos);
+	}
 }
 
 void Snake::update(float dt)
@@ -160,8 +168,8 @@ bool Snake::checkCrash()
 static CCPoint getRandomPt()
 {
 	CCPoint pt;
-	pt.x = CommonUtil::getRandomValue(0, 5);
-	pt.y = CommonUtil::getRandomValue(0, 5);
+	pt.x = CommonUtil::getRandomValue(0, 10);
+	pt.y = CommonUtil::getRandomValue(0, 10);
 	return pt;
 }
 
@@ -171,12 +179,8 @@ void Snake::crash()
 	for (auto body : m_body)
 	{
 		auto pos = body->getPosition();
-		auto food = Food::create(m_color, true);
-		food->setPosition(ccpAdd(pos, getRandomPt()));
-		m_gamePanel->addFood(food);
-		food = Food::create(m_color, true);
-		food->setPosition(ccpAdd(pos, getRandomPt()));
-		m_gamePanel->addFood(food);
+		m_gamePanel->addFood(m_color, true, ccpAdd(pos, getRandomPt()));
+		m_gamePanel->addFood(m_color, true, ccpAdd(pos, getRandomPt()));
 	}
 
 	m_gamePanel->removeSnake(this);

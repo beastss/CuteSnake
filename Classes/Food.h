@@ -2,20 +2,20 @@
 #define __FOOD_H__
 #include "cocos2d.h"
 
-class Food :
-	public cocos2d::CCNode
+class Food 
 {
 public:
-	static Food *create(cocos2d::ccColor3B color, bool isSnakeBody = false);
+	Food(cocos2d::ccColor3B color, bool isSnakeBody);
+	~Food();
 	int getEnergy(){ return m_enery; }
 	void onEaten(cocos2d::CCPoint pt);
+	cocos2d::CCSprite *getView(){ return m_view; }
 private:
-	Food(cocos2d::ccColor3B color, bool isSnakeBody) : m_color(color), m_isSnakeBody(isSnakeBody){}
-private:
-	virtual bool init();
+	void init();
 private:
 	bool m_isSnakeBody;
 	cocos2d::ccColor3B m_color;
 	int m_enery;
+	cocos2d::CCSprite *m_view;
 };
 #endif

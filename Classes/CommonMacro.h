@@ -12,6 +12,7 @@ for (size_t index = 0; index < m_views.size(); ++index) \
 #define GAME_LAYER_WIDTH 2000
 #define GAME_LAYER_HEIGHT 2000
 #define SNAKE_NUM 10
+#define MIN_FOOD_NUM 500
 enum TouchPriority
 {
 	kTouchPriorityPanel = -10,
