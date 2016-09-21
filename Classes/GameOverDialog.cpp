@@ -3,6 +3,7 @@
 #include "MainScene.h"
 #include "CommonUtil.h"
 #include "PlayerData.h"
+#include "SoundMgr.h"
 USING_NS_CC;
 using namespace std;
 
@@ -37,12 +38,14 @@ bool GameOverDialog::init()
 
 void GameOverDialog::onReplayBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdGamePanel);
 	removeFromParent();
 }
 
 void GameOverDialog::onBackBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 	removeFromParent();
 }

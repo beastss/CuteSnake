@@ -38,7 +38,7 @@ void SoundMgr::playBackground()
 
 void SoundMgr::playEffect(int effectType)
 {
-	if (!m_effectMusicOn)
+	if (m_effectMusicOn)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect(m_effectMusic[effectType].c_str());
 	}

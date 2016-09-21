@@ -3,6 +3,7 @@
 #include "MainScene.h"
 #include "MyPurchase.h"
 #include "PropsMgr.h"
+#include "SoundMgr.h"
 USING_NS_CC;
 using namespace std;
 
@@ -24,6 +25,7 @@ bool PackageDialog::init()
 
 void PackageDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
 	{
 		int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
@@ -38,5 +40,6 @@ void PackageDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 
 void PackageDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	removeFromParent();
 }

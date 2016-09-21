@@ -10,6 +10,7 @@
 #include "MainScene.h"
 #include "PackageDialog.h"
 #include "PlayerData.h"
+#include "SoundMgr.h"
 using namespace std;
 USING_NS_CC;
 
@@ -85,6 +86,7 @@ void UiLayer::initRightUi()
 
 void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	int num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
 	if (num <= 0)
 	{
@@ -100,6 +102,7 @@ void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
 
 void UiLayer::onGrowBtnClicked(CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
 	if (num <= 0)
 	{
@@ -115,6 +118,7 @@ void UiLayer::onGrowBtnClicked(CCObject* pSender)
 
 void UiLayer::onBackBtnClicked(CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 }
 
@@ -140,6 +144,7 @@ bool UiLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 	auto speedUpImg = m_rightLayout->getChildById(1);
 	if (speedUpImg->boundingBox().containsPoint(pos))
 	{
+		SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 		speedUpImg->setScale(1.3f);
 		SnakeController::controller()->speedUp(true);
 		return true;

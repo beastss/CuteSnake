@@ -30,6 +30,7 @@ void SettingDialog::initPanel()
 
 void SettingDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	removeFromParent();
 }
 
@@ -40,11 +41,13 @@ void SettingDialog::onTouch(cocos2d::CCPoint pt)
 	{
 		bool isOn = SoundMgr::theMgr()->isBackgroundMusicOn();
 		SoundMgr::theMgr()->setBackgroundMusic(!isOn);
+		SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	}
 	else if (m_layout->getChildById(3)->boundingBox().containsPoint(pos))
 	{
 		bool isOn = SoundMgr::theMgr()->isEffectMusicOn();
 		SoundMgr::theMgr()->setEffectMusic(!isOn);
+		SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	}
 	refreshUi();
 }

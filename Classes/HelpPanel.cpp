@@ -2,6 +2,7 @@
 #include "CommonUtil.h"
 #include "CommonMacro.h"
 #include "MainScene.h"
+#include "SoundMgr.h"
 USING_NS_CC;
 using namespace std;
 void HelpPanel::onEnter()
@@ -44,6 +45,13 @@ void HelpPanel::initPanel()
 
 void HelpPanel::onBackBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
+	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
+}
+
+void HelpPanel::onBackKeyTouched()
+{
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 }
 

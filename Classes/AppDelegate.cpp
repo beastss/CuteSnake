@@ -3,6 +3,7 @@
 #include "TestScene.h"
 #include "DataLoader.h"
 #include "SimpleAudioEngine.h"
+#include "SoundMgr.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -55,5 +56,8 @@ void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	if(SoundMgr::theMgr()->isBackgroundMusicOn())
+	{
+		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	}
 }

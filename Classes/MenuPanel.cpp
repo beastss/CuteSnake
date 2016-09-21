@@ -4,6 +4,7 @@
 #include "MainScene.h"
 #include "PackageDialog.h"
 #include "SettingDialog.h"
+#include "SoundMgr.h"
 using namespace std;
 USING_NS_CC;
 
@@ -36,26 +37,29 @@ bool MenuPanel::init()
 
 void MenuPanel::onNewGameBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdGamePanel);
 }
 
 void MenuPanel::onRuleBtnClicked(cocos2d::CCObject* pSender)
 {
-	//MainScene::theScene()->showDialog(PackageDialog::create());
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdHelpPanel);
 }
 
 void MenuPanel::onSkinBtnClicked(cocos2d::CCObject* pSender)
 {
-	CCMessageBox("skin", "tips");
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 }
 
 void MenuPanel::onSettingBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showDialog(SettingDialog::create());
 }
 
 void MenuPanel::onBackKeyTouched()
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	KeyPadWatcher::exitGame();
 }

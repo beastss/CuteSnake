@@ -19,6 +19,7 @@ private:
 	void onBackBtnClicked(cocos2d::CCObject* pSender);
 	virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+	virtual void onBackKeyTouched();
 private:
 	int m_curIndex;
 	cocos2d::CCSprite *m_helpTips;

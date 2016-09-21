@@ -6,6 +6,7 @@
 #include "GameOverDialog.h"
 #include "PlayerData.h"
 #include "MyPurchase.h"
+#include "SoundMgr.h"
 USING_NS_CC;
 using namespace std;
 
@@ -35,6 +36,7 @@ bool RebornDialog::init()
 
 void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
 	{
 		//复活后回复上次长度
@@ -47,6 +49,7 @@ void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 
 void RebornDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showDialog(GameOverDialog::create());
 	removeFromParent();
 }

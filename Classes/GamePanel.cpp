@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "PlayerData.h"
 #include "MainScene.h"
+#include "SoundMgr.h"
 using namespace std;
 USING_NS_CC;
 
@@ -126,5 +127,6 @@ void GamePanel::addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCP
 
 void GamePanel::onBackKeyTouched()
 {
+	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showPanel(kPanelIdMenuPanel);
 }
