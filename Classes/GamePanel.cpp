@@ -118,6 +118,11 @@ void GamePanel::removeSnake(Snake *snake)
 
 void GamePanel::addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCPoint pos)
 {
+	if (pos.x <= 10) pos.x = 10;
+	if (pos.x >= GAME_LAYER_WIDTH - 10) pos.x = GAME_LAYER_WIDTH - 10;
+	if (pos.y <= 10) pos.y = 10;
+	if (pos.y >= GAME_LAYER_HEIGHT - 10) pos.y = GAME_LAYER_HEIGHT - 10;
+	
 	auto food = new Food(color, isSnakeBody);
 	food->getView()->setPosition(pos);
 	m_snakeBatchNode->addChild(food->getView(), 0);
