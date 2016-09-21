@@ -2,6 +2,7 @@
 #include "UiLayout.h"
 #include "cocos-ext.h"
 #include "CommonUtil.h"
+#include <utility>
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace std;
@@ -19,9 +20,9 @@ bool RankingPanel::init()
 	{
 		auto node = UiLayout::create("layout/ranking_node.xml");
 		auto name = dynamic_cast<CCLabelTTF *>(node->getChildById(1));
-		name->setString((iter->first).c_str());
+		name->setString((iter->second).c_str());
 		auto score = dynamic_cast<CCLabelTTF *>(node->getChildById(2));
-		score->setString(CommonUtil::intToStr(iter->second));
+		score->setString(CommonUtil::intToStr(iter->first));
 		node->setPosition(0, height);
 		addChild(node);
 		height += node->getContentSize().height;
@@ -35,12 +36,12 @@ bool RankingPanel::init()
 
 void RankingPanel::initData()
 {
-	m_ranking["a_kiejge"] = 3550;
-	m_ranking["b_sdkf"] = 3520;
-	m_ranking["funny66"] = 3200;
-	m_ranking["april"] = 3020;
-	m_ranking["15james"] = 2800;
-	m_ranking["jasony"] = 2750;
-	m_ranking["tonny"] = 2650;
-	m_ranking["_goodns"] = 2550;
+	m_ranking.insert(make_pair(3550, "a_kiejge"));
+	m_ranking.insert(make_pair(3520, "b_sdkf"));
+	m_ranking.insert(make_pair(3200, "funny66"));
+	m_ranking.insert(make_pair(3020, "april"));
+	m_ranking.insert(make_pair(2800, "15james"));
+	m_ranking.insert(make_pair(2750, "jasony"));
+	m_ranking.insert(make_pair(2650, "tonny"));
+	m_ranking.insert(make_pair(2550, "_goodns"));
 }

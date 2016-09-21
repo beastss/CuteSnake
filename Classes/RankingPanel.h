@@ -12,7 +12,7 @@ private:
 	virtual bool init();
 	void initData();
 private:
-	std::map<std::string, int> m_ranking;
+	std::map<int, std::string> m_ranking;
 };
 
 #endif
