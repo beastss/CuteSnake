@@ -26,9 +26,9 @@ enum ToastText
 
 enum BillingIndex
 {
+	kBillingReborn,
 	kBillingPackage,
 	kBillingSkin,
-	kBillingReborn,
 };
 
 struct BillingData
