@@ -1,4 +1,8 @@
 #include "AndroidIter.h"
+#if  (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
+#include <jni.h> 
+#include "platform/android/jni/JniHelper.h" 
+#endif
 USING_NS_CC;
 using namespace std;
 
@@ -28,7 +32,7 @@ bool AndroidIter::isForBusiness()
 		"isForBusiness",
 		"()Z");
 	if (isHave) {
-		forBussiness = minfo.env->CallBooleanMethod(jobj, minfo.methodID);
+		forBusiness = minfo.env->CallBooleanMethod(jobj, minfo.methodID);
 	}
 #endif
 	return forBusiness;
