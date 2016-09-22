@@ -7,7 +7,6 @@ std::vector<cocos2d::ccColor3B> SnakeColor::m_colors;
 void SnakeColor::init()
 {
 	m_colors.clear();
-	m_colors.push_back(cocos2d::ccc3(255, 255, 255));
 	m_colors.push_back(cocos2d::ccc3(0, 0, 0));
 	m_colors.push_back(cocos2d::ccc3(255, 182, 193));
 	m_colors.push_back(cocos2d::ccc3(70, 130, 180));
