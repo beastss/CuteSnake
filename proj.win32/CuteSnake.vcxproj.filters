@@ -147,6 +147,9 @@
     <ClCompile Include="..\Classes\MyPurchase.cpp">
       <Filter>sdk_iter</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\AndroidIter.cpp">
+      <Filter>sdk_iter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -273,6 +276,9 @@
       <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MyPurchase.h">
+      <Filter>sdk_iter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AndroidIter.h">
       <Filter>sdk_iter</Filter>
     </ClInclude>
   </ItemGroup>

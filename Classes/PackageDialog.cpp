@@ -4,6 +4,7 @@
 #include "MyPurchase.h"
 #include "PropsMgr.h"
 #include "SoundMgr.h"
+#include "AndroidIter.h"
 USING_NS_CC;
 using namespace std;
 
@@ -25,7 +26,12 @@ bool PackageDialog::init()
 	char str[100] = { 0 };
 	sprintf(str, costLabel->getString(), cost);
 	costLabel->setString(str);
-	costLabel->setOpacity(20);
+
+	bool forBusiness = AndroidIter::getIter()->isForBusiness();
+	if (forBusiness)
+	{
+		costLabel->setOpacity(20);
+	}
 	return true;
 }
 
