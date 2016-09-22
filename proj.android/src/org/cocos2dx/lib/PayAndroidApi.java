@@ -25,7 +25,7 @@ public class PayAndroidApi {
 
 	public static Object rtnActivity() {
 		return actInstance;
-	}
+	}	
 
 	ExternSdkInterface sdkObj;
 
@@ -78,6 +78,17 @@ public class PayAndroidApi {
 			public void run() {
 				String text = sdkObj.getTextByIndex(toastIndex);
 				Toast.makeText(mContext, text, Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+	
+	static String toastText;
+	public static void showToast(String text){
+		toastText = text;
+		runOnMainThread(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(mContext, toastText, Toast.LENGTH_LONG).show();
 			}
 		});
 	}
@@ -140,5 +151,5 @@ public class PayAndroidApi {
 			Log.e(LOG_TAG, msg);
 		}
 	}
-
+	
 }
