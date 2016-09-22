@@ -15,6 +15,7 @@ private:
 	virtual bool init();
 	void onBuyBtnClicked(cocos2d::CCObject* pSender);
 	void onCloseBtnClicked(cocos2d::CCObject* pSender);
+	virtual void onTouch(cocos2d::CCPoint pt);
 private:
 	UiLayout *m_layout;
 	GamePanel *m_gamePanel;

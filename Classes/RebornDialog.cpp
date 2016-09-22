@@ -31,6 +31,12 @@ bool RebornDialog::init()
 	CCMenuItem *buyBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(6));
 	buyBtn->setTarget(this, menu_selector(RebornDialog::onBuyBtnClicked));
 
+	CCLabelTTF *costLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
+	int cost = MyPurchase::sharedPurchase()->getBillData(kBillingReborn).cost / 100;
+	char str[100] = { 0 };
+	sprintf(str, costLabel->getString(), cost);
+	costLabel->setString(str);
+	costLabel->setOpacity(20);
 	return true;
 }
 
@@ -51,4 +57,15 @@ void RebornDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	MainScene::theScene()->showDialog(GameOverDialog::create());
 	removeFromParent();
+}
+
+void RebornDialog::onTouch(cocos2d::CCPoint pt)
+{
+	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
+	{
+		//复活后回复上次长度
+		auto snake = PlayerSnake::create(m_gamePanel, PlayerData::theData()->getData());
+		m_gamePanel->addSnake(snake);
+		removeFromParent();
+	});
 }

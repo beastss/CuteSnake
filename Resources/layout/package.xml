@@ -48,5 +48,14 @@
 		<selected>package/btn_1.png</selected>
 		<disabled>package/btn_1.png</disabled>
 	</button>
+	<label>
+		<id>7</id>
+		<x>235.53</x>
+		<y>-23.85</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<text>只需%d元</text>
+	</label>
 </layout>
 

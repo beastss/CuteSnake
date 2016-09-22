@@ -57,7 +57,7 @@ public:
 	static void onPayResult(int ret);
 	void showToast(int index);
 	void initBillingData();
-	std::vector<BillingData> getBillData(){ return m_billingData; }
+	BillingData getBillData(int id){ return m_billingData[id]; }
 private:
 	MyPurchase();
 	~MyPurchase();

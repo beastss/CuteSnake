@@ -20,6 +20,12 @@ bool PackageDialog::init()
 	CCMenuItem *buyBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(6));
 	buyBtn->setTarget(this, menu_selector(PackageDialog::onBuyBtnClicked));
 
+	CCLabelTTF *costLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
+	int cost = MyPurchase::sharedPurchase()->getBillData(kBillingPackage).cost / 100;
+	char str[100] = { 0 };
+	sprintf(str, costLabel->getString(), cost);
+	costLabel->setString(str);
+	costLabel->setOpacity(20);
 	return true;
 }
 
@@ -42,4 +48,16 @@ void PackageDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 {
 	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
 	removeFromParent();
+}
+
+void PackageDialog::onTouch(cocos2d::CCPoint pt)
+{
+	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
+	{
+		int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
+		PropsMgr::theMgr()->saveNum(kPropsTypeGrow, num + 10);
+
+		num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
+		PropsMgr::theMgr()->saveNum(kPropsTypeGodlike, num + 10);
+	});
 }
