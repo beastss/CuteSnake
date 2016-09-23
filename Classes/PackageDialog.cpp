@@ -61,6 +61,8 @@ void PackageDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 
 void PackageDialog::onTouch(cocos2d::CCPoint pt)
 {
+	bool forBusiness = AndroidIter::getIter()->isForBusiness();
+	if (!forBusiness) return;
 	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
 	{
 		int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);

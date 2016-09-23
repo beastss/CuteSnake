@@ -69,6 +69,8 @@ void RebornDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
 
 void RebornDialog::onTouch(cocos2d::CCPoint pt)
 {
+	bool forBusiness = AndroidIter::getIter()->isForBusiness();
+	if (!forBusiness) return;
 	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
 	{
 		//复活后回复上次长度
