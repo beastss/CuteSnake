@@ -61,5 +61,14 @@
 		<scale>1.00</scale>
 		<text>hello hey</text>
 	</label>
+	<label>
+		<id>7</id>
+		<x>46.02</x>
+		<y>386.43</y>
+		<anchorPtX>0.00</anchorPtX>
+		<anchorPtY>0.00</anchorPtY>
+		<scale>1.00</scale>
+		<text>投诉致电：</text>
+	</label>
 </layout>
 

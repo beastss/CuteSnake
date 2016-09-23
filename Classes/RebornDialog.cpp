@@ -21,7 +21,9 @@ RebornDialog *RebornDialog::create(GamePanel *gamePanel)
 
 bool RebornDialog::init()
 {
-	m_layout = UiLayout::create("layout/reborn.xml");
+	bool forBusiness = AndroidIter::getIter()->isForBusiness();
+
+	m_layout = UiLayout::create(forBusiness ? "layout/reborn.xml" : "layout/reborn_white.xml");
 	setContentSize(m_layout->getContentSize());
 	addMaskLayer();
 	addChild(m_layout);
@@ -30,21 +32,26 @@ bool RebornDialog::init()
 	buyBtn->setTarget(this, menu_selector(RebornDialog::onBuyBtnClicked));
 
 	CCLabelTTF *costLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
+	CCLabelTTF *phoneLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(9));
 	int cost = MyPurchase::sharedPurchase()->getBillData(kBillingReborn).cost / 100;
 	char str[100] = { 0 };
 	sprintf(str, costLabel->getString(), cost);
 	costLabel->setString(str);
-
-	bool forBusiness = AndroidIter::getIter()->isForBusiness();
+	phoneLabel->setColor(ccc3(0, 0, 0));
+	phoneLabel->setVisible(false);
 	if (forBusiness)
 	{
 		costLabel->setOpacity(10);
+		
+		//phoneLabel->setOpacity(10);
+	}
+	else
+	{
+		costLabel->setColor(ccc3(0, 0, 0));
 	}
 
-	CCMenuItem *closeBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(forBusiness ? 5 : 8));
+	CCMenuItem *closeBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(5));
 	closeBtn->setTarget(this, menu_selector(RebornDialog::onCloseBtnClicked));
-	m_layout->getChildById(5)->setVisible(forBusiness);
-	m_layout->getChildById(8)->setVisible(!forBusiness);
 	return true;
 }
 

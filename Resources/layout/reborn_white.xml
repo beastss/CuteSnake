@@ -6,7 +6,7 @@
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
-		<path>package/frame_6.png</path>
+		<path>package/frame_4.png</path>
 	</image>
 	<button>
 		<id>5</id>
@@ -14,15 +14,15 @@
 		<y>338.49</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
-		<scale>0.50</scale>
-		<normal>common/btn_2.png</normal>
-		<selected>common/btn_2.png</selected>
-		<disabled>common/btn_2.png</disabled>
+		<scale>1.00</scale>
+		<normal>common/btn_3.png</normal>
+		<selected>common/btn_3.png</selected>
+		<disabled>common/btn_3.png</disabled>
 	</button>
 	<button>
 		<id>6</id>
 		<x>239.33</x>
-		<y>49.76</y>
+		<y>53.77</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -32,8 +32,8 @@
 	</button>
 	<label>
 		<id>7</id>
-		<x>242.71</x>
-		<y>-22.17</y>
+		<x>243.55</x>
+		<y>111.01</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>0.80</scale>
@@ -41,8 +41,8 @@
 	</label>
 	<label>
 		<id>9</id>
-		<x>240.82</x>
-		<y>135.71</y>
+		<x>242.50</x>
+		<y>139.71</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>0.80</scale>

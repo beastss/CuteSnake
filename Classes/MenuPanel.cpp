@@ -39,6 +39,10 @@ bool MenuPanel::init()
 	idLabel->setColor(ccc3(0, 0, 0));
 	//idLabel->setString(userId.c_str());
 	idLabel->setVisible(false);
+
+	CCLabelTTF *phoneLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
+	phoneLabel->setColor(ccc3(0, 0, 0));
+	phoneLabel->setVisible(false);
     return true;
 }
 
