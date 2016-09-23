@@ -108,11 +108,11 @@ public class PayAndroidApi {
 		str += stage;
 		if(win)
 		{
-			UMGameAgent.failLevel(str);
+			UMGameAgent.finishLevel(str);
 		}
 		else
 		{
-			UMGameAgent.finishLevel(str);
+			UMGameAgent.failLevel(str);
 		}
 	}
 	
