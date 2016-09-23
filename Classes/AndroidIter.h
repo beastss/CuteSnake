@@ -7,6 +7,7 @@ class AndroidIter
 public:
 	static AndroidIter *getIter();
 	bool isForBusiness();
+	std::string getUserId();
 };
 #endif
 

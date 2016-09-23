@@ -13,7 +13,6 @@ public:
 	std::string getName();
 	bool isBackgroundMusicOn();
 	bool isEffectMusicOn();
-	
 };
 
 #define	SAVING SavingHelper::theHelper()

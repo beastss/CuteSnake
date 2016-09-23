@@ -28,11 +28,11 @@
 	</image>
 	<button>
 		<id>5</id>
-		<x>447.00</x>
+		<x>449.95</x>
 		<y>337.43</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
-		<scale>1.00</scale>
+		<scale>0.50</scale>
 		<normal>common/btn_2.png</normal>
 		<selected>common/btn_2.png</selected>
 		<disabled>common/btn_2.png</disabled>
@@ -44,9 +44,9 @@
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
-		<normal>package/btn_1.png</normal>
-		<selected>package/btn_1.png</selected>
-		<disabled>package/btn_1.png</disabled>
+		<normal>package/btn_2.png</normal>
+		<selected>package/btn_2.png</selected>
+		<disabled>package/btn_2.png</disabled>
 	</button>
 	<label>
 		<id>7</id>
@@ -54,8 +54,19 @@
 		<y>-23.85</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
-		<scale>1.00</scale>
+		<scale>0.80</scale>
 		<text>只需%d元</text>
 	</label>
+		<button>
+		<id>8</id>
+		<x>449.95</x>
+		<y>339.33</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<normal>common/btn_3.png</normal>
+		<selected>common/btn_3.png</selected>
+		<disabled>common/btn_3.png</disabled>
+	</button>
 </layout>
 

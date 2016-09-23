@@ -5,6 +5,7 @@
 #include "PackageDialog.h"
 #include "SettingDialog.h"
 #include "SoundMgr.h"
+#include "AndroidIter.h"
 using namespace std;
 USING_NS_CC;
 
@@ -32,6 +33,12 @@ bool MenuPanel::init()
 	skinBtn->setVisible(false);
 	
 	MainScene::theScene()->showDialog(PackageDialog::create());
+	
+	//auto userId = AndroidIter::getIter()->getUserId();
+	CCLabelTTF *idLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(6));
+	idLabel->setColor(ccc3(0, 0, 0));
+	//idLabel->setString(userId.c_str());
+	idLabel->setVisible(false);
     return true;
 }
 

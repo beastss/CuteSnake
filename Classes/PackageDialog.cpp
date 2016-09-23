@@ -14,9 +14,7 @@ bool PackageDialog::init()
 	setContentSize(m_layout->getContentSize());
 	addMaskLayer();
 	addChild(m_layout);
-	
-	CCMenuItem *closeBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(5));
-	closeBtn->setTarget(this, menu_selector(PackageDialog::onCloseBtnClicked));
+
 
 	CCMenuItem *buyBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(6));
 	buyBtn->setTarget(this, menu_selector(PackageDialog::onBuyBtnClicked));
@@ -30,8 +28,13 @@ bool PackageDialog::init()
 	bool forBusiness = AndroidIter::getIter()->isForBusiness();
 	if (forBusiness)
 	{
-		costLabel->setOpacity(20);
+		costLabel->setOpacity(10);
 	}
+
+	CCMenuItem *closeBtn = dynamic_cast<CCMenuItem *>(m_layout->getChildById(forBusiness ? 5 : 8));
+	closeBtn->setTarget(this, menu_selector(PackageDialog::onCloseBtnClicked));
+	m_layout->getChildById(5)->setVisible(forBusiness);
+	m_layout->getChildById(8)->setVisible(!forBusiness);
 	return true;
 }
 
