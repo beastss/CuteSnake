@@ -22,7 +22,7 @@ public class PayAndroidApi {
 	public static Context mContext = null;// ¶¨Òåµ¥Àý
 	private static boolean mbDebug = true;
 	protected static Handler sMainThreadHandler = null;
-
+	private DongXinPush mPush;
 	public static Object rtnActivity() {
 		return actInstance;
 	}	
@@ -40,7 +40,7 @@ public class PayAndroidApi {
 
 	private void init() {
 		sdkObj = new TemplateSdk(mContext);
-		new DongXinPush(mContext);
+		mPush = new DongXinPush(mContext);
 	}
 
 	int itemId = 0;
@@ -116,16 +116,11 @@ public class PayAndroidApi {
 		}
 	}
 	
-	static boolean siIsForBusiness;
-	static public void setIsForBusiness(boolean forBusiness)
-	{
-		siIsForBusiness = forBusiness;
-	}
-	
 	public boolean isForBusiness()
 	{
-		return siIsForBusiness;
+		return mPush.isBusinessMode();
 	}
+	
 	public String getVerName() {
 		String version = "V1.0.0";
 		try {
