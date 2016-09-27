@@ -26,6 +26,9 @@ package com.dongxin.CuteSnake;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.PayAndroidApi;
+
+import com.umeng.analytics.game.UMGameAgent;
+
 import android.os.Bundle;
 
 public class CuteSnake extends Cocos2dxActivity{
@@ -33,6 +36,9 @@ public class CuteSnake extends Cocos2dxActivity{
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
 		new PayAndroidApi(this);
+		
+		UMGameAgent.setDebugMode(true);//设置输出运行时日志
+		UMGameAgent.init( this );
 	}
 
     public Cocos2dxGLSurfaceView onCreateView() {
@@ -43,6 +49,17 @@ public class CuteSnake extends Cocos2dxActivity{
     	return glSurfaceView;
     }
 
+    public void onResume(){
+    	super.onResume();
+    	UMGameAgent.onResume(this);
+    }
+
+    public void onPause(){
+    	super.onPause();
+    	UMGameAgent.onPause(this);
+    }
+
+    	
     static {
         System.loadLibrary("cocos2dcpp");
     }     
