@@ -5,6 +5,7 @@
 #include "CommonUtil.h"
 #include "GamePanel.h"
 #include "Food.h"
+#include "RankingModel.h"
 USING_NS_CC;
 using namespace std;
 
@@ -22,6 +23,12 @@ Snake::Snake(GamePanel *gamePanel, const SnakeData &data)
 	initSnake();
 }
 
+void Snake::onExit()
+{
+	CCNode::onExit();
+	RankingModel::theModel()->removeRank(m_data.name);
+}
+
 void Snake::initSnake()
 {
 	auto layout = UiLayout::create("layout/snake_head.xml");
@@ -34,6 +41,14 @@ void Snake::initSnake()
 	leftEyeBall->setColor(ccc3(0, 0, 0));
 	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
+
+	if (m_data.name.empty())
+	{
+		m_data.name = RankingModel::theModel()->applyName();
+	}
+	nameLabel = CCLabelTTF::create(m_data.name.c_str(), "Arial", 17);
+	nameLabel->setColor(ccc3(0, 0, 0));
+	addChild(nameLabel, 1);
 	m_body.push_back(layout);
 
 	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
@@ -90,6 +105,7 @@ void Snake::update(float dt)
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
 	auto pos = ccpAdd(getHead()->getPosition(), offset);
 	getHead()->setPosition(pos);
+	nameLabel->setPosition(ccpAdd(pos, ccp(0, 30)));
 	m_path.push_front(pos);
 	onMove(pos);
 
@@ -241,6 +257,7 @@ bool Snake::canEatFood(CCPoint pt)
 
 void Snake::eatFood(int energy)
 {
+	RankingModel::theModel()->updateScore(m_data.name, m_data.score);
 	m_data.score += energy * 10;
 	int const kEnergyToGrow = 10;
 	m_growEnergy += energy;

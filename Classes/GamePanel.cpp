@@ -9,6 +9,7 @@
 #include "PlayerData.h"
 #include "MainScene.h"
 #include "SoundMgr.h"
+#include "RankingModel.h"
 using namespace std;
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ GamePanel::~GamePanel()
 
 bool GamePanel::init()
 {
+	RankingModel::theModel()->init();
 	PlayerData::theData()->reset();
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	

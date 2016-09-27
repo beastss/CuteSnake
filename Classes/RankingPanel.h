@@ -1,7 +1,6 @@
 #ifndef __RANKING_PANEL_H__
 #define __RANKING_PANEL_H__
 #include "cocos2d.h"
-#include <map>
 
 class RankingPanel
 	: public cocos2d::CCNode
@@ -11,8 +10,8 @@ public:
 private:
 	virtual bool init();
 	void initData();
+	void onUpdate(float dt);
 private:
-	std::map<int, std::string> m_ranking;
 };
 
 #endif

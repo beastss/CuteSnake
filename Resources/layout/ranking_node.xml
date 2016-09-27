@@ -1,4 +1,4 @@
-<layout width="180.000000" height="30.000000">
+<layout width="250.000000" height="30.000000">
 	<label>
 		<id>1</id>
 		<x>5.36</x>
@@ -10,8 +10,8 @@
 	</label>
 	<label>
 		<id>2</id>
-		<x>98.96</x>
-		<y>14.47</y>
+		<x>178.52</x>
+		<y>15.31</y>
 		<anchorPtX>0.00</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>

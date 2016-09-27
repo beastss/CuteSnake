@@ -40,3 +40,20 @@ std::string GameConfig::getStrValue(std::string tableName, std::string key)
 	return value;
 }
 
+std::vector<std::string> GameConfig::allKeys(std::string tableName)
+{
+	vector<string> keys;
+
+	string tbPath = "data/" + tableName + ".xml";
+	CCDictionary* pDict = CCDictionary::createWithContentsOfFile(tbPath.c_str());
+	pDict->allKeys();
+	CCDictElement * pElement;
+	CCDICT_FOREACH(pDict, pElement)
+	{
+		const char * key = pElement->getStrKey();
+		CCString * value = (CCString *)pElement->getObject();
+		keys.push_back(key);
+	}
+	return keys;
+}
+

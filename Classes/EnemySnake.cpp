@@ -26,6 +26,7 @@ bool EnemySnake::init()
 	pos.x = CommonUtil::getRandomValue(0, GAME_LAYER_WIDTH);
 	pos.y = CommonUtil::getRandomValue(0, GAME_LAYER_HEIGHT);
 	initBodyPos(pos);
+
 	return true;
 }
 

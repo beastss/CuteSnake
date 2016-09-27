@@ -13,9 +13,16 @@ struct SnakeData
 	int score;
 	cocos2d::ccColor3B color;
 	int length;
-	SnakeData(int _score = 0, cocos2d::ccColor3B _color = RANDOM_COLOR, int _length = INIT_SNAKE_LENGTH)
-		:score(_score), color(_color), length(_length)
+	std::string name;
+	SnakeData(int _score, cocos2d::ccColor3B _color, int _length, std::string _name)
+		:score(_score), color(_color), length(_length), name(_name)
 	{
+	}
+	SnakeData()
+	{
+		score = 0;
+		color = RANDOM_COLOR;
+		length = INIT_SNAKE_LENGTH;
 	}
 };
 
@@ -40,6 +47,7 @@ protected:
 	virtual void onUpdate(float dt){}
 	virtual void onEatFood(){}
 private:
+	virtual void onExit();
 	void initSnake();
 	bool checkCrash();
 	void crash();
@@ -55,5 +63,6 @@ private:
 	int m_angle;
 	int m_growEnergy;
 	cocos2d::CCSpriteBatchNode *m_batchNode;
+	cocos2d::CCLabelTTF *nameLabel;
 };
 #endif

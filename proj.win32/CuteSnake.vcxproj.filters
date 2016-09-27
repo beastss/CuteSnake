@@ -150,6 +150,9 @@
     <ClCompile Include="..\Classes\AndroidIter.cpp">
       <Filter>sdk_iter</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RankingModel.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AndroidIter.h">
       <Filter>sdk_iter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RankingModel.h">
+      <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

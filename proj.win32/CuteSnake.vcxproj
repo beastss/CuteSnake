@@ -156,6 +156,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\PlayerData.cpp" />
     <ClCompile Include="..\Classes\PlayerSnake.cpp" />
     <ClCompile Include="..\Classes\PropsMgr.cpp" />
+    <ClCompile Include="..\Classes\RankingModel.cpp" />
     <ClCompile Include="..\Classes\RankingPanel.cpp" />
     <ClCompile Include="..\Classes\RebornDialog.cpp" />
     <ClCompile Include="..\Classes\SavingHelper.cpp" />
@@ -197,6 +198,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\PlayerData.h" />
     <ClInclude Include="..\Classes\PlayerSnake.h" />
     <ClInclude Include="..\Classes\PropsMgr.h" />
+    <ClInclude Include="..\Classes\RankingModel.h" />
     <ClInclude Include="..\Classes\RankingPanel.h" />
     <ClInclude Include="..\Classes\rapidxml\rapidxml.hpp" />
     <ClInclude Include="..\Classes\rapidxml\rapidxml_iterators.hpp" />

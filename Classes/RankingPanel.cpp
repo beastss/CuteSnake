@@ -3,13 +3,14 @@
 #include "cocos-ext.h"
 #include "CommonUtil.h"
 #include <utility>
+#include "RankingModel.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace std;
 
 bool RankingPanel::init()
 {
-	initData();
+	/*
 	CCScale9Sprite * scale9 = CCScale9Sprite::create("game_scene/ranking_bk.png");
 	scale9->setAnchorPoint(ccp(0, 0));
 	addChild(scale9);
@@ -44,11 +45,55 @@ bool RankingPanel::init()
 	addChild(title);
 
 	setContentSize(CCSize(width, height));
+	scheduleUpdate();
+	*/
+	setContentSize(CCSize(250, 310));
+	schedule(schedule_selector(RankingPanel::onUpdate), 1.0f);
+	onUpdate(0);
 	return true;
+}
+
+void RankingPanel::onUpdate(float dt)
+{
+	auto size = getContentSize();
+	removeAllChildren();
+	float height = size.height;
+
+	auto title = UiLayout::create("layout/ranking_title.xml");
+	CCScale9Sprite * titleBk = CCScale9Sprite::create("game_scene/ranking_bk.png");
+	titleBk->setAnchorPoint(ccp(0, 0));
+	addChild(titleBk);
+	titleBk->setContentSize(ccpAdd(title->getContentSize(), ccp(0, 5)));
+	height -= title->getContentSize().height + 5;
+	titleBk->setPosition(ccp(0, height));
+
+	title->setPosition(0, height);
+	addChild(title);
+
+	CCScale9Sprite * scale9 = CCScale9Sprite::create("game_scene/ranking_bk.png");
+	scale9->setAnchorPoint(ccp(0, 1));
+	height -= 10;
+	scale9->setPosition(ccp(0, height));
+	scale9->setContentSize(size);
+	addChild(scale9);
+
+	auto ranking = RankingModel::theModel()->getCurRank(10);
+	for (auto iter = ranking.begin(); iter != ranking.end(); ++iter)
+	{
+		auto node = UiLayout::create("layout/ranking_node.xml");
+		auto name = dynamic_cast<CCLabelTTF *>(node->getChildById(1));
+		name->setString((iter->first).c_str());
+		auto score = dynamic_cast<CCLabelTTF *>(node->getChildById(2));
+		score->setString(CommonUtil::intToStr(iter->second));
+		height -= node->getContentSize().height;
+		node->setPosition(0, height);
+		addChild(node);
+	}
 }
 
 void RankingPanel::initData()
 {
+	/*
 	m_ranking.insert(make_pair(350050, "a_kejge"));
 	m_ranking.insert(make_pair(305020, "b_sdkf"));
 	m_ranking.insert(make_pair(302050, "funny6"));
@@ -57,4 +102,5 @@ void RankingPanel::initData()
 	m_ranking.insert(make_pair(273050, "jasony"));
 	m_ranking.insert(make_pair(260250, "tonny"));
 	m_ranking.insert(make_pair(255400, "_godns"));
+	*/
 }
