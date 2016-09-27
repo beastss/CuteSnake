@@ -48,11 +48,8 @@ bool RankingPanel::init()
 	setContentSize(CCSize(width, height));
 	scheduleUpdate();
 	*/
-	setContentSize(CCSize(250, 310));
-
-
-	auto size = getContentSize();
-	removeAllChildren();
+	CCSize size = CCSize(250, 310);
+	setContentSize(size);
 	float height = size.height;
 
 	auto title = UiLayout::create("layout/ranking_title.xml");
@@ -86,8 +83,6 @@ bool RankingPanel::init()
 		m_rankNodes.push_back(node);
 	}
 
-
-
 	schedule(schedule_selector(RankingPanel::onUpdate), 1.0f);
 	onUpdate(0);
 	return true;
@@ -95,7 +90,6 @@ bool RankingPanel::init()
 
 void RankingPanel::onUpdate(float dt)
 {
-	return;
 	auto ranking = RankingModel::theModel()->getCurRank(kRankingNodeNum);
 	for (size_t i = 0; i < ranking.size(); ++i)
 	{
