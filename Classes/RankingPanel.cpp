@@ -4,11 +4,25 @@
 #include "CommonUtil.h"
 #include <utility>
 #include "RankingModel.h"
+#include "ActionRunner.h"
+#include "PlayerData.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace std;
 
 const int RankingPanel::kRankingNodeNum = 10;
+RankingPanel::RankingPanel()
+{
+	m_runner = ActionRunner::create();
+	m_runner->retain();
+}
+
+RankingPanel::~RankingPanel()
+{
+	m_runner->clear();
+	m_runner->release();
+}
+
 bool RankingPanel::init()
 {
 	/*
@@ -77,6 +91,8 @@ bool RankingPanel::init()
 		name->setString("");
 		auto score = dynamic_cast<CCLabelTTF *>(node->getChildById(2));
 		score->setString("");
+		auto rankNum = dynamic_cast<CCLabelAtlas *>(node->getChildById(3));
+		rankNum->setString(CommonUtil::intToStr(i + 1));
 		height -= node->getContentSize().height;
 		node->setPosition(0, height);
 		addChild(node);
@@ -91,12 +107,29 @@ bool RankingPanel::init()
 void RankingPanel::onUpdate(float dt)
 {
 	auto ranking = RankingModel::theModel()->getCurRank(kRankingNodeNum);
+	m_runner->clear();
+	string playerName = PlayerData::theData()->getName();
 	for (size_t i = 0; i < ranking.size(); ++i)
 	{
-		auto name = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(1));
-		name->setString((ranking[i].first).c_str());
-		auto score = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(2));
-		score->setString(CommonUtil::intToStr(ranking[i].second));
+		auto data = ranking[i];
+		m_runner->queueAction(CallFuncAction::withFunctor([=]()
+		{
+			auto name = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(1));
+			name->setString((data.first).c_str());
+			auto score = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(2));
+			score->setString(CommonUtil::intToStr(data.second));
+			if (playerName == data.first)
+			{
+				name->setColor(ccc3(250, 150, 10));
+				score->setColor(ccc3(250, 150, 10));
+			}
+			else
+			{
+				name->setColor(ccc3(250, 250, 250));
+				score->setColor(ccc3(250, 250, 250));
+			}
+		}));
+		m_runner->queueAction(DelayNFrames::delay(1));
 	}
 }
 

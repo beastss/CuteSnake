@@ -42,13 +42,9 @@ void Snake::initSnake()
 	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 
-	if (m_data.name.empty())
-	{
-		m_data.name = RankingModel::theModel()->applyName();
-	}
-	nameLabel = CCLabelTTF::create(m_data.name.c_str(), "Arial", 17);
-	nameLabel->setColor(ccc3(0, 0, 0));
-	addChild(nameLabel, 1);
+	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
+	m_nameLabel->setColor(ccc3(0, 0, 0));
+	addChild(m_nameLabel, 1);
 	m_body.push_back(layout);
 
 	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
@@ -105,7 +101,7 @@ void Snake::update(float dt)
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
 	auto pos = ccpAdd(getHead()->getPosition(), offset);
 	getHead()->setPosition(pos);
-	nameLabel->setPosition(ccpAdd(pos, ccp(0, 30)));
+	m_nameLabel->setPosition(ccpAdd(pos, ccp(0, 30)));
 	m_path.push_front(pos);
 	onMove(pos);
 

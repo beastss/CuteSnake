@@ -11,6 +11,7 @@ public:
 
 	const SnakeData &getData(){ return m_data; }
 	void setData(const SnakeData data){ m_data = data; }
+	std::string getName();
 private:
 	SnakeData m_data;
 };

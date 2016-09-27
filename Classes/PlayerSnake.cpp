@@ -49,6 +49,11 @@ bool PlayerSnake::init()
 	auto size = CCSize(GAME_LAYER_WIDTH, GAME_LAYER_HEIGHT);
 	initBodyPos(ccpMult(size, 0.5f));
 
+	if (m_data.name.empty())
+	{
+		m_data.name = PlayerData::theData()->getName();
+	}
+	m_nameLabel->setString(m_data.name.c_str());
 	return true;
 }
 

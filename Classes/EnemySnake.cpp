@@ -3,6 +3,7 @@
 #include "Snake.h"
 #include "CommonUtil.h"
 #include "GamePanel.h"
+#include "RankingModel.h"
 USING_NS_CC;
 using namespace std;
 
@@ -27,6 +28,11 @@ bool EnemySnake::init()
 	pos.y = CommonUtil::getRandomValue(0, GAME_LAYER_HEIGHT);
 	initBodyPos(pos);
 
+	if (m_data.name.empty())
+	{
+		m_data.name = RankingModel::theModel()->applyName();
+	}
+	m_nameLabel->setString(m_data.name.c_str());
 	return true;
 }
 

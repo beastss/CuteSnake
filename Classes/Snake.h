@@ -59,10 +59,11 @@ protected:
 	GamePanel *m_gamePanel;
 	bool m_isGodlike;
 	SnakeData m_data;
+	cocos2d::CCLabelTTF *m_nameLabel;
 private:
 	int m_angle;
 	int m_growEnergy;
 	cocos2d::CCSpriteBatchNode *m_batchNode;
-	cocos2d::CCLabelTTF *nameLabel;
+
 };
 #endif
