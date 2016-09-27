@@ -29,12 +29,12 @@ std::vector<std::pair<std::string, int>> RankingModel::getCurRank(int topNum)
 	int endIndex = min((int)rank.size() - 1, topNum);	
 	if (endIndex > 0)
 	{
-		CCLOG("cur_rank size: %d", m_rank.size());
+		//CCLOG("cur_rank size: %d", m_rank.size());
 		return vector<pair<string, int>>(rank.begin(), rank.begin() + endIndex);
 	}
 	else
 	{
-		CCLOG("cur_rank size: %d", 0);
+		//CCLOG("cur_rank size: %d", 0);
 		return vector<pair<string, int>>();
 	}
 
