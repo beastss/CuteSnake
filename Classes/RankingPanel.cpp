@@ -8,6 +8,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace std;
 
+const int RankingPanel::kRankingNodeNum = 10;
 bool RankingPanel::init()
 {
 	/*
@@ -48,13 +49,8 @@ bool RankingPanel::init()
 	scheduleUpdate();
 	*/
 	setContentSize(CCSize(250, 310));
-	schedule(schedule_selector(RankingPanel::onUpdate), 1.0f);
-	onUpdate(0);
-	return true;
-}
 
-void RankingPanel::onUpdate(float dt)
-{
+
 	auto size = getContentSize();
 	removeAllChildren();
 	float height = size.height;
@@ -77,17 +73,36 @@ void RankingPanel::onUpdate(float dt)
 	scale9->setContentSize(size);
 	addChild(scale9);
 
-	auto ranking = RankingModel::theModel()->getCurRank(10);
-	for (auto iter = ranking.begin(); iter != ranking.end(); ++iter)
+	for (int i = 0; i < kRankingNodeNum; ++i)
 	{
 		auto node = UiLayout::create("layout/ranking_node.xml");
 		auto name = dynamic_cast<CCLabelTTF *>(node->getChildById(1));
-		name->setString((iter->first).c_str());
+		name->setString("");
 		auto score = dynamic_cast<CCLabelTTF *>(node->getChildById(2));
-		score->setString(CommonUtil::intToStr(iter->second));
+		score->setString("");
 		height -= node->getContentSize().height;
 		node->setPosition(0, height);
 		addChild(node);
+		m_rankNodes.push_back(node);
+	}
+
+
+
+	schedule(schedule_selector(RankingPanel::onUpdate), 1.0f);
+	onUpdate(0);
+	return true;
+}
+
+void RankingPanel::onUpdate(float dt)
+{
+	return;
+	auto ranking = RankingModel::theModel()->getCurRank(kRankingNodeNum);
+	for (size_t i = 0; i < ranking.size(); ++i)
+	{
+		auto name = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(1));
+		name->setString((ranking[i].first).c_str());
+		auto score = dynamic_cast<CCLabelTTF *>(m_rankNodes[i]->getChildById(2));
+		score->setString(CommonUtil::intToStr(ranking[i].second));
 	}
 }
 
