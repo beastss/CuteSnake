@@ -173,3 +173,19 @@ cocos2d::ccColor3B CommonUtil::getRandomColor()
 	color.b = getRandomValue(0, 255);
 	return color;
 }
+
+int CommonUtil::getRotation(cocos2d::CCPoint beginPt, cocos2d::CCPoint endPt)
+{
+	float distance = ccpDistance(endPt, beginPt);
+	float dx = endPt.x - beginPt.x;
+	float dy = endPt.y - beginPt.y;
+	//º∆À„Ω«∂»
+	CCPoint delta = ccp(dx, dy).normalize();
+	int angle = atan(dy / dx) * 180 / M_PI;
+	if (dx < 0)
+	{
+		angle += 180;
+	}
+	angle = (angle + 360) % 360;
+	return angle;
+}

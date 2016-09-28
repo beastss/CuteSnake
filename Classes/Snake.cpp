@@ -6,7 +6,6 @@
 #include "GamePanel.h"
 #include "Food.h"
 #include "RankingModel.h"
-#include "SnakeSkinRes.h"
 USING_NS_CC;
 using namespace std;
 
@@ -44,30 +43,56 @@ void Snake::initSnake()
 	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	*/
-	auto head = CCSprite::create(SnakeSkinRes::SnakeResData()->getHeadRes(0).c_str());
+	
+
+	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
+	addChild(m_batchNode);
+
+	
+	addHead();
+	for (int i = 1; i < m_data.length - 1; ++i)
+	{
+		addBody();
+	}
+	addTail();
+}
+
+void Snake::addHead()
+{
+	auto path = SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId);
+	auto head = CCSprite::create(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
 	addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
 	m_nameLabel->setColor(ccc3(0, 0, 0));
 	addChild(m_nameLabel, 1);
 	m_body.push_back(head);
-
-	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
-	addChild(m_batchNode);
-	for (int i = 1; i < m_data.length; ++i)
-	{
-		addBody();
-	}
 }
 
 void Snake::addBody()
 {
+	/*
 	CCSprite *body = CCSprite::createWithTexture(m_batchNode->getTexture());
 	body->setScale(1.5f);
 	m_batchNode->addChild(body);
 	body->setColor(m_data.color);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.push_back(body);
+	*/
+	int pos = m_body.size() + 1;
+	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
+	CCSprite *body = CCSprite::create(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
+	body->setPosition(m_body.back()->getPosition());
+	m_body.push_back(body);
+	addChild(body, -pos);
+}
+
+void Snake::addTail()
+{
+	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
+	auto tail = CCSprite::create(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
+	m_body.push_back(tail);
+	addChild(tail , -1000);
 }
 
 void Snake::initBodyPos(cocos2d::CCPoint pos)
@@ -99,6 +124,10 @@ void Snake::update(float dt)
 
 	m_angle = (m_angle + 360) % 360;
 	getHead()->setRotation(90 - m_angle);//头部选中
+	auto tail2Pos = m_body[m_body.size() - 2]->getPosition();
+	auto tail1Pos = m_body[m_body.size() - 1]->getPosition();
+	int rotation = CommonUtil::getRotation(tail2Pos, tail1Pos);
+	getTail()->setRotation(180 - rotation);
 	//CCLOG("m_angle: %d", m_angle);
 	
 	CCPoint offset;
@@ -110,7 +139,7 @@ void Snake::update(float dt)
 	m_path.push_front(pos);
 	onMove(pos);
 
-	const int kOffset = 5;//相邻两个body的距离
+	const int kOffset = 8;//相邻两个body的距离
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
 		if (m_path.size() > i * kOffset)
@@ -200,8 +229,8 @@ void Snake::crash()
 	for (auto body : m_body)
 	{
 		auto pos = body->getPosition();
-		m_gamePanel->addFood(m_data.color, true, ccpAdd(pos, getRandomPt()));
-		m_gamePanel->addFood(m_data.color, true, ccpAdd(pos, getRandomPt()));
+		m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
+		m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
 	}
 
 	m_gamePanel->removeSnake(this);

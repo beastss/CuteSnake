@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include <deque>
 #include "CommonMacro.h"
-#include "SnakeColor.h"
+#include "SnakeSkinRes.h"
 
 class UiLayout;
 class GamePanel;
@@ -11,17 +11,17 @@ class GamePanel;
 struct SnakeData
 {
 	int score;
-	cocos2d::ccColor3B color;
+	int skinId;
 	int length;
 	std::string name;
-	SnakeData(int _score, cocos2d::ccColor3B _color, int _length, std::string _name)
-		:score(_score), color(_color), length(_length), name(_name)
+	SnakeData(int _score, int _skinId, int _length, std::string _name)
+		:score(_score), skinId(_skinId), length(_length), name(_name)
 	{
 	}
 	SnakeData()
 	{
 		score = 0;
-		color = RANDOM_COLOR;
+		skinId = kFirstSkin;
 		length = INIT_SNAKE_LENGTH;
 	}
 };
@@ -39,7 +39,9 @@ public:
 protected:
 	Snake(GamePanel *gamePanel, const SnakeData &data = SnakeData());
 	void initBodyPos(cocos2d::CCPoint pos);
+	void addHead();
 	void addBody();
+	void addTail();
 	void setGodLikeState(bool open);
 protected:
 	virtual void onMove(cocos2d::CCPoint pos){}
@@ -48,13 +50,14 @@ protected:
 	virtual void onEatFood(){}
 private:
 	virtual void onExit();
+	cocos2d::CCNode *getTail(){ return m_body.back(); }
 	void initSnake();
 	bool checkCrash();
 	void crash();
 protected:
 	int m_destAngle;
 	float m_speed;
-	std::vector<cocos2d::CCNode *>m_body;
+	std::deque<cocos2d::CCNode *>m_body;
 	std::deque<cocos2d::CCPoint>m_path;
 	GamePanel *m_gamePanel;
 	bool m_isGodlike;

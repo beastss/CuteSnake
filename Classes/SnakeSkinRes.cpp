@@ -11,8 +11,8 @@ SnakeSkinRes *SnakeSkinRes::SnakeResData()
 void SnakeSkinRes::init()
 {
 	m_headRes.push_back("snake/skin_16_head.png");
-	m_bodyRes.push_back(make_pair("skin_17_body%d.png", 3));
-	m_tailRes.push_back("skin_5_tail.png");
+	m_bodyRes.push_back(make_pair("snake/skin_17_body%d.png", 3));
+	m_tailRes.push_back("snake/skin_5_tail.png");
 }
 
 std::string SnakeSkinRes::getHeadRes(int skin)
@@ -26,7 +26,7 @@ std::string SnakeSkinRes::getBodyRes(int skin, int pos)
 {
 	assert(isValidSkinId(skin));
 
-	int index = (pos - 1) % m_bodyRes[skin].second;
+	int index = (pos - 1) % m_bodyRes[skin].second + 1;
 	char str[100] = { 0 };
 	sprintf(str, m_bodyRes[skin].first.c_str(), index);
 	return str;

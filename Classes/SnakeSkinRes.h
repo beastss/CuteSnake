@@ -2,6 +2,11 @@
 #define __SNAKE_SKIN_RES_H__
 #include "cocos2d.h"
 
+enum
+{
+	kFirstSkin = 0,
+	kLastSkin = 0,
+};
 
 class SnakeSkinRes
 {
@@ -14,12 +19,6 @@ public:
 	std::string getTailRes(int skin);
 private:
 	bool isValidSkinId(int skin);
-public:
-	enum 
-	{
-		kFirstSkin = 0,
-		kLastSkin = 0,
-	};
 private:
 
 	std::vector<std::string> m_headRes;

@@ -22,6 +22,7 @@ namespace CommonUtil
 	cocos2d::CCMenuItemSprite *getScaleMenuItemSpr(std::string path);
 
 	cocos2d::ccColor3B getRandomColor();
+	int getRotation(cocos2d::CCPoint beginPt, cocos2d::CCPoint endPt);
 }
 
 #endif
