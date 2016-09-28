@@ -6,6 +6,7 @@
 #include "GamePanel.h"
 #include "Food.h"
 #include "RankingModel.h"
+#include "SnakeSkinRes.h"
 USING_NS_CC;
 using namespace std;
 
@@ -31,6 +32,7 @@ void Snake::onExit()
 
 void Snake::initSnake()
 {
+	/*
 	auto layout = UiLayout::create("layout/snake_head.xml");
 	addChild(layout);
 	layout->setAnchorPoint(ccp(0.5f, 0.4f));
@@ -41,11 +43,14 @@ void Snake::initSnake()
 	leftEyeBall->setColor(ccc3(0, 0, 0));
 	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
 	RightEyeBall->setColor(ccc3(0, 0, 0));
+	*/
+	auto head = CCSprite::create(SnakeSkinRes::SnakeResData()->getHeadRes(0).c_str());
+	addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
 	m_nameLabel->setColor(ccc3(0, 0, 0));
 	addChild(m_nameLabel, 1);
-	m_body.push_back(layout);
+	m_body.push_back(head);
 
 	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
 	addChild(m_batchNode);

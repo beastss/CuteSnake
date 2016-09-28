@@ -153,6 +153,9 @@
     <ClCompile Include="..\Classes\RankingModel.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SnakeSkinRes.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -285,6 +288,9 @@
       <Filter>sdk_iter</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\RankingModel.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SnakeSkinRes.h">
       <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>
