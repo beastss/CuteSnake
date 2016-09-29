@@ -10,7 +10,7 @@ public:
 private:
     virtual bool init();  
 private:
-
+	void testBatchNode();
 };
 
 #endif 

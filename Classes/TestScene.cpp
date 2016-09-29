@@ -20,3 +20,13 @@ bool TestScene::init()
     return true;
 }
 
+void TestScene::testBatchNode()
+{
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("snake/aaa.plist");
+	CCSpriteBatchNode* batchNode = CCSpriteBatchNode::create("snake/aaa.png");
+	CCSprite* sprite1 = CCSprite::createWithSpriteFrameName("精灵帧1的名字");
+	CCSprite* sprite2 = CCSprite::createWithSpriteFrameName("精灵帧2的名字");
+	batchNode->addChild(sprite1);
+	batchNode->addChild(sprite2);
+	addChild(batchNode);
+}
