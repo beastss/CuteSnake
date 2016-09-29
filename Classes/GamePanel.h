@@ -17,6 +17,7 @@ public:
 	void removeSnake(Snake *snake);
 	void addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCPoint pos);
 	void addSnake(Snake *snake);
+	cocos2d::CCNode *getSnakeField(){ return m_snakeBatchNode; }
 	~GamePanel();
 private:
 	GamePanel();

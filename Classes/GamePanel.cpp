@@ -39,8 +39,9 @@ bool GamePanel::init()
 	m_snakeField->setAnchorPoint(ccp(0.5f, 0.5f));
 	m_snakeField->setPosition(ccpMult(winSize, 0.5f));
 	addChild(m_snakeField);
-	m_snakeBatchNode = CCSpriteBatchNode::create("snake/circle.png");
+	m_snakeBatchNode = CCSpriteBatchNode::create("snake/aaa.png");
 	m_snakeField->addChild(m_snakeBatchNode);
+
 	//ui²ã
 	m_uiLayer = UiLayer::create();
 	addChild(m_uiLayer);
@@ -79,7 +80,7 @@ void GamePanel::update(float dt)
 	{
 		m_snakes[i]->update(dt);
 	}
-	m_foodMgr->update(dt);
+	//m_foodMgr->update(dt);
 }
 
 void GamePanel::setFocus(cocos2d::CCPoint pos)

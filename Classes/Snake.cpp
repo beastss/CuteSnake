@@ -61,8 +61,8 @@ void Snake::initSnake()
 void Snake::addHead()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId);
-	auto head = CCSprite::create(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
-	addChild(head);
+	auto head = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
+	m_gamePanel->getSnakeField()->addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
 	m_nameLabel->setColor(ccc3(0, 0, 0));
@@ -82,18 +82,18 @@ void Snake::addBody()
 	*/
 	int pos = m_body.size() + 1;
 	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
-	CCSprite *body = CCSprite::create(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
+	CCSprite *body = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
+	m_gamePanel->getSnakeField()->addChild(body, -pos);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.insert(m_body.begin() + m_body.size() - 1, body);
-	addChild(body, -pos);
 }
 
 void Snake::addTail()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
-	auto tail = CCSprite::create(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
+	auto tail = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
+	m_gamePanel->getSnakeField()->addChild(tail);
 	m_body.push_back(tail);
-	addChild(tail);
 }
 
 void Snake::initBodyPos(cocos2d::CCPoint pos)
@@ -230,8 +230,8 @@ void Snake::crash()
 	for (auto body : m_body)
 	{
 		auto pos = body->getPosition();
-		m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
-		m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
+		//m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
+		//m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
 	}
 
 	m_gamePanel->removeSnake(this);

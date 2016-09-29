@@ -10,9 +10,11 @@ SnakeSkinRes *SnakeSkinRes::SnakeResData()
 
 void SnakeSkinRes::init()
 {
-	m_headRes.push_back("snake/skin_16_head.png");
-	m_bodyRes.push_back(make_pair("snake/skin_17_body%d.png", 3));
-	m_tailRes.push_back("snake/skin_5_tail.png");
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("snake/aaa.plist");
+
+	m_headRes.push_back("skin_16_head.png");
+	m_bodyRes.push_back(make_pair("skin_17_body%d.png", 3));
+	m_tailRes.push_back("skin_5_tail.png");
 }
 
 std::string SnakeSkinRes::getHeadRes(int skin)
