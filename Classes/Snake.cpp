@@ -27,6 +27,10 @@ void Snake::onExit()
 {
 	CCNode::onExit();
 	RankingModel::theModel()->removeRank(m_data.name);
+	for (auto body : m_body)
+	{
+		body->removeFromParent();
+	}
 }
 
 void Snake::initSnake()
@@ -44,11 +48,6 @@ void Snake::initSnake()
 	RightEyeBall->setColor(ccc3(0, 0, 0));
 	*/
 	
-
-	m_batchNode = CCSpriteBatchNode::create("snake/circle.png");
-	addChild(m_batchNode);
-
-	
 	addHead();
 	addTail();
 	for (int i = 1; i < m_data.length - 1; ++i)
@@ -62,7 +61,7 @@ void Snake::addHead()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId);
 	auto head = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
-	m_gamePanel->getSnakeField()->addChild(head);
+	m_gamePanel->getSnakeBatch()->addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
 	m_nameLabel->setColor(ccc3(0, 0, 0));
@@ -83,7 +82,7 @@ void Snake::addBody()
 	int pos = m_body.size() + 1;
 	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
 	CCSprite *body = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
-	m_gamePanel->getSnakeField()->addChild(body, -pos);
+	m_gamePanel->getSnakeBatch()->addChild(body, -pos);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.insert(m_body.begin() + m_body.size() - 1, body);
 }
@@ -92,7 +91,7 @@ void Snake::addTail()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
 	auto tail = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
-	m_gamePanel->getSnakeField()->addChild(tail);
+	m_gamePanel->getSnakeBatch()->addChild(tail);
 	m_body.push_back(tail);
 }
 
@@ -227,11 +226,12 @@ static CCPoint getRandomPt()
 void Snake::crash()
 {
 	onDead();
-	for (auto body : m_body)
+	for (size_t i = 0; i < m_body.size(); ++i)
 	{
+		auto body = m_body[i];
 		auto pos = body->getPosition();
-		//m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
-		//m_gamePanel->addFood(ccc3(200, 0, 0), true, ccpAdd(pos, getRandomPt()));
+		auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, i + 1);
+		m_gamePanel->addFood(path, ccpAdd(pos, getRandomPt()));
 	}
 
 	m_gamePanel->removeSnake(this);
@@ -283,7 +283,7 @@ bool Snake::isCrash(cocos2d::CCPoint pt)
 bool Snake::canEatFood(CCPoint pt)
 {
 	auto pos = getHead()->getPosition();
-	return abs(pos.x - pt.x) < 32 && abs(pos.y - pt.y) < 32;
+	return abs(pos.x - pt.x) < 42 && abs(pos.y - pt.y) < 44;
 }
 
 void Snake::eatFood(int energy)

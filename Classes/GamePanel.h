@@ -15,9 +15,10 @@ public:
 	void setFocus(cocos2d::CCPoint pos);
 	std::vector<Snake *> getSnakes(){ return m_snakes; }
 	void removeSnake(Snake *snake);
-	void addFood(cocos2d::ccColor3B color, bool isSnakeBody, cocos2d::CCPoint pos);
+	void addFood(cocos2d::ccColor3B color, cocos2d::CCPoint pos);
+	void addFood(std::string path, cocos2d::CCPoint pos);
 	void addSnake(Snake *snake);
-	cocos2d::CCNode *getSnakeField(){ return m_snakeBatchNode; }
+	cocos2d::CCNode *getSnakeBatch(){ return m_snakeBatchNode; }
 	~GamePanel();
 private:
 	GamePanel();

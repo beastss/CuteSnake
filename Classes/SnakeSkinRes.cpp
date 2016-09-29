@@ -10,7 +10,7 @@ SnakeSkinRes *SnakeSkinRes::SnakeResData()
 
 void SnakeSkinRes::init()
 {
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("snake/aaa.plist");
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("sprite_frames/snake_skin.plist");
 
 	m_headRes.push_back("skin_16_head.png");
 	m_bodyRes.push_back(make_pair("skin_17_body%d.png", 3));

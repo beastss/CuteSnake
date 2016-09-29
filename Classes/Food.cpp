@@ -5,32 +5,25 @@
 USING_NS_CC;
 using namespace std;
 
-Food::Food(cocos2d::ccColor3B color, bool isSnakeBody)
+Food::Food(cocos2d::ccColor3B color)
 : m_color(color)
-, m_isSnakeBody(isSnakeBody)
 {
-	init();
+	m_view = CCSprite::createWithSpriteFrameName("snake_food.png");
+	m_enery = 1;
+	m_view->setColor(m_color);
+	m_view->setScale(0.5f);
+}
+
+Food::Food(std::string path)
+{
+	m_view = CCSprite::createWithSpriteFrameName(path.c_str());
+	m_enery = 2;
+	m_view->setScale(0.3f);
 }
 
 Food::~Food()
 {
 
-}
-
-void Food::init()
-{
-	m_view = CCSprite::create("snake/circle.png");
-	if (m_isSnakeBody)
-	{
-		m_enery = 2;
-	}
-	else
-	{
-		m_enery = 1;
-		m_view->setScale(0.5f);
-	}
-	m_view->setColor(m_color);
-	
 }
 
 void Food::onEaten(CCPoint pt)

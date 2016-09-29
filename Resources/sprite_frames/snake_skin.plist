@@ -4,19 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>circle.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{44,218},{16,16}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
-                <key>sourceSize</key>
-                <string>{16,16}</string>
-            </dict>
             <key>skin_16_head.png</key>
             <dict>
                 <key>frame</key>
@@ -82,19 +69,32 @@
                 <key>sourceSize</key>
                 <string>{62,34}</string>
             </dict>
+            <key>snake_food.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{44,218},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{16,16}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>aaa.png</string>
+            <string>snake_skin.png</string>
             <key>size</key>
             <string>{64,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2b9e70a6f7c1ac6894de94fb68ff56d6$</string>
+            <string>$TexturePacker:SmartUpdate:8b5abc9b95fc128773118549eb689abe$</string>
             <key>textureFileName</key>
-            <string>aaa.png</string>
+            <string>snake_skin.png</string>
         </dict>
     </dict>
 </plist>

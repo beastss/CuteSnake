@@ -44,12 +44,12 @@ protected:
 	void addTail();
 	void setGodLikeState(bool open);
 protected:
+	virtual void onExit();
 	virtual void onMove(cocos2d::CCPoint pos){}
 	virtual void onDead(){}
 	virtual void onUpdate(float dt){}
 	virtual void onEatFood(){}
 private:
-	virtual void onExit();
 	cocos2d::CCNode *getTail(){ return m_body.back(); }
 	void initSnake();
 	bool checkCrash();
@@ -66,7 +66,6 @@ protected:
 private:
 	int m_angle;
 	int m_growEnergy;
-	cocos2d::CCSpriteBatchNode *m_batchNode;
 
 };
 #endif

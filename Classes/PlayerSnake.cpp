@@ -34,13 +34,13 @@ PlayerSnake *PlayerSnake::create(GamePanel *gamePanel, const SnakeData &data)
 
 void PlayerSnake::onEnter()
 {
-	CCNode::onEnter();
+	Snake::onEnter();
 	SnakeController::controller()->addView(this);
 }
 
 void PlayerSnake::onExit()
 {
-	CCNode::onExit();
+	Snake::onExit();
 	SnakeController::controller()->removeView(this);
 }
 
