@@ -95,6 +95,7 @@ void GamePanel::setFocus(cocos2d::CCPoint pos)
 
 void GamePanel::initSnakes()
 {
+	//SnakeData data;
 	addSnake(PlayerSnake::create(this));
 	for (int i = 1; i < SNAKE_NUM; ++i)
 	{

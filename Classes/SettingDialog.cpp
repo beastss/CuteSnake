@@ -56,7 +56,11 @@ void SettingDialog::refreshUi()
 {
 	bool isOn = SoundMgr::theMgr()->isBackgroundMusicOn();
 	m_layout->getChildById(4)->setVisible(isOn);
+	m_layout->getChildById(2)->setVisible(isOn);
+	m_layout->getChildById(7)->setVisible(!isOn);
 
 	isOn = SoundMgr::theMgr()->isEffectMusicOn();
 	m_layout->getChildById(5)->setVisible(isOn);
+	m_layout->getChildById(3)->setVisible(isOn);
+	m_layout->getChildById(8)->setVisible(!isOn);
 }

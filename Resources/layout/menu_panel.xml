@@ -8,6 +8,15 @@
 		<scale>1.00</scale>
 		<path>main_menu/home_bg.png</path>
 	</image>
+		<image>
+		<id>8</id>
+		<x>417.45</x>
+		<y>332.40</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>main_menu/logo.png</path>
+	</image>
 	<button>
 		<id>1</id>
 		<x>421.67</x>
@@ -70,5 +79,6 @@
 		<scale>1.00</scale>
 		<text>投诉致电：</text>
 	</label>
+
 </layout>
 

@@ -36,19 +36,6 @@ void Snake::onExit()
 
 void Snake::initSnake()
 {
-	/*
-	auto layout = UiLayout::create("layout/snake_head.xml");
-	addChild(layout);
-	layout->setAnchorPoint(ccp(0.5f, 0.4f));
-	auto face = dynamic_cast<CCSprite*>(layout->getChildById(1));
-	//face->initWithFile("snake/dsf.png");
-	face->setColor(m_data.color);
-	auto leftEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(3));
-	leftEyeBall->setColor(ccc3(0, 0, 0));
-	auto RightEyeBall = dynamic_cast<CCSprite*>(layout->getChildById(5));
-	RightEyeBall->setColor(ccc3(0, 0, 0));
-	*/
-	
 	addHead();
 	addTail();
 	for (int i = 1; i < m_data.length - 1; ++i)
@@ -62,6 +49,7 @@ void Snake::addHead()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId);
 	auto head = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
+	head->setScale(0.7f);
 	m_gamePanel->getSnakeBatch()->addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
@@ -72,17 +60,10 @@ void Snake::addHead()
 
 void Snake::addBody()
 {
-	/*
-	CCSprite *body = CCSprite::createWithTexture(m_batchNode->getTexture());
-	body->setScale(1.5f);
-	m_batchNode->addChild(body);
-	body->setColor(m_data.color);
-	body->setPosition(m_body.back()->getPosition());
-	m_body.push_back(body);
-	*/
 	int pos = m_body.size() + 1;
 	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
 	CCSprite *body = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
+	body->setScale(0.7f);
 	m_gamePanel->getSnakeBatch()->addChild(body, -pos);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.insert(m_body.begin() + m_body.size() - 1, body);
@@ -92,6 +73,7 @@ void Snake::addTail()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
 	auto tail = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
+	tail->setScale(0.7f);
 	m_gamePanel->getSnakeBatch()->addChild(tail, -9999);
 	m_body.push_back(tail);
 }
@@ -140,8 +122,8 @@ void Snake::update(float dt)
 	m_path.push_front(pos);
 	onMove(pos);
 
-	const int kMaxOffset = 8;//相邻两个body的距离
-	const int kMinOffset = 5;
+	const int kMaxOffset = 6;//相邻两个body的距离
+	const int kMinOffset = 3;
 	int curOffset = m_isSpeedUp ? kMinOffset : kMaxOffset;
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{

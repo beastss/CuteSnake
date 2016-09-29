@@ -26,6 +26,24 @@
 		<scale>1.00</scale>
 		<path>setting/frame_4.png</path>
 	</image>
+		<image>
+		<id>7</id>
+		<x>49.81</x>
+		<y>84.00</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>setting/frame_5.png</path>
+	</image>
+	<image>
+		<id>8</id>
+		<x>231.52</x>
+		<y>84.00</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>setting/frame_5.png</path>
+	</image>
 	<image>
 		<id>4</id>
 		<x>49.81</x>
