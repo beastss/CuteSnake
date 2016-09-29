@@ -72,6 +72,7 @@ void PlayerSnake::onSpeedUp(bool enable)
 	{
 		m_speed = NORMAL_SPEED;
 	}
+	m_isSpeedUp = enable;
 }
 
 void PlayerSnake::onGrow()

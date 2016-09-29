@@ -17,6 +17,7 @@ Snake::Snake(GamePanel *gamePanel, const SnakeData &data)
 , m_growEnergy(0)
 , m_isGodlike(false)
 , m_data(data)
+, m_isSpeedUp(false)
 {
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
 	m_angle = m_destAngle;
@@ -139,19 +140,21 @@ void Snake::update(float dt)
 	m_path.push_front(pos);
 	onMove(pos);
 
-	const int kOffset = 8;//相邻两个body的距离
+	const int kMaxOffset = 8;//相邻两个body的距离
+	const int kMinOffset = 5;
+	int curOffset = m_isSpeedUp ? kMinOffset : kMaxOffset;
 	for (size_t i = 1; i < m_body.size(); ++i)
 	{
-		if (m_path.size() > i * kOffset)
+		if (m_path.size() > i * curOffset)
 		{
-			m_body[i]->setPosition(m_path[i * kOffset]);
+			m_body[i]->setPosition(m_path[i * curOffset]);
 		}
 		else
 		{
 			break;
 		}
 	}
-	int extra = m_path.size() - (m_body.size() - 1 )* kOffset;
+	int extra = m_path.size() - (m_body.size() - 1)* kMaxOffset;
 	if (extra > 0)
 	{
 		deque<CCPoint> temp;

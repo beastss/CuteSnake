@@ -57,6 +57,7 @@ private:
 protected:
 	int m_destAngle;
 	float m_speed;
+	bool m_isSpeedUp;
 	std::vector<cocos2d::CCNode *>m_body;
 	std::deque<cocos2d::CCPoint>m_path;
 	GamePanel *m_gamePanel;
