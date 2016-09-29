@@ -50,11 +50,12 @@ void Snake::initSnake()
 
 	
 	addHead();
+	addTail();
 	for (int i = 1; i < m_data.length - 1; ++i)
 	{
 		addBody();
 	}
-	addTail();
+	
 }
 
 void Snake::addHead()
@@ -83,7 +84,7 @@ void Snake::addBody()
 	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
 	CCSprite *body = CCSprite::create(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
 	body->setPosition(m_body.back()->getPosition());
-	m_body.push_back(body);
+	m_body.insert(m_body.begin() + m_body.size() - 1, body);
 	addChild(body, -pos);
 }
 
@@ -92,7 +93,7 @@ void Snake::addTail()
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
 	auto tail = CCSprite::create(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
 	m_body.push_back(tail);
-	addChild(tail , -1000);
+	addChild(tail);
 }
 
 void Snake::initBodyPos(cocos2d::CCPoint pos)
