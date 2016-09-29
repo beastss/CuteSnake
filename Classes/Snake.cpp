@@ -92,7 +92,7 @@ void Snake::addTail()
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
 	auto tail = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
 	m_gamePanel->getSnakeBatch()->addChild(tail);
-	m_body.push_back(tail);
+	m_body.push_back(tail, -9999);
 }
 
 void Snake::initBodyPos(cocos2d::CCPoint pos)

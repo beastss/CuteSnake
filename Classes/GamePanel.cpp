@@ -128,7 +128,7 @@ void GamePanel::addFood(cocos2d::ccColor3B color, cocos2d::CCPoint pos)
 	
 	auto food = new Food(color);
 	food->getView()->setPosition(pos);
-	m_snakeBatchNode->addChild(food->getView(), -9999);
+	m_snakeBatchNode->addChild(food->getView(), -10000);
 	m_foodMgr->addFood(food);
 }
 
