@@ -13,6 +13,7 @@ using namespace std;
 PlayerSnake::PlayerSnake(GamePanel *gamePanel, const SnakeData &data)
 : Snake(gamePanel, data)
 , m_godLikeTime(0)
+, m_speedUpTime(0)
 {
 	m_runner = ActionRunner::create();
 	m_runner->retain();
@@ -64,15 +65,16 @@ void PlayerSnake::onAngleChanged(int angle)
 
 void PlayerSnake::onSpeedUp(bool enable)
 {
-	if (enable)
-	{
-		m_speed = NORMAL_SPEED * 2.0f;
-	}
-	else
+	m_isSpeedUp = false;
+	if (!enable)
 	{
 		m_speed = NORMAL_SPEED;
 	}
-	m_isSpeedUp = enable;
+	else if(m_body.size() > INIT_SNAKE_LENGTH)
+	{
+		m_speed = NORMAL_SPEED * 2.0f;
+		m_isSpeedUp = true;
+	}
 }
 
 void PlayerSnake::onGrow()
@@ -99,6 +101,17 @@ void PlayerSnake::onUpdate(float dt)
 		else
 		{
 			setGodLikeState(true);
+		}
+	}
+	
+	if (m_isSpeedUp)
+	{
+		m_speedUpTime += dt;
+		if (m_speedUpTime >= 3.0f)
+		{
+			removeBody();
+			m_speedUpTime = 0;
+			m_isSpeedUp = m_body.size() > INIT_SNAKE_LENGTH;
 		}
 	}
 }

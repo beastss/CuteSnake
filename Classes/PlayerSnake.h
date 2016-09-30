@@ -28,6 +28,7 @@ private:
 	virtual void onGodLike();
 private:
 	ActionRunner *m_runner;
-	float m_godLikeTime;
+	float m_godLikeTime; //倒计时
+	float m_speedUpTime; //累积计时
 };
 #endif

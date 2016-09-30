@@ -78,6 +78,14 @@ void Snake::addTail()
 	m_body.push_back(tail);
 }
 
+void Snake::removeBody()
+{
+	if (m_body.size() <= 2) return; //只剩下头和尾
+	//m_body[m_body->size() - 1]
+	m_body[m_body.size() - 2]->removeFromParent();
+	m_body.erase(m_body.begin() + m_body.size() - 2);
+}
+
 void Snake::initBodyPos(cocos2d::CCPoint pos)
 {
 	for (auto body : m_body)
@@ -90,6 +98,12 @@ void Snake::update(float dt)
 {
 	//更新蛇长度
 	m_data.length = m_body.size();
+	for (auto body : m_body)
+	{
+		float scale = (m_body.size() / 50.0f) * 0.3f + 0.5f;
+		body->setScale(scale);
+	}
+
 	//移动方向
 	int angleOffset = m_destAngle - m_angle;
 	if (abs(angleOffset) < 5)
@@ -118,7 +132,7 @@ void Snake::update(float dt)
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
 	auto pos = ccpAdd(getHead()->getPosition(), offset);
 	getHead()->setPosition(pos);
-	m_nameLabel->setPosition(ccpAdd(pos, ccp(0, 30)));
+	m_nameLabel->setPosition(ccpAdd(pos, ccp(0, 40)));
 	m_path.push_front(pos);
 	onMove(pos);
 

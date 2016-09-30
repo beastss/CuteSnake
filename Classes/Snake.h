@@ -22,7 +22,7 @@ struct SnakeData
 	{
 		score = 0;
 		skinId = kFirstSkin;
-		length = INIT_SNAKE_LENGTH;
+		length = INIT_SNAKE_LENGTH * (CCRANDOM_0_1() * 2 + 1);
 	}
 };
 
@@ -42,6 +42,7 @@ protected:
 	void addHead();
 	void addBody();
 	void addTail();
+	void removeBody();
 	void setGodLikeState(bool open);
 protected:
 	virtual void onExit();
