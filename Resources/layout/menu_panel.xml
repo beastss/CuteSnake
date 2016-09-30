@@ -8,10 +8,10 @@
 		<scale>1.00</scale>
 		<path>main_menu/home_bg.png</path>
 	</image>
-		<image>
+	<image>
 		<id>8</id>
-		<x>417.45</x>
-		<y>332.40</y>
+		<x>425.47</x>
+		<y>312.56</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -19,8 +19,8 @@
 	</image>
 	<button>
 		<id>1</id>
-		<x>421.67</x>
-		<y>263.60</y>
+		<x>427.58</x>
+		<y>158.50</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -30,8 +30,8 @@
 	</button>
 	<button>
 		<id>2</id>
-		<x>269.72</x>
-		<y>82.74</y>
+		<x>242.71</x>
+		<y>61.00</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -41,8 +41,8 @@
 	</button>
 	<button>
 		<id>3</id>
-		<x>435.18</x>
-		<y>81.46</y>
+		<x>422.10</x>
+		<y>63.52</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -52,8 +52,8 @@
 	</button>
 	<button>
 		<id>4</id>
-		<x>582.07</x>
-		<y>83.57</y>
+		<x>610.77</x>
+		<y>59.51</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>1.00</scale>
@@ -63,8 +63,8 @@
 	</button>
 	<label>
 		<id>6</id>
-		<x>48.12</x>
-		<y>424.41</y>
+		<x>125.15</x>
+		<y>413.65</y>
 		<anchorPtX>0.00</anchorPtX>
 		<anchorPtY>0.00</anchorPtY>
 		<scale>1.00</scale>
@@ -72,13 +72,21 @@
 	</label>
 	<label>
 		<id>7</id>
-		<x>46.02</x>
-		<y>386.43</y>
+		<x>49.81</x>
+		<y>362.37</y>
 		<anchorPtX>0.00</anchorPtX>
 		<anchorPtY>0.00</anchorPtY>
 		<scale>1.00</scale>
 		<text>投诉致电：</text>
 	</label>
-
+	<image>
+		<id>9</id>
+		<x>88.22</x>
+		<y>426.32</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>main_menu/account.png</path>
+	</image>
 </layout>
 

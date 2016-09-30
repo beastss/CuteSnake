@@ -6,6 +6,7 @@
 #include "SettingDialog.h"
 #include "SoundMgr.h"
 #include "AndroidIter.h"
+#include "PlayerData.h"
 using namespace std;
 USING_NS_CC;
 
@@ -35,10 +36,10 @@ bool MenuPanel::init()
 	MainScene::theScene()->showDialog(PackageDialog::create());
 	
 	//auto userId = AndroidIter::getIter()->getUserId();
-	CCLabelTTF *idLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(6));
-	idLabel->setColor(ccc3(0, 0, 0));
-	//idLabel->setString(userId.c_str());
-	idLabel->setVisible(false);
+	auto name = PlayerData::theData()->getName();
+	CCLabelTTF *nameLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(6));
+	nameLabel->setColor(ccc3(0, 0, 0));
+	nameLabel->setString(name.c_str());
 
 	CCLabelTTF *phoneLabel = dynamic_cast<CCLabelTTF *>(m_layout->getChildById(7));
 	phoneLabel->setColor(ccc3(0, 0, 0));
