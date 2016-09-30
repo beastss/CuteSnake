@@ -25,7 +25,7 @@ GamePanel::~GamePanel()
 
 bool GamePanel::init()
 {
-	RankingModel::theModel()->init();
+	RankingModel::theModel()->reset();
 	PlayerData::theData()->reset();
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	

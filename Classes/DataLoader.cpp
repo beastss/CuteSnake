@@ -4,6 +4,7 @@
 #include "PropsMgr.h"
 #include "MyPurchase.h"
 #include "SnakeSkinRes.h"
+#include "RankingModel.h"
 using namespace std;
 
 void DataLoader::loadData()
@@ -13,4 +14,5 @@ void DataLoader::loadData()
 	PropsMgr::theMgr()->init();
 	MyPurchase::sharedPurchase()->initBillingData();
 	SnakeSkinRes::SnakeResData()->init();
+	RankingModel::theModel()->init();
 }

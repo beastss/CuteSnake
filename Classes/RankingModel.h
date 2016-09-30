@@ -12,10 +12,12 @@ public:
 	std::vector<std::pair<std::string, int>>getCurRank(int topNum);
 
 	void init();
+	void reset();
 private:
 	RankingModel(){}
 private:
 	std::unordered_map<std::string, int>m_rank;
 	std::vector<std::string>m_notUsedNames;
+	std::vector<std::string>m_names;
 };
 #endif

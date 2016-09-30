@@ -58,8 +58,15 @@ void RankingModel::init()
 	for (size_t i = 0; i < keys.size(); ++i)
 	{
 		string name = GameConfigSelf->getStrValue("ranking", keys[i]);
-		m_notUsedNames.push_back(name);
+		m_names.push_back(name);
 	}
+}
+
+void RankingModel::reset()
+{
+	m_rank.clear();
+	m_notUsedNames.clear();
+	m_notUsedNames.assign(m_names.begin(), m_names.end());
 }
 
 std::string RankingModel::applyName()

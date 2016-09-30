@@ -111,9 +111,9 @@ void PlayerSnake::onUpdate(float dt)
 		{
 			removeBody();
 			m_speedUpTime = 0;
-			m_isSpeedUp = m_body.size() > INIT_SNAKE_LENGTH;
 		}
 	}
+	m_isSpeedUp = m_body.size() > INIT_SNAKE_LENGTH;
 }
 
 void PlayerSnake::onEatFood()
