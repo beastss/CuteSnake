@@ -18,6 +18,7 @@ Snake::Snake(GamePanel *gamePanel, const SnakeData &data)
 , m_isGodlike(false)
 , m_data(data)
 , m_isSpeedUp(false)
+, m_scale(0.5f)
 {
 	m_destAngle = CommonUtil::getRandomValue(0, 359);
 	m_angle = m_destAngle;
@@ -49,7 +50,7 @@ void Snake::addHead()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId);
 	auto head = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getHeadRes(m_data.skinId).c_str());
-	head->setScale(0.7f);
+	head->setScale(m_scale);
 	m_gamePanel->getSnakeBatch()->addChild(head);
 
 	m_nameLabel = CCLabelTTF::create("", "Arial", 17);
@@ -63,7 +64,7 @@ void Snake::addBody()
 	int pos = m_body.size() + 1;
 	auto path = SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos);
 	CCSprite *body = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getBodyRes(m_data.skinId, pos).c_str());
-	body->setScale(0.7f);
+	body->setScale(m_scale);
 	m_gamePanel->getSnakeBatch()->addChild(body, -pos);
 	body->setPosition(m_body.back()->getPosition());
 	m_body.insert(m_body.begin() + m_body.size() - 1, body);
@@ -73,7 +74,7 @@ void Snake::addTail()
 {
 	auto path = SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId);
 	auto tail = CCSprite::createWithSpriteFrameName(SnakeSkinRes::SnakeResData()->getTailRes(m_data.skinId).c_str());
-	tail->setScale(0.7f);
+	tail->setScale(m_scale);
 	m_gamePanel->getSnakeBatch()->addChild(tail, -9999);
 	m_body.push_back(tail);
 }
@@ -100,8 +101,8 @@ void Snake::update(float dt)
 	m_data.length = m_body.size();
 	for (auto body : m_body)
 	{
-		float scale = (m_body.size() / 50.0f) * 0.3f + 0.5f;
-		body->setScale(scale);
+		m_scale = min((m_body.size() / 50.0f), 1.0f) * 0.3f + 0.5f;
+		body->setScale(m_scale);
 	}
 
 	//移动方向
@@ -133,9 +134,53 @@ void Snake::update(float dt)
 	auto pos = ccpAdd(getHead()->getPosition(), offset);
 	getHead()->setPosition(pos);
 	m_nameLabel->setPosition(ccpAdd(pos, ccp(0, 40)));
-	m_path.push_front(pos);
+	m_path.push_front(make_pair(pos, 0));
 	onMove(pos);
 
+	for (size_t i = 1; i < m_path.size(); ++i)
+	{
+		m_path[i].second += dt * m_speed;
+	}
+
+	const float kDistance = 30 * m_scale;
+	int curIndex = 1;
+	for (size_t bodyIndex = 1; bodyIndex < m_body.size(); ++bodyIndex)
+	{
+		for (int i = curIndex; i < m_path.size(); ++i)
+		{
+			auto length = m_path[i].second;
+			curIndex = i;
+			if (length >= kDistance * bodyIndex)
+			{
+				auto prevPos = m_path[i - 1].first;
+				auto myPos = m_path[i].first;
+				int dx = myPos.x - prevPos.x;
+				int dy = myPos.y - prevPos.y;
+				auto distance = ccpDistance(prevPos, myPos);
+				auto newPos = ccpAdd(prevPos, ccpMult(ccp(dx, dy), (kDistance * bodyIndex - m_path[i - 1].second) / distance));
+				m_body[bodyIndex]->setPosition(newPos);
+				break;
+			}
+		}
+	}
+
+	int endIndex = m_path.size();
+	for (int i = 1; i < m_path.size(); ++i)
+	{
+		if (m_path[i].second > kDistance *(m_body.size() - 1))
+		{
+			endIndex = min(endIndex, i);
+			break;
+		}
+	}
+	
+	deque<pair<CCPoint, float>> temp;
+	temp.swap(m_path);
+	m_path.assign(temp.begin(), temp.begin() + endIndex);
+	CCLOG("m_path.size(): %d", m_path.size());
+
+
+	/*
 	const int kMaxOffset = 6;//相邻两个body的距离
 	const int kMinOffset = 3;
 	int curOffset = m_isSpeedUp ? kMinOffset : kMaxOffset;
@@ -158,6 +203,7 @@ void Snake::update(float dt)
 		m_path.assign(temp.begin(), temp.end() - extra);
 
 	}
+	*/
 	//CCLOG("m_path.size(): %d", m_path.size());
 	onUpdate(dt);
 	if (checkCrash())

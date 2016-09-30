@@ -60,11 +60,12 @@ protected:
 	float m_speed;
 	bool m_isSpeedUp;
 	std::vector<cocos2d::CCNode *>m_body;
-	std::deque<cocos2d::CCPoint>m_path;
+	std::deque<std::pair<cocos2d::CCPoint, float>>m_path;
 	GamePanel *m_gamePanel;
 	bool m_isGodlike;
 	SnakeData m_data;
 	cocos2d::CCLabelTTF *m_nameLabel;
+	float m_scale;
 private:
 	int m_angle;
 	int m_growEnergy;

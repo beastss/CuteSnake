@@ -97,8 +97,8 @@ void GamePanel::initSnakes()
 {
 	SnakeData data;
 	data.length = INIT_SNAKE_LENGTH;
-	//data.length = 20; 
-	addSnake(PlayerSnake::create(this, data)); return;
+	//data.length = 100; 
+	addSnake(PlayerSnake::create(this, data));
 
 	for (int i = 1; i < SNAKE_NUM; ++i)
 	{
