@@ -8,7 +8,7 @@ for (size_t index = 0; index < m_views.size(); ++index) \
 }
 
 #define INIT_SNAKE_LENGTH 6
-#define NORMAL_SPEED 200
+#define NORMAL_SPEED 250
 #define GAME_LAYER_WIDTH 3000
 #define GAME_LAYER_HEIGHT 3000
 #define SNAKE_NUM 20

@@ -70,7 +70,7 @@ void PlayerSnake::onSpeedUp(bool enable)
 	{
 		m_speed = NORMAL_SPEED;
 	}
-	else if(m_body.size() > INIT_SNAKE_LENGTH)
+	else if (m_body.size() > INIT_SNAKE_LENGTH)
 	{
 		m_speed = NORMAL_SPEED * 2.0f;
 		m_isSpeedUp = true;
@@ -103,7 +103,7 @@ void PlayerSnake::onUpdate(float dt)
 			setGodLikeState(true);
 		}
 	}
-	
+
 	if (m_isSpeedUp)
 	{
 		m_speedUpTime += dt;
