@@ -119,7 +119,7 @@ void Snake::update(float dt)
 	{
 		m_angle -= 500 * dt;//顺时针
 	}
-
+	//旋转头尾
 	m_angle = (m_angle + 360) % 360;
 	getHead()->setRotation(90 - m_angle);//头部选中
 	auto tail2Pos = m_body[m_body.size() - 2]->getPosition();
@@ -128,6 +128,7 @@ void Snake::update(float dt)
 	getTail()->setRotation(180 - rotation);
 	//CCLOG("m_angle: %d", m_angle);
 	
+	//更新头部坐标
 	CCPoint offset;
 	offset.x = cos(m_angle * M_PI / 180) *dt * m_speed;
 	offset.y = sin(m_angle * M_PI / 180) *dt * m_speed;
@@ -141,7 +142,7 @@ void Snake::update(float dt)
 	{
 		m_path[i].second += dt * m_speed;
 	}
-
+	//遍历所有蛇节点，在指定长度上更新位置
 	const float kDistance = 30 * m_scale;
 	int curIndex = 1;
 	for (size_t bodyIndex = 1; bodyIndex < m_body.size(); ++bodyIndex)
@@ -164,47 +165,19 @@ void Snake::update(float dt)
 		}
 	}
 
-	int endIndex = m_path.size();
+	int newSize = m_path.size();
 	for (int i = 1; i < m_path.size(); ++i)
 	{
 		if (m_path[i].second > kDistance *(m_body.size() - 1))
 		{
-			endIndex = min(endIndex, i);
+			newSize = i + 1;
 			break;
 		}
 	}
 	
-	deque<pair<CCPoint, float>> temp;
-	temp.swap(m_path);
-	m_path.assign(temp.begin(), temp.begin() + endIndex);
+	m_path.resize(newSize);
 	CCLOG("m_path.size(): %d", m_path.size());
 
-
-	/*
-	const int kMaxOffset = 6;//相邻两个body的距离
-	const int kMinOffset = 3;
-	int curOffset = m_isSpeedUp ? kMinOffset : kMaxOffset;
-	for (size_t i = 1; i < m_body.size(); ++i)
-	{
-		if (m_path.size() > i * curOffset)
-		{
-			m_body[i]->setPosition(m_path[i * curOffset]);
-		}
-		else
-		{
-			break;
-		}
-	}
-	int extra = m_path.size() - (m_body.size() - 1)* kMaxOffset;
-	if (extra > 0)
-	{
-		deque<CCPoint> temp;
-		temp.swap(m_path);
-		m_path.assign(temp.begin(), temp.end() - extra);
-
-	}
-	*/
-	//CCLOG("m_path.size(): %d", m_path.size());
 	onUpdate(dt);
 	if (checkCrash())
 	{

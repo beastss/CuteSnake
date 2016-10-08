@@ -112,8 +112,12 @@ void PlayerSnake::onUpdate(float dt)
 			removeBody();
 			m_speedUpTime = 0;
 		}
+		m_isSpeedUp = m_body.size() > INIT_SNAKE_LENGTH;//当加速过程中，蛇长度达到最小，不能加速
+		if (!m_isSpeedUp)
+		{
+			m_speed = NORMAL_SPEED;
+		}
 	}
-	m_isSpeedUp = m_body.size() > INIT_SNAKE_LENGTH;
 }
 
 void PlayerSnake::onEatFood()
