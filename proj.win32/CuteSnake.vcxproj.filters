@@ -156,6 +156,9 @@
     <ClCompile Include="..\Classes\SnakeSkinRes.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TimeConsume.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SnakeSkinRes.h">
       <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TimeConsume.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

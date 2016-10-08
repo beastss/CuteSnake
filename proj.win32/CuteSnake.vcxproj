@@ -168,6 +168,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\SnakeSkinRes.cpp" />
     <ClCompile Include="..\Classes\SoundMgr.cpp" />
     <ClCompile Include="..\Classes\TestScene.cpp" />
+    <ClCompile Include="..\Classes\TimeConsume.cpp" />
     <ClCompile Include="..\Classes\UiLayer.cpp" />
     <ClCompile Include="..\Classes\UiLayout.cpp" />
     <ClCompile Include="main.cpp" />
@@ -215,6 +216,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\SnakeSkinRes.h" />
     <ClInclude Include="..\Classes\SoundMgr.h" />
     <ClInclude Include="..\Classes\TestScene.h" />
+    <ClInclude Include="..\Classes\TimeConsume.h" />
     <ClInclude Include="..\Classes\UiLayer.h" />
     <ClInclude Include="..\Classes\UiLayout.h" />
     <ClInclude Include="main.h" />
