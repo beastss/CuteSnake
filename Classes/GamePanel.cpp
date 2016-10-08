@@ -97,6 +97,7 @@ void GamePanel::initSnakes()
 {
 	SnakeData data;
 	data.length = INIT_SNAKE_LENGTH;
+	data.skinId = 2;
 	//data.length = 100; 
 	addSnake(PlayerSnake::create(this, data));
 	//return;

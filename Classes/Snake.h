@@ -4,6 +4,7 @@
 #include <deque>
 #include "CommonMacro.h"
 #include "SnakeSkinRes.h"
+#include "CommonUtil.h"
 
 class UiLayout;
 class GamePanel;
@@ -21,7 +22,7 @@ struct SnakeData
 	SnakeData()
 	{
 		score = 0;
-		skinId = kFirstSkin;
+		skinId = CommonUtil::getRandomValue(kFirstSkin, kLastSkin);
 		length = INIT_SNAKE_LENGTH * (CCRANDOM_0_1() * 2 + 1);
 	}
 };

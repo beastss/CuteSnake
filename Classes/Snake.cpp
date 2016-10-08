@@ -118,14 +118,17 @@ void Snake::update(float dt)
 	{
 		m_angle -= 500 * dt;//顺时针
 	}
-	//旋转头尾
+	//旋转头，身体
 	m_angle = (m_angle + 360) % 360;
-	getHead()->setRotation(90 - m_angle);//头部选中
-	auto tail2Pos = m_body[m_body.size() - 2]->getPosition();
-	auto tail1Pos = m_body[m_body.size() - 1]->getPosition();
-	int rotation = CommonUtil::getRotation(tail2Pos, tail1Pos);
-	getTail()->setRotation(180 - rotation);
 	//CCLOG("m_angle: %d", m_angle);
+	getHead()->setRotation(90 - m_angle);//头部选中
+	for (size_t i = 1; i < m_body.size(); ++i)
+	{
+		auto pos1 = m_body[i - 1]->getPosition();
+		auto pos2 = m_body[i]->getPosition();
+		int rotation = CommonUtil::getRotation(pos1, pos2);
+		m_body[i]->setRotation(270 - rotation);
+	}
 	
 	//更新头部坐标
 	CCPoint offset;

@@ -5,7 +5,7 @@
 enum
 {
 	kFirstSkin = 0,
-	kLastSkin = 0,
+	kLastSkin = 17,
 };
 
 class SnakeSkinRes
