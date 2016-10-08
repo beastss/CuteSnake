@@ -28,7 +28,6 @@ Snake::Snake(GamePanel *gamePanel, const SnakeData &data)
 void Snake::onExit()
 {
 	CCNode::onExit();
-	RankingModel::theModel()->removeRank(m_data.name);
 	for (auto body : m_body)
 	{
 		body->removeFromParent();

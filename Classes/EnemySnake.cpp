@@ -13,6 +13,12 @@ EnemySnake::EnemySnake(GamePanel *gamePanel)
 
 }
 
+void EnemySnake::onExit()
+{
+	Snake::onExit();
+	RankingModel::theModel()->removeRank(m_data.name);
+}
+
 EnemySnake *EnemySnake::create(GamePanel *gamePanel)
 {
 	EnemySnake *snake = new EnemySnake(gamePanel);
