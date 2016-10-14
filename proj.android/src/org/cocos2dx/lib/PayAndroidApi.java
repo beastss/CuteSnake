@@ -43,13 +43,11 @@ public class PayAndroidApi {
 		mPush = new DongXinPush(mContext);
 	}
 
-	int itemId = 0;
-	public void Purchase(int id) {
-		itemId = id;
+	public void Purchase(final int id) {
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
-				sdkObj.purchase(itemId);
+				sdkObj.purchase(id);
 			}
 		});
 
@@ -70,9 +68,7 @@ public class PayAndroidApi {
 		sMainThreadHandler.post(r);
 	}
 	
-	int toastIndex = 0;
-	public void showToast(int index) {
-		toastIndex = index;
+	public void showToast(final int toastIndex) {
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
@@ -82,9 +78,7 @@ public class PayAndroidApi {
 		});
 	}
 	
-	static String toastText;
-	public static void showToast(String text){
-		toastText = text;
+	public static void showToast(final String toastText){
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
