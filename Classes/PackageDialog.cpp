@@ -8,6 +8,17 @@
 USING_NS_CC;
 using namespace std;
 
+void PackageDialog::onEnter()
+{
+	ScaleDialog::onEnter();
+}
+
+void PackageDialog::onExit()
+{
+	ScaleDialog::onExit();
+	MyPurchase::sharedPurchase()->removeUiCallback((int)this);
+}
+
 bool PackageDialog::init()
 {
 	bool forBusiness = AndroidIter::getIter()->isForBusiness();
@@ -47,16 +58,23 @@ bool PackageDialog::init()
 void PackageDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
 	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
-	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
+	doBilling();
+}
+
+void PackageDialog::doBilling(bool removeUi)
+{
+	BillingParam param;
+	param.modelCallback = bind(&PropsMgr::buyPropsPackage, PropsMgr::theMgr());
+	param.whichUi = (int)this;
+	if (removeUi)
 	{
-		int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
-		PropsMgr::theMgr()->saveNum(kPropsTypeGrow, num + 10);
-
-		num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
-		PropsMgr::theMgr()->saveNum(kPropsTypeGodlike, num + 10);
-
-		removeFromParent();
-	});
+		param.uiCallback = [=]()
+		{
+			removeFromParent();
+		};
+	}
+	
+	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, param);
 }
 
 void PackageDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
@@ -69,12 +87,6 @@ void PackageDialog::onTouch(cocos2d::CCPoint pt)
 {
 	bool forBusiness = AndroidIter::getIter()->isForBusiness();
 	if (!forBusiness) return;
-	MyPurchase::sharedPurchase()->buyItem(kBillingPackage, [=]()
-	{
-		int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
-		PropsMgr::theMgr()->saveNum(kPropsTypeGrow, num + 10);
 
-		num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
-		PropsMgr::theMgr()->saveNum(kPropsTypeGodlike, num + 10);
-	});
+	doBilling(false);
 }

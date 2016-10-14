@@ -13,11 +13,12 @@ public:
 	void addMaskLayer();
 protected:
 	ScaleDialog();
+	virtual void onEnter();
+	virtual void onExit();
 	void runScale();
 	virtual void onTouch(cocos2d::CCPoint pt){}
 private:
-	virtual void onEnter();
-	virtual void onExit();
+;
 	void closeCallback(cocos2d::CCObject *pSender);
 	virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 protected:

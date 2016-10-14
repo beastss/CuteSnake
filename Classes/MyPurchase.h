@@ -40,6 +40,20 @@ struct BillingData
 	std::string code;
 };
 
+struct BillingParam
+{
+	std::function<void()> modelCallback;//model回调 保证对象有效
+	int whichUi;//whichUi为Ui对象地址
+	std::function<void()> uiCallback;//ui回调，对象无效后调用removeUiCallback来移除自己
+
+	BillingParam()
+	{
+		modelCallback = std::function<void()>();
+		whichUi = 0;
+		uiCallback = std::function<void()>();
+	}
+};
+
 class ActionRunner;
 class MyPurchaseResult
 {
@@ -52,19 +66,22 @@ class MyPurchase
 {
 public:
 	static MyPurchase* sharedPurchase();
-	void buyItem(int id, std::function<void()> callback);
+	void removeUiCallback(int whichUi);
+	void buyItem(int id, const BillingParam &param);
 
-	static void onPayResult(int ret);
+	void onPayResult(int ret);
 	void showToast(int index);
 	void initBillingData();
 	BillingData getBillData(int id){ return m_billingData[id]; }
 private:
 	MyPurchase();
 	~MyPurchase();
+	void reset();
 	bool checkBuyType(int type);
 private:
-	static std::function<void()> s_callback;
-	static ActionRunner *s_runner;	
+	bool m_purchasing;
+	BillingParam m_billParam;
+	ActionRunner *m_runner;	
 	std::vector<BillingData> m_billingData;
 };
 #endif

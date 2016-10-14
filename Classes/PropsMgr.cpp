@@ -37,3 +37,9 @@ int PropsMgr::getNum(int propsType)
 {
 	return m_props[propsType];
 }
+
+void PropsMgr::buyPropsPackage()
+{
+	saveNum(kPropsTypeGrow, m_props[kPropsTypeGrow] + 10);
+	saveNum(kPropsTypeGodlike, m_props[kPropsTypeGodlike] + 10);
+}

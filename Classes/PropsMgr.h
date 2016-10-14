@@ -14,6 +14,8 @@ public:
 	void init();
 	void saveNum(int propsType, int num);
 	int getNum(int propsType);
+	
+	void buyPropsPackage();
 private:
 	std::unordered_map<int, int>m_props;
 };

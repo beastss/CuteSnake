@@ -11,6 +11,17 @@
 USING_NS_CC;
 using namespace std;
 
+void RebornDialog::onEnter()
+{
+	ScaleDialog::onEnter();
+}
+
+void RebornDialog::onExit()
+{
+	ScaleDialog::onExit();
+	MyPurchase::sharedPurchase()->removeUiCallback((int)this);
+}
+
 RebornDialog *RebornDialog::create(GamePanel *gamePanel)
 {
 	RebornDialog *dialog = new RebornDialog(gamePanel);
@@ -43,6 +54,7 @@ bool RebornDialog::init()
 	{
 		costLabel->setOpacity(10);
 		
+
 		//phoneLabel->setOpacity(10);
 	}
 	else
@@ -58,13 +70,22 @@ bool RebornDialog::init()
 void RebornDialog::onBuyBtnClicked(cocos2d::CCObject* pSender)
 {
 	SoundMgr::theMgr()->playEffect(kEffectMusicButton);
-	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
+	doBiling();
+}
+
+void RebornDialog::doBiling()
+{
+	BillingParam param;
+	param.whichUi = (int)this;
+	param.uiCallback = [=]()
 	{
 		//复活后回复上次长度
 		auto snake = PlayerSnake::create(m_gamePanel, PlayerData::theData()->getData());
 		m_gamePanel->addSnake(snake);
 		removeFromParent();
-	});
+	};
+
+	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, param);
 }
 
 void RebornDialog::onCloseBtnClicked(cocos2d::CCObject* pSender)
@@ -78,11 +99,6 @@ void RebornDialog::onTouch(cocos2d::CCPoint pt)
 {
 	bool forBusiness = AndroidIter::getIter()->isForBusiness();
 	if (!forBusiness) return;
-	MyPurchase::sharedPurchase()->buyItem(kBillingReborn, [=]()
-	{
-		//复活后回复上次长度
-		auto snake = PlayerSnake::create(m_gamePanel, PlayerData::theData()->getData());
-		m_gamePanel->addSnake(snake);
-		removeFromParent();
-	});
+
+	doBiling();
 }

@@ -9,19 +9,18 @@ using namespace cocos2d;
 using namespace std;
 using namespace rapidxml;
 
-function<void()> MyPurchase::s_callback = function<void()>();
-ActionRunner* MyPurchase::s_runner = NULL;
-
 MyPurchase::MyPurchase()
 {
-	s_runner = ActionRunner::create();
-	s_runner->retain();
+	m_runner = ActionRunner::create();
+	m_runner->retain();
+
+	reset();
 }
 
 MyPurchase::~MyPurchase()
 {
-	s_runner->clear();
-	s_runner->release();
+	m_runner->clear();
+	m_runner->release();
 }
 
 MyPurchase* MyPurchase::sharedPurchase()
@@ -30,11 +29,12 @@ MyPurchase* MyPurchase::sharedPurchase()
 	return &model;
 }
 
-void MyPurchase::buyItem(int id, std::function<void()> callback)
+void MyPurchase::buyItem(int id, const BillingParam &param)
 {
-	if (!checkBuyType(id)) return;
+	if (!checkBuyType(id) || m_purchasing) return;
 
-	s_callback = callback;
+	m_purchasing = true;
+	m_billParam = param;
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) 
 	onPayResult(kReturnCodeSucceed);
 #else
@@ -66,27 +66,40 @@ void MyPurchase::onPayResult(int ret)
 	{
 	case kReturnCodeSucceed:
 		//ÑÓÊ±0.5f SdkºóÌ¨
-		if (s_callback)
+		m_runner->queueAction(DelayAction::withDelay(2.5f));
+		m_runner->queueAction(CallFuncAction::withFunctor([=]()
 		{
-			s_runner->queueAction(DelayAction::withDelay(0.5f));
-			s_runner->queueAction(CallFuncAction::withFunctor([=]()
+			if (m_billParam.modelCallback)
 			{
-				s_callback();
-				s_callback = function<void()>();
-			}));
-		}
+				m_billParam.modelCallback();
+			}
+			if (m_billParam.uiCallback)
+			{
+				m_billParam.uiCallback();
+			}
+			reset();
+		}));
 		break;
 	case kReturnCodeFail:
-		s_callback = function<void()>();
-		break;
 	case kReturnCodeCanceled:
-		s_callback = function<void()>();
-		break;
 	default:
-		s_callback = function<void()>();
+		reset();
 		break;
 	}
-	
+}
+
+void MyPurchase::reset()
+{
+	m_purchasing = false;
+	m_billParam = BillingParam();
+}
+
+void MyPurchase::removeUiCallback(int whichUi)
+{
+	if (m_purchasing && whichUi == m_billParam.whichUi)
+	{
+		m_billParam.uiCallback = function<void()>();
+	}
 }
 
 bool MyPurchase::checkBuyType(int type)
