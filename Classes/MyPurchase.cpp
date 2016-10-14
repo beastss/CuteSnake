@@ -66,7 +66,7 @@ void MyPurchase::onPayResult(int ret)
 	{
 	case kReturnCodeSucceed:
 		//ÑÓÊ±0.5f SdkºóÌ¨
-		m_runner->queueAction(DelayAction::withDelay(2.5f));
+		m_runner->queueAction(DelayAction::withDelay(0.5f));
 		m_runner->queueAction(CallFuncAction::withFunctor([=]()
 		{
 			if (m_billParam.modelCallback)
