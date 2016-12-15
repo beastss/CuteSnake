@@ -1,5 +1,6 @@
 #include "ScaleDialog.h"
 #include "CommonMacro.h"
+#include "MsgNotifier.h"
 using namespace std;
 USING_NS_CC; 
 ScaleDialog::ScaleDialog()
@@ -39,12 +40,14 @@ void ScaleDialog::onEnter()
 	{
 		runScale();
 	}
+	MsgNotifier::theNotifier()->onUpdateGameState(true);
 }
 
 void ScaleDialog::onExit()
 {
 	CCNode::onExit();
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	MsgNotifier::theNotifier()->onUpdateGameState(false);
 }
 
 bool ScaleDialog::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

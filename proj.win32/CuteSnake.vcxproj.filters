@@ -159,6 +159,9 @@
     <ClCompile Include="..\Classes\TimeConsume.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MsgNotifier.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TimeConsume.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MsgNotifier.h">
+      <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

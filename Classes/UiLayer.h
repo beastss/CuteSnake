@@ -3,12 +3,14 @@
 
 #include "cocos2d.h"
 #include "SnakeController.h"
+#include "MsgNotifier.h"
 
 class UiLayout;
 class UiLayer
 	: public cocos2d::CCNode
 	, public IControlSnake
 	, public cocos2d::CCTouchDelegate
+	, public IMsgWatcherView
 {
 public:
 	CREATE_FUNC(UiLayer);
@@ -26,6 +28,7 @@ private:
 	virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	virtual void onSnakeDataChanged();
+	virtual void onPropsNumChanged();
 private:
 	UiLayout *m_leftLayout;
 	UiLayout *m_rightLayout;

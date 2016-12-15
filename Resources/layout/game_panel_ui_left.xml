@@ -1,8 +1,26 @@
 <layout width="100.000000" height="480.000000">
+	<image>
+		<id>10</id>
+		<x>48.33</x>
+		<y>305.60</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>game_scene/yaosuidikuang_lan.png</path>
+	</image>
+	<image>
+		<id>11</id>
+		<x>49.17</x>
+		<y>200.71</y>
+		<anchorPtX>0.50</anchorPtX>
+		<anchorPtY>0.50</anchorPtY>
+		<scale>1.00</scale>
+		<path>game_scene/yaosuidikuang_lv.png</path>
+	</image>
 	<button>
 		<id>2</id>
-		<x>32.72</x>
-		<y>313.83</y>
+		<x>39.68</x>
+		<y>310.88</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>0.70</scale>
@@ -12,8 +30,8 @@
 	</button>
 	<button>
 		<id>3</id>
-		<x>35.46</x>
-		<y>209.14</y>
+		<x>42.64</x>
+		<y>202.39</y>
 		<anchorPtX>0.50</anchorPtX>
 		<anchorPtY>0.50</anchorPtY>
 		<scale>0.70</scale>

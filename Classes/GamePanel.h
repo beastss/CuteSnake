@@ -3,12 +3,15 @@
 
 #include "cocos2d.h"
 #include "BasePanel.h"
+#include "MsgNotifier.h"
 class UiLayer;
 class Snake;
 class Food;
 class FoodMgr;
 
-class GamePanel : public BasePanel
+class GamePanel 
+	: public BasePanel
+	, public IMsgWatcherView
 {
 public:
 	CREATE_FUNC(GamePanel);
@@ -23,16 +26,21 @@ public:
 private:
 	GamePanel();
     virtual bool init();  
+	virtual void onEnter();
+	virtual void onExit();
 	void initGameBk();
 	void initSnakes();
 	void update(float dt);
 	virtual void onBackKeyTouched();
+private:
+	virtual void onUpdateGameState(bool pause);
 private:
 	UiLayer *m_uiLayer;
 	cocos2d::CCNode *m_snakeField;
 	cocos2d::CCSpriteBatchNode *m_snakeBatchNode;
 	FoodMgr *m_foodMgr;
 	std::vector<Snake *> m_snakes;
+	bool m_runningUpdate;
 };
 
 #endif 

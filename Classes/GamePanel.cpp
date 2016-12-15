@@ -14,6 +14,7 @@ using namespace std;
 USING_NS_CC;
 
 GamePanel::GamePanel()
+: m_runningUpdate(true)
 {
 	m_foodMgr = new FoodMgr(this);
 }
@@ -23,6 +24,18 @@ GamePanel::~GamePanel()
 	delete m_foodMgr;
 }
 
+void GamePanel::onEnter()
+{
+	BasePanel::onEnter();
+	MsgNotifier::theNotifier()->addView(this);
+}
+
+void GamePanel::onExit()
+{
+	BasePanel::onExit();
+	MsgNotifier::theNotifier()->removeView(this);
+}
+
 bool GamePanel::init()
 {
 	RankingModel::theModel()->reset();
@@ -30,8 +43,10 @@ bool GamePanel::init()
 	auto winSize = CCDirector::sharedDirector()->getWinSize();
 	
 	//±³¾°²ã
-	auto bk = CCLayerColor::create(ccc4(120, 0, 0, 200));
+	//auto bk = CCLayerColor::create(ccc4(120, 0, 0, 200));
+	auto bk = CCLayerColor::create(ccc4(0, 0, 0, 200));
 	addChild(bk);
+	
 	//ÉßÇøÓò
 	m_snakeField = CCNode::create();
 	initGameBk();
@@ -48,17 +63,25 @@ bool GamePanel::init()
 	initSnakes();
 	setContentSize(winSize);
 
+	//ÕÚÕÖÐÞÊÎ²ã
+	auto mask = CCSprite::create("main_menu/mask.png");
+	mask->setPosition(ccpMult(winSize, 0.5f));
+	addChild(mask);
+
 	scheduleUpdate();
     return true;
 }
 
 void GamePanel::initGameBk()
 {
-	CCSpriteBatchNode* batchNode = CCSpriteBatchNode::create("game_scene/map_01.png");
+	string gridPath = "game_scene/beijing.png";
+	CCSpriteBatchNode* batchNode = CCSpriteBatchNode::create(gridPath.c_str());
+	auto bk = CCSprite::create(gridPath.c_str());
 	m_snakeField->addChild(batchNode);
-	const float gridSize = 40;
-	int xGrids = GAME_LAYER_WIDTH / gridSize;
-	int yGrids = GAME_LAYER_HEIGHT / gridSize;
+	const float gridWidth = bk->getContentSize().width;
+	const float gridHeight = bk->getContentSize().height;
+	int xGrids = GAME_LAYER_WIDTH / gridWidth + 1;
+	int yGrids = GAME_LAYER_HEIGHT / gridHeight + 1;
 	for (int i = 0; i < yGrids; ++i)
 	{
 		for (int j = 0; j < xGrids; ++j)
@@ -66,16 +89,22 @@ void GamePanel::initGameBk()
 			CCSprite *spr = CCSprite::createWithTexture(batchNode->getTexture());
 			spr->setAnchorPoint(ccp(0, 0));
 			CCPoint pos;
-			pos.x = gridSize * j;
-			pos.y = gridSize * i;
+			pos.x = gridWidth * j;
+			pos.y = gridHeight * i;
 			spr->setPosition(pos);
 			batchNode->addChild(spr);
 		}
 	}
 }
 
+void GamePanel::onUpdateGameState(bool pause)
+{
+	m_runningUpdate = !pause;
+}
+
 void GamePanel::update(float dt)
 {
+	if (!m_runningUpdate) return;
 	for (size_t i = 0; i < m_snakes.size(); ++i)
 	{
 		m_snakes[i]->update(dt);

@@ -19,12 +19,14 @@ void UiLayer::onEnter()
 	CCNode::onEnter();
 	SnakeController::controller()->addView(this);
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, kTouchPriorityPanel, true);
+	MsgNotifier::theNotifier()->addView(this);
 }
 
 void UiLayer::onExit()
 {
 	CCNode::onExit();
 	SnakeController::controller()->removeView(this);
+	MsgNotifier::theNotifier()->removeView(this);
 }
 
 bool UiLayer::init()
@@ -48,17 +50,17 @@ void UiLayer::initLeftUi()
 
 	CCMenuItem *growBtn = dynamic_cast<CCMenuItem *>(m_leftLayout->getChildById(2));
 	growBtn->setTarget(this, menu_selector(UiLayer::onGrowBtnClicked));
-	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(8));
-	growNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGrow)));
 	CCMenuItem *godLikeBtn = dynamic_cast<CCMenuItem *>(m_leftLayout->getChildById(3));
-	CCLabelAtlas *godLikeNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
-	godLikeNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGodlike)));;
 	godLikeBtn->setTarget(this, menu_selector(UiLayer::onGodLikeBtnClicked));
+
+	onPropsNumChanged();
+	//*
 	for (int i = 0; i < 4; ++i)
 	{
 		CCLabelTTF *label = dynamic_cast<CCLabelTTF *>(m_leftLayout->getChildById(4 + i));
 		label->setColor(ccc3(70, 130, 180));
 	}
+	//*/
 	onSnakeDataChanged();
 }
 
@@ -90,13 +92,10 @@ void UiLayer::onGodLikeBtnClicked(CCObject* pSender)
 	int num = PropsMgr::theMgr()->getNum(kPropsTypeGodlike);
 	if (num <= 0)
 	{
-		//MainScene::theScene()->showDialog(PackageDialog::create());
+		MainScene::theScene()->showDialog(PackageDialog::create());
 		return;
 	}
 	PropsMgr::theMgr()->saveNum(kPropsTypeGodlike, num - 1);
-	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
-	growNum->setString(CommonUtil::intToStr(num - 1));
-
 	SnakeController::controller()->godLike();
 }
 
@@ -106,13 +105,10 @@ void UiLayer::onGrowBtnClicked(CCObject* pSender)
 	int num = PropsMgr::theMgr()->getNum(kPropsTypeGrow);
 	if (num <= 0)
 	{
-		//MainScene::theScene()->showDialog(PackageDialog::create());
+		MainScene::theScene()->showDialog(PackageDialog::create());
 		return;
 	}
 	PropsMgr::theMgr()->saveNum(kPropsTypeGrow, num - 1);
-	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(8));
-	growNum->setString(CommonUtil::intToStr(num - 1));
-
 	SnakeController::controller()->growBody();
 }
 
@@ -156,4 +152,13 @@ void UiLayer::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
 	m_rightLayout->getChildById(1)->setScale(1);
 	SnakeController::controller()->speedUp(false);
+}
+
+void UiLayer::onPropsNumChanged()
+{
+	CCLabelAtlas *growNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(8));
+	growNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGrow)));
+
+	CCLabelAtlas *godLikeNum = dynamic_cast<CCLabelAtlas *>(m_leftLayout->getChildById(9));
+	godLikeNum->setString(CommonUtil::intToStr(PropsMgr::theMgr()->getNum(kPropsTypeGodlike)));
 }

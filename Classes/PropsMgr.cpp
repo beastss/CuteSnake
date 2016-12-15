@@ -1,5 +1,6 @@
 #include "PropsMgr.h"
 #include <algorithm>
+#include "MsgNotifier.h"
 USING_NS_CC;
 using namespace std;
 
@@ -31,6 +32,7 @@ void PropsMgr::saveNum(int propsType, int num)
 		assert(false && "no this props");
 		break;
 	}
+	MsgNotifier::theNotifier()->onPropsNumChanged();
 }
 
 int PropsMgr::getNum(int propsType)

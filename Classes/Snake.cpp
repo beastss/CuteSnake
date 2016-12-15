@@ -100,7 +100,7 @@ void Snake::update(float dt)
 	m_data.length = m_body.size();
 	for (auto body : m_body)
 	{
-		m_scale = min((m_body.size() / 50.0f), 1.0f) * 0.3f + 0.5f;
+		m_scale = min((m_body.size() / 50.0f), 1.0f) * 0.3f + 0.4f;
 		body->setScale(m_scale);
 	}
 
